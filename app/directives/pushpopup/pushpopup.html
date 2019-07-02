@@ -1,0 +1,12 @@
+<div class="popupBackground pushPopup" ng-class="{visiblePushPopup:showPushPopup}">
+	<div class="popup">
+		<div class="popup-content-wrap">
+			<div class="title-popup">{{pushPopupTitle}}</div>
+			<div class="sentence-popup">{{pushPopupContent}}</div>
+		</div>
+		<div class="yes-no-btn editLesson">
+			<div class="cancel" ng-click="showPushPopup=false">סגור</div>
+			<div class="confirm" ng-click="closePushPopup()">עבור</div>
+		</div>
+	</div>
+</div>

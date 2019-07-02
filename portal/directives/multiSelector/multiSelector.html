@@ -1,0 +1,18 @@
+<div class="selected-values">
+	<div dir="rtl" ng-repeat="option in options | filter:filterSelected" class="selected-value">
+		{{option[textIndex]}}
+		<div ng-if="!disable" ng-click="removeItem(option[valueIndex])" class="clickable"><span class="fa fa-times"></span></div>
+	</div>
+	<div ng-if="!disable" ng-click="openSelector()" class="clickable"><span class="fa fa-plus"></span></div>
+</div>
+<popup visibility="showOptions">
+	<div class="popup-header">בחרו מבין האפשרויות</div>
+	<div class="popup-content-wrap">
+		<div dir="rtl" ng-repeat="option in options | filter:filterUnselected" ng-click="addItem(option[valueIndex])" class="clickable selector-option">
+			{{option[textIndex]}}
+		</div>
+		<div ng-if="(options | filter:filterUnselected).length==0" class="selector-option clickable disabled">
+			אין אפשרויות נוספות
+		</div>
+	</div>
+</popup>

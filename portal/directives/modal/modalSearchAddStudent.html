@@ -1,0 +1,28 @@
+﻿<span  class="modal-directive modal-confrim">
+	<div class="modal fade in" tabindex="-1" ng-if="modalShow"  style="color:black">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header" style="
+					min-height: 82px;
+				">
+			<button type="button" class="close" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title">הוסף חניך</h4>
+			<button type="button" class="btn btn-primary pull-left" ng-click="confirm()">הוסף</button>
+		  </div>
+		  
+		     <div class="input-group custom-search-form search-add-mission" style="width: 100%;padding: 25px;">
+                    <input ng-model="q" id="search" type="text" name="searchword" class="form-control custom-search-form searchword" placeholder="חיפוש..."  style="margin-top:10px;">
+            </div>
+		  
+		 	<div ng-repeat="value in allStudents | filter:q as results" ng-click="choose(value)">
+					<div class="mission-container rcorners" style="cursor:pointer;" ng-style="(chosen==value) && {'background-color':'#0094ff'}">
+							<div class="title" name="title">{{value.tznumber}} {{value.firstname}} {{value.lastname}} </div>
+					</div>
+			</div>
+		</div>
+		<div class="modal-load" ng-if="modalLoad"></div>
+	  </div>
+	</div>
+	<div class="modal-backdrop fade in" ng-if="modalShow"></div>
+	<span ng-transclude ng-click="open()"></span>
+</span>

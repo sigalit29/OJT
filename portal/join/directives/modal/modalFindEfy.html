@@ -1,0 +1,81 @@
+<span class="modal-directive modal-confrim">
+    <div class="modal fade in" tabindex="-1" ng-if="modalShow">
+        <div class="modal-dialog modal-efy-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button closemodal" class="close" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">שאלת חפש את אפי</h4>
+                </div>
+				
+                <div class="modal-body">
+                    <div class="alert alert-danger" ng-if="hasError">
+						נא למלא את כל השדות
+                    </div>
+					
+                    <div class="form-group">
+						<p class="help-block">תיאור המשימה</p>
+                        <input class="form-control" ng-model="question.text" placeholder="תיאור המשימה" maxlength="100">
+                        <p class="help-block">{{question.text.length}} מתוך 100 תווים</p>
+                    </div>
+					
+                    <span class="input-group-btn">
+                        <span class="btn btn-info btn-file">
+                            <i class="fa fa-upload"></i> <i class="fa fa-photo"></i> 
+							<input type="file" accept="image/*" ngf-select="onFileSelect(question.img, $files)">							
+                        </span>
+                    </span>
+					
+                    <p class="help-block">גודל תמונה מקסימלי 1MB</p>
+                    <p class="help-block">גודל תמונה אופטימלי : 257px על 205px</p>
+					
+					<select ng-if="question.img" ng-model="data.shapeType">
+						<option value="ellipse">אליפסה</option>
+						<option value="rect">מלבן</option>
+					</select>
+					<div>
+						<div ng-if="question.img" style="
+									position: relative;
+									display: inline-block;">
+							<img id="myCanvasimg" ng-if="question.img" src="/{{question.img}}"/>		
+							<canvas ng-if="question.img" ng-init="setcanvast()" id="myCanvas" style="
+																									position: absolute;
+																									width: 100%;
+																									height: 100%;
+																									top: 0;
+																									right: 0;
+																								    "></canvas>
+						</div>
+					</div>
+					<!--img ng-src="/{{question.img}}" ng-if="question.img" style="max-height: 50px;" /-->
+					
+                    <p class="fa fa-trash-o" ng-if="question.img" ng-click="question.img=null" style="cursor: pointer;"></p>
+                    <br>
+					
+                    <!-- /div -->
+					
+ 					<label>
+						<input type="checkbox" ng-model="question.withTimer">
+							להציג טיימר?
+					</label>
+						
+                    <div ng-if="question.withTimer==true" class="form-group">						
+                        <p class="help-block">מספר שניות</p>
+						<input type="number" class="form-control" ng-model="question.numOfSeconds" placeholder="מספר שניות" maxlength="100">
+                    </div>
+
+                    <div class="form-group">						
+                        <p class="help-block">מספר נקודות</p>
+						<input type="number" class="form-control" ng-model="question.numOfPoints"  ng-change="changePoints()" placeholder="מספר נקודות" maxlength="100">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary closemodal" ng-click="confirm()">אישור</button>
+                </div>
+            </div>
+            <div class="modal-load" ng-if="modalLoad"></div>
+        </div>
+    </div>
+    <div class="modal-backdrop fade in" ng-if="modalShow"></div>
+    <span ng-transclude ng-click="open()"></span>
+</span>

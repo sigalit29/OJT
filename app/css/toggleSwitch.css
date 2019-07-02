@@ -1,0 +1,61 @@
+.toggle-wrap {
+    position: relative;
+    width: 100%;
+    height: 5.5vh;
+    margin-top: 4%;
+}
+.toggle-label{
+    position: absolute;
+    font-size: 5vw;
+    color: #15457d;
+    width: 38%;
+    height: 9vw;
+    top: 0;
+    margin: auto;
+}
+.unchecked-label {
+    right: 0;
+}
+.checked-label {
+	left: 0;
+}
+.semi-transparent{
+	opacity: 0.5;
+}
+.check-button {
+	border-radius: 5.5vh;
+	background-color: #D8D8D8;
+	height: 100%;
+	width: 3.75em;
+	position: relative;
+	margin: auto;
+	z-index: 10;
+}
+.check-side {
+	height: 6.5vh;
+	width: 6.5vh;
+	border-radius: 50%;
+	border: 0px solid;
+	color: #4a90e2;
+	background-color: #4a90e2;
+	position: absolute;
+	left: 0;
+	transition: left 0.3s;
+	height: 5.5vh;
+	width: 5.5vh;
+}
+.checked-toggle .check-side {
+	left: calc(100% - 5.5vh);
+}
+.inverse-wrap .toggle-label{
+	color: white;
+}
+.inverse-wrap .check-button{
+	background-color: transparent;
+	border: 2px solid white;
+	box-sizing: border-box;
+}
+.inverse-wrap .check-side{
+	background-color: white;
+	top: -2px;
+}

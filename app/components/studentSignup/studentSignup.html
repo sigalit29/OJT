@@ -1,0 +1,242 @@
+<div class="gradient-foreground"></div>
+<!-- Slider main container -->
+<div class="swiper-container">
+	<!-- Additional required wrapper -->
+	<div class="swiper-wrapper">
+		<!-- Slides -->
+		<div class="swiper-slide signup-stage" id="signup-1">
+			<div class="signup-stage-wrap">
+				<div class="language-toggle-wrap">
+					<toggle-switch unchecked-label="'עברית'" checked-label="'العربية'" model="isArabic" on-change="changeLanguage">
+				</div>
+				<div class="signup-form-wrap" ng-show="!(google.idToken)">
+					<form class="signup-form">
+						<div class="input-wrap">
+							<div class="input-icon email"></div>
+							<input type="text" ng-model="user.email" placeholder="{{dictionary.mailText}}" />
+						</div>
+						<p ng-show="!validateEmail(user.email)&&user.email.length>0" id="" class="invalidInput">
+							{{dictionary.invalidEmail}}
+						</p>
+						<div class="input-wrap">
+							<div class="input-icon password"></div>
+							<input type="password" ng-model="user.password" placeholder="{{dictionary.passwordText}}" />
+						</div>
+						<p ng-show="!validatePass()&&user.password.length>0" id="invalidPass" class="invalidInput">
+							{{dictionary.invalidPass}}
+						</p>
+						<div class="input-wrap">
+							<div class="input-icon password"></div>
+							<input type="password" ng-model="user.passcheck" placeholder="{{dictionary.reEnterPass}}" />
+						</div>
+						<p ng-show="!validatePassCheck()&&user.passcheck.length>0" id="invalidPassCheck" class="invalidInput">
+							{{dictionary.invalidPassCheck}}
+						</p>
+					</form>
+				</div>
+				<!--div class="signup-options-separator" ng-if="!google.idToken">-OR-</div>
+				<div class="login-with-gp-wrap">
+					<div id="my-signin2"></div>
+				</div>
+				<img class="profile-img-preview" ng-show="google.img" src="{{google.img}}"/-->
+				<br/>
+				<div class="btn next-signup-step" ng-class="{'disable': !validateStep1()}" ng-click="validateStep1()?mySwiper.slideNext():''">
+					<span class="btn-text">{{dictionary.nextText}}</span>
+				</div>
+				<div class="btn secBtn" ng-click="cancel()">
+					<div class="btn-text">
+						{{dictionary.cancelText}}
+					</div>
+				</div>
+				<br/>
+			</div>
+		</div>
+		<div class="swiper-slide signup-stage" id="signup-2">
+			<div class="signup-stage-wrap">
+				<div class="signup-form-wrap">
+					<form class="signup-form">
+						<div class="add-profile-pic">
+							<!--<div class="choose-pic-button" style="{{user.image==''?'':'background-image:url('+imgsDomain+user.image+');'}}" ng-click="isIos ? openGallery() : ''">
+								<input type="file" accept="image/*" ngf-select="onImageSelect($files)" ng-if="!isIos">
+							</div>-->
+							<div class="choose-pic-button" style="{{user.image==''?'':'background-image:url('+imgsDomain+user.image+');'}}" ng-click="openImageOptions()"></div>
+							<p class="choose-pic-instruction">
+								{{dictionary.chooseProfilePic}}
+							</p>
+						</div>
+						<div class="input-wrap rtl-input">
+							<div class="input-icon account"></div>
+							<input type="text" ng-model="user.firstname" placeholder="{{dictionary.inputFirstName}}" />
+						</div>
+						<p ng-show="!validateFirstName()&&user.firstname.length>1" id="invalidFirstName" class="invalidInput">
+							{{dictionary.invalidFirstName}}
+						</p>
+						<div class="input-wrap rtl-input">
+							<div class="input-icon account"></div>
+							<input type="text" ng-model="user.lastname" placeholder="{{dictionary.inputLastName}}" />
+						</div>
+						<p ng-show="!validateLastName()&&user.lastname.length>1" id="invalidLastName" class="invalidInput">
+							{{dictionary.invalidLastName}}
+						</p>
+						<div class="input-wrap">
+							<div class="input-icon cell"></div>
+							<input type="text" ng-model="user.phone" placeholder="{{dictionary.inputPrivatePhoneNum}}" />
+						</div>
+						<p ng-show="!validatePhone1()&&user.phone.length>0" id="invalidPhone1" class="invalidInput">
+							{{dictionary.invalidPhone}}
+						</p>
+						<div class="input-wrap">
+							<div class="input-icon cell"></div>
+							<input type="text" ng-model="user.phone2" placeholder="{{dictionary.inputHomePhoneNum}}" />
+						</div>
+						<p ng-show="!validatePhone2()&&user.phone2.length>0" id="invalidPhone2" class="invalidInput">
+							{{dictionary.invalidPhone}}
+						</p>
+					</form>
+				</div>
+				<div class="btn next-signup-step" ng-if="!choosePicSelected" ng-class="{'disable': !validateStep2()}" ng-click="validateStep2()?mySwiper.slideNext():''">
+					<span class="btn-text">{{dictionary.nextText}}</span>
+				</div>
+				<div class="btn secBtn" ng-if="!choosePicSelected" ng-click="cancel()">
+					<div class="btn-text">
+						{{dictionary.cancelText}}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="swiper-slide signup-stage" id="signup-3">
+			<div class="signup-stage-wrap">
+				<div class="signup-form-wrap">
+					<form class="signup-form">
+						<div class="input-wrap rtl-input">
+							<div class="input-icon id"></div>
+							<input type="text" ng-model="user.tznumber" placeholder="{{dictionary.inputId}}" />
+						</div>
+						<p ng-show="user.tznumber.length>0&&!validateId()" id="invalidId" class="invalidInput">
+							{{dictionary.invalidId}}
+						</p>
+						<div class="input-wrap rtl-input">
+							<div class="input-icon cal"></div>
+							<input type="text" maxlength="10" ng-model="user.birthday" placeholder="{{dictionary.inputBirthday}}" />
+						</div>
+						<p ng-show="!validateDate()&&user.birthday.length>0" id="invalidBirthday" class="invalidInput">
+							{{dictionary.invalidBirthday}}
+						</p>
+						<div class="input-wrap">
+							<div ng-click="showGendersForm=!showGendersForm">
+								<div class="input-icon gender"></div>
+								<p style="{{(user.genderid!=''&&user.genderid!=null)?'color:#fff;':''}}">
+									{{user.genderid==''||user.genderid==null?dictionary.chooseGender:isArabic?getGenderById(user.genderid).nameinarabic:getGenderById(user.genderid).name}}
+								</p>
+							</div>
+						</div>
+						<p ng-show="showGendersForm==false&&!validateGender()" id="invalidGender" class="invalidInput">
+							{{dictionary.invalidGender}}
+						</p>
+						<div class="input-wrap">
+							<div ng-click="showCitiesForm=!showCitiesForm">
+								<div class="input-icon location"></div>
+								<p style="{{(user.cityid!=''&&user.cityid!=null)?'color:#fff;':''}}">
+									{{user.cityid==''||user.cityid==null?dictionary.chooseCity:getCityById(user.cityid).name}}
+								</p>
+							</div>
+						</div>
+						<p ng-show="showCitiesForm==false&&!validateCity()" id="invalidCity" class="invalidInput">
+							{{dictionary.invalidCity}}
+						</p>
+						<div class="input-wrap rtl-input">
+							<div class="input-icon location"></div>
+							<input type="text" ng-model="user.address" placeholder="{{dictionary.inputAddress}}" />
+						</div>
+						<p ng-show="user.address.length>0&&!validateAddress()" id="invalidAddress" class="invalidInput">
+							{{dictionary.invalidAddress}}
+						</p>
+					</form>
+				</div>
+				<div class="btn next-signup-step" ng-if="!choosePicSelected" ng-class="{'disable': !validateStep3()}" ng-click="validateStep3()?postUser():''">
+					<span class="btn-text">{{dictionary.completeSignup}}</span>
+				</div>
+				<div class="btn secBtn" ng-if="!choosePicSelected" ng-click="cancel()">
+					<div class="btn-text">
+						{{dictionary.cancelText}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div ng-show="showGendersForm" class="options-popup">
+	<div class="popupBackground" ng-click="showGendersForm=!showGendersForm"></div>
+	<div class="popup genders-popup">
+		<div class="options-popup-content" dir="rtl">
+			<h2 class="options-popup-title">{{dictionary.chooseGender}}</h2>
+			<div class="options-wrap" ng-click="showGendersForm=!showGendersForm">
+				<div ng-repeat="gender in genderList" class="popup-option">
+					<div class="popup-option-content" ng-click="setGender(gender.genderid)">
+						{{isArabic?gender.nameinarabic:gender.name}}
+					</div>
+				</div>
+			</div>
+			<div class="popup-cancel" ng-click="showGendersForm=!showGendersForm">
+				<h2>{{dictionary.cancelText}}</h2>
+			</div>
+		</div>
+	 </div>
+</div>
+<div ng-show="showCitiesForm" class="options-popup">
+	<div class="popupBackground" ng-click="showCitiesForm=!showCitiesForm"></div>
+	<div class="popup cities-popup">
+		<div class="options-popup-content" dir="rtl">
+			<h2 class="options-popup-title">{{dictionary.chooseCity}}</h2>
+			<div class="options-wrap" ng-click="showCitiesForm=!showCitiesForm">
+				<div ng-repeat="city in cityList" class="popup-option">
+					<div class="popup-option-content" ng-click="setCity(city.cityid)">
+						{{city.name}}
+					</div>
+				</div>
+			</div>
+			<div class="popup-cancel" ng-click="showCitiesForm=!showCitiesForm">
+				<h2>{{dictionary.cancelText}}</h2>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div ng-show="emailVerificationPending" class="options-popup">
+	<div class="popupBackground"></div>
+	<div class="popup email-verification-popup">
+		<div class="popup-content-wrap">
+			<div class="fix-email-section" ng-if="!approvedMail">
+				<p>
+					{{dictionary.emailSentTo}}
+				</p>
+				<input type="text" class="replace-email-input" dir="ltr" ng-if="!approvedMail" ng-model="emailFix.newEmail" placeholder="{{dictionary.mailText}}" />
+				<p ng-show="!validateEmail(emailFix.newEmail)" id="invalidEmail" class="invalidInput">
+					{{dictionary.invalidEmail}}
+				</p>
+				<p>
+					{{dictionary.pleaseApprove}}
+				</p>
+				<div class="btn resend-email"ng-class="{'disable': !validateEmail(emailFix.newEmail)}" ng-click="validateEmail(emailFix.newEmail)?replaceEmail():'';">
+					{{dictionary.resendMail}}
+				</div>
+			</div>
+			<div class="btn next-signup-step finish-signup" ng-class="{'disable': !approvedMail}" ng-click="approvedMail?loginAsUser():''">
+				<span class="btn-text">{{dictionary.enterText}}</span>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div ng-init="initializeSwiper()"></div>
+<div class="page-footer" ng-show="choosePicSelected">
+
+	<div class="page-footer-button" ng-if="isIos" ng-click="isIos ? openGallery() : ''">From Photo Library</div>
+
+	<div class="wrap-page-footer-button">
+		<div class="page-footer-button" ng-if="!isIos">From Photo Library</div>
+		<input class="page-footer-button input-uploade-image" type="file" accept="image/*;capture=camera" ngf-select="onImageSelect($files)" ng-if="!isIos">
+	</div>
+	<div class="page-footer-button" ng-click="openCamera()">From Camera</div>
+	<div class="page-footer-button" ng-click="closePicSelected()">Cancel</div>
+</div>

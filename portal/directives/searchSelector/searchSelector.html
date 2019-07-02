@@ -1,0 +1,9 @@
+<div>
+	<input type="text" class="form-input search-bar" placeholder="{{searchPlaceholder}}" ng-model="search" ng-keypress="preventSubmit($event)" ng-keyup="$event.keyCode == 13?refreshSearch():'';">
+	<div class="clickable search-button"><i class="fa fa-search" aria-hidden="true" ng-click="refreshSearch()"></i></div>
+</div>
+<page-navigator page-count="pageCount" page-index="pageIndex" go-to-page="goToPage" loading="loading"></page-navigator>
+<div dir="rtl" ng-repeat="result in results" ng-click="onSelect(result)" class="clickable selector-option" ng-class="{'selected':(selected&&selected.indexOf(result[valueIndex])!=-1)}">
+	{{result[textIndex]}}
+</div>
+<page-navigator page-count="pageCount" page-index="pageIndex" go-to-page="goToPage" loading="loading"></page-navigator>

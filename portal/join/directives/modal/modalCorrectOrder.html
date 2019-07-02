@@ -1,0 +1,89 @@
+<span class="modal-directive modal-confrim">
+    <div class="modal fade in" tabindex="-1" ng-if="modalShow">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close closemodal" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title"> שאלת בחירת פריטים\סדר נכון</h4>
+                </div>
+				
+                <div class="modal-body">
+                    <div class="alert alert-danger" ng-if="hasError">
+						נא למלא את כל השדות
+                    </div>
+                    <div class="form-group">						
+                        <input class="form-control" ng-model="question.text" placeholder="טקסט להזנה" maxlength="100">
+                        <p class="help-block">{{question.text.length}} מתוך 100 תווים</p>
+                    </div>
+					
+					<label><input type="checkbox" name="checkbox" ng-model="question.withOrder">חשיבות לסדר</label>
+					
+					<!-- items -->
+                    <div class="form-group">
+					 	<p class="help-block">	פריטים </p>
+    					<div class="form-group input-group" ng-repeat="filed in question.itemsRow track by $index">
+                            <input type="text" class="form-control" ng-model="question.itemsRow[$index]">
+							<span class="input-group-btn">
+								<button class="btn btn-danger" type="button" ng-click="question.itemsRow.splice($index, 1);">
+									<i class="fa fa-trash-o"></i>
+								</button>
+							</span>
+                        </div>
+						<button type="button" class="btn btn-info" ng-click="(question.itemsRow.length<4)?question.itemsRow.push(''):''">הוסף</button>
+					</div>
+
+					<!--distractions -->
+                    <div class="form-group">
+						<p class="help-block">	מסיחים </p>
+    					<div class="form-group input-group" ng-repeat="file in question.distractionsRow track by $index">
+                            <input type="text" class="form-control" ng-model="question.distractionsRow[$index]">
+							<span class="input-group-btn">
+								<button class="btn btn-danger" type="button" ng-click="question.distractionsRow.splice($index, 1);">
+									<i class="fa fa-trash-o"></i>
+								</button>
+							</span>								
+                        </div>
+						<button type="button" class="btn btn-info" ng-click="(question.distractionsRow.length<4)?question.distractionsRow.push(''):''">הוסף</button>
+					</div>
+
+                    <div class="form-group">
+						<p class="help-block">	מספר נקודות לשאלה </p>					
+                        <input class="form-control" ng-model="question.numOfPoints" placeholder="מספר נקודות לשאלה" maxlength="100">
+                    </div>
+
+					<!-- image -->
+					<div class="radio">
+						<input ng-if="question.withAnimation=='false'" type="number" class="form-control" ng-model="question.numOfFrames"  ng-change="change()" placeholder="מספר פריימים" maxlength="100">
+                        <p  ng-if="question.withAnimation=='false'" class="help-block">{{question.text.length}} מתוך 100 תווים</p>
+						
+						<span class="input-group-btn">
+							<span class="btn btn-info btn-file">
+								<i class="fa fa-upload"></i> <i class="fa fa-photo"></i> 
+								<input type="file"  accept="image/*" ngf-select="onFileSelect(question.img, $files)">
+							</span>
+						</span>
+					
+						<p class="help-block">גודל תמונה מקסימלי 1MB</p>
+						<p class="help-block">גודל תמונה אופטימלי : 257px על 205px</p>
+					
+						<img ng-src="/{{question.img}}" ng-if="question.img" style="
+																					max-width: 100%; 
+																					height: 100%;
+																					top: 0;
+																					right: 0;
+																					"/>
+					</div>
+            
+					<p class="fa fa-trash-o" ng-if="question.img" ng-click="question.img=null" style="cursor: pointer;"></p>
+                    <br>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary closemodal" ng-click="confirm()">אישור</button>
+                </div>
+            </div>
+            <div class="modal-load" ng-if="modalLoad"></div>
+        </div>
+    </div>
+    <div class="modal-backdrop fade in" ng-if="modalShow"></div>
+    <span ng-transclude ng-click="open()"></span>
+</span>

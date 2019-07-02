@@ -1,0 +1,19 @@
+﻿<span  class="modal-directive modal-confrim">
+	<div class="modal fade in" tabindex="-1" ng-if="modalShow">
+	  <div class="modal-dialog" style="width: 400px">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h4 class="modal-title">הודעה</h4>
+		  </div>
+		  <div class="modal-body">
+			{{text}}
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-primary" ng-click="confirm()">אישור</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	<div class="modal-backdrop fade in" ng-if="modalShow"></div>
+	<span ng-transclude></span>
+</span>

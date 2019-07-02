@@ -1,0 +1,51 @@
+.stat-block{
+	padding: 5%;
+	box-sizing:  border-box;
+}
+.stat-block .box-title{
+	color: #15457d;
+	font-family: assistant;
+	font-weight: bold;
+	font-size: 0.9em;
+	text-align: center;
+	position: relative;
+}
+.stat-block .box-title .more-info{
+	position: absolute;
+	left:3vw;
+}
+.stat-flex{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items:  center;
+	text-align: center;
+	color: #15457d;
+}
+.stat-flex .stat-value{
+	padding: 0 2.5%;
+	width: 5em;
+}
+.stat-flex .stat-value-number{
+	font-size: 3em;
+	font-family: assistant-semibold;
+}
+.stat-flex .stat-value-label{
+	font-size: 0.7em;
+	font-family: assistant;
+	font-weight: bold;
+}
+.stat-icon{
+	width: 25vw;
+	height: 25vw;
+	display: block;
+	margin: 10% auto;
+	margin-bottom: 5%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.stat-label{
+	text-align: center;
+	color: #15457d;
+	padding: 5%;
+}

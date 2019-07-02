@@ -1,0 +1,214 @@
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	font-family: 'Assistant', sans-serif !important;
+}
+
+.login-cover {
+	background-color:#4a90e2;
+	background-size: 100% 100%;
+}
+
+.page-title
+{
+	margin-top: 0;
+	padding: 1%;
+	text-align: center;
+	border-bottom: 1px solid #BBB;
+}
+
+.users-icon {
+	position: absolute;
+	width: 25px;
+	height: 25px;
+	right: 6px;
+	margin: auto;
+	top: 0px;
+	bottom: 0px;
+	background: url(../img/users.png) no-repeat;
+	background-size: contain;
+}
+
+.event-icon {
+	position: absolute;
+	width: 25px;
+	height: 25px;
+	right: 6px;
+	margin: auto;
+	top: 0px;
+	bottom: 0px;
+	background: url(../img/calender.png) no-repeat;
+	background-size: contain;
+}
+
+.course-icon {
+	position: absolute;
+	width: 25px;
+	height: 25px;
+	right: 6px;
+	margin: auto;
+	top: 0px;
+	bottom: 0px;
+	background: url(../img/courses.png) no-repeat;
+	background-size: contain;
+}
+
+.clock-icon {
+	position: absolute;
+	width: 25px;
+	height: 25px;
+	right: 6px;
+	margin: auto;
+	top: 0px;
+	bottom: 0px;
+	background: url(../img/clock.png) no-repeat;
+	background-size: contain;
+}
+
+.setting-icon {
+	position: absolute;
+	width: 25px;
+	height: 25px;
+	right: 6px;
+	margin: auto;
+	top: 0px;
+	bottom: 0px;
+	background: url(../img/setting.png) no-repeat;
+	background-size: contain;
+}
+
+.logout-icon {
+	position: absolute;
+	width: 25px;
+	height: 25px;
+	right: 6px;
+	margin: auto;
+	top: 0px;
+	bottom: 0px;
+	background: url(../img/logout.png) no-repeat;
+	background-size: contain;
+}
+
+.btn-file {
+	position: relative;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+.btn-file input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	min-width: 100%;
+	min-height: 100%;
+	font-size: 100px;
+	text-align: right;
+	filter: alpha(opacity = 0);
+	opacity: 0;
+	outline: none;
+	background: white;
+	cursor: pointer;
+	display: block;
+}
+
+.glyphicon-refresh-animate {
+	-animation: spin .7s infinite linear;
+	-webkit-animation: spin2 .7s infinite linear;
+}
+
+@
+-webkit-keyframes spin2 {from { -webkit-transform:rotate(0deg);
+	
+}
+
+to {
+	-webkit-transform: rotate(360deg);
+}
+
+}
+@
+keyframes
+spin {from { transform:scale(1)rotate(0deg);
+	
+}
+
+to {
+	transform: scale(1) rotate(360deg);
+}
+
+}
+.sortable {
+	cursor: s-resize;
+}
+
+.sortable .modal {
+	cursor: auto;
+}
+
+}
+@media ( min-width : 768px) {
+	.modal-efy-dialog {
+		width: 800px;
+	}
+}
+
+.submitted .ng-invalid {
+	border: 1px solid red;
+}
+
+.btn-primary:hover {
+	color: #fff;
+	background-color: #254127;
+	border-color: #254127;
+}
+
+.btn-primary {
+	color: #fff;
+	background-color: #3c763d;
+	border-color: #3c763d;
+}
+
+.myradio {
+	width: 19px;
+	height: 19px;
+	float: right;
+	margin-left: 9px;
+	margin-top: 9px;
+}
+
+.radio-unchecked {
+	background: url(../img/checkbox-b.png) no-repeat;
+}
+
+.radio-checked {
+	background: url(../img/checkbox-a.png) no-repeat;
+}
+
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button
+	{
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+.input-wraaper {
+	font-size: 16px;
+	position: relative;
+	height: 2em;
+}
+
+.lable-input {
+	color: #818181;
+	font-weight: bold;
+	-webkit-transition: .3s ease all;
+	transition: .3s ease all;
+	cursor: auto;
+}
+
+.card-profile-img {
+	width: 15%;
+	max-height: 20%;
+}
+

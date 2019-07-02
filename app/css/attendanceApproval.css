@@ -1,0 +1,90 @@
+.blue-back-color.presence {
+    background-image: url(../img/shadow.png);
+    background-repeat: no-repeat;
+    background-position: top;
+    overflow: auto;
+    background-size: 100% 5px
+}
+
+.presence-item {
+	border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #eee;
+    text-align: right;
+    font-weight: bold;
+    box-sizing: border-box;
+    font-size: 5vw;
+    padding: 4vw;
+}
+.presence-item:last-child {
+	border-bottom-width: 0;
+}
+.presence-item .student-name-wrap {
+    display: inline-block;
+    vertical-align: middle;
+    width: 60vw;
+}
+
+.blue-title {
+    color: #15457D;
+    font-size: 4vh;
+    text-align: right;
+    padding: 3vh;
+    font-weight: bold;
+}
+.presence-lis .blue-title div{
+    display: inline-block;
+    margin-left: 5%;
+}
+.presence-lis.checked .blue-title {
+    padding-top: 6vh;
+}
+.check-image {
+	border-radius: 50%;
+	height: 7vw;
+	width: 7vw;
+	box-sizing: border-box;
+	vertical-align: middle;
+	display: inline-block;
+}
+
+.presence-item .pupil-image {
+	margin-right: 4vw;
+	height: 13vw;
+	width: 13vw;
+	box-sizing: border-box;
+	border: 5px solid #6AA4E7;
+}
+
+.presence-item .text-pupil-name {
+	padding-right: 4vw;
+	line-height: 1em;
+}
+
+.presence-item .description {
+	color: #FFFFFF;
+	font-weight: normal;
+	font-size: 2.3vh;
+	padding-right: 2.5vh;
+}
+
+.presence-lis.checked .presence-item .check-image {
+	border: 0px solid #FFFFFF;
+}
+
+.presence-item .blue-title {
+	padding-top: 6vh;
+}
+.left-image {
+	background-image: url(../img/blue-clock.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	width: 5vw;
+	height: 5vw;
+	vertical-align: middle;
+	display: inline-block;
+	position: relative;
+}
+.late-picture {
+	background-image: url(../img/orange-clock.png);
+}

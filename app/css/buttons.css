@@ -1,0 +1,25 @@
+.main-btn {
+	border-radius: 50vw;
+	border-radius: 94px;
+	border: 2px solid white;
+	width: 12vw;
+	height: 12vw;
+	margin: auto;
+	background-size: contain;
+	margin-top: 3%;
+	background-repeat: no-repeat;
+	background-position: center;
+	position: relative;
+	cursor: pointer;
+}
+
+.main-btn.disable {
+	opacity: 0.2;
+}
+.main-btn.open{
+	width: 40vw;
+}
+.main-btn.close-meeting {
+	background: #ffffff url("../img/ic_v_pressed.png") no-repeat center;
+	background-size: 40%;
+}

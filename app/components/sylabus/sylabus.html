@@ -1,0 +1,74 @@
+<!--<div class="sub-title-header">
+<div class="vi-img-right"></div>
+<div class="sub-title-Name">מפגש 3 ב-8 באוגוסט</div>
+<div class="vi-img-left"></div>
+</div>
+
+<div class="blue-title move-right">חומר שנלמד</div>
+<div class="subj-header sylabus">
+<div class="subjectName">התקנת יישומים חדשים</div>
+<div class="list-sign-image"></div>
+
+</div>
+
+<div class="blue-title move-right second-title">חומר שלא נלמד</div>
+<div class="subj-header sylabus">
+<div class="subjectName">אינטרנט מבוא</div>
+<div class="list-sign-image"></div>
+
+</div>-->
+
+<div class="blue-back-color precence">
+	<!--<div class="blue-title">
+		{{dictionary.meetingsText}}
+	</div>-->
+	<div ng-repeat="subject in syllabusLessonData" class="subject-item sylabus" ng-class="{'open': subject.open == true && subject.subsubjects && subject.subsubjects.length > 0 }">
+
+		<div ng-click="checkSubSubject(subject); " class="subj-header">
+			<div class="vi-img" ng-class="{'change-picture':  subject.isChecked=='1' || subject.fullSubsubjectsChecked == 'true' }"></div>
+			<div class="subjectName">
+				{{(!arabicLnguage || subject.subjectinarabic=='')? subject.subject : subject.subjectinarabic}}
+			</div>
+
+			<div class="list-sign-image" ng-show="subject.subsubjects && subject.subsubjects.length > 0"></div>
+			<div class="line-subject"></div>
+		</div>
+		<div class="sub-subject-list-wrap-sylabus">
+			<div ng-repeat="subSubject in  subject.subsubjects" ng-click="toggleCheckedSubj(subSubject)" class="subSubject">
+
+				<div class="vi-img" ng-class="{'change-picture':subSubject.isChecked == '1'}"></div>
+				<div class="sub-subject-name">
+					{{(!arabicLnguage ||subSubject.subsubjectinarabic)? subSubject.subsubject : subSubject.subsubjectinarabic}}
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<!--<div ng-repeat="subject in syllabusData " class="subject-item" ng-class="{'open': subject.open == true && subject.subsubjects && subject.subsubjects.length > 0 }">
+
+<div ng-click="checkSubSubject(subject); " class="subj-header">
+
+<div class="vi-img" ng-class="{'change-picture':  subject.isChecked=='1' }"></div>
+<div class="subjectName">{{subject.subject}}</div>
+<div class="list-sign-image" ng-show="subject.subsubjects && subject.subsubjects.length > 0"></div>
+<div class="line-subject"></div>
+</div>
+<div class="sub-subject-list-wrap">
+<div ng-repeat="subSubject in  subject.subsubjects" ng-click="toggleCheckedSubj(subSubject)" class="subSubject">
+<div class="vi-img" ng-class="{'change-picture':subSubject.isChecked == '1'}"></div>
+<div class="sub-subject-name">{{subSubject.subsubject}}</div>
+
+</div>
+
+</div>
+</div>-->
+
+<!--<div class="sub-subject-list-wrap-sylabus">
+<div class="subSubject">
+<div class="vi-img"></div>
+<div class="sub-subject-name">מה זה אנטרנט</div>
+</div>
+</div>-->
+

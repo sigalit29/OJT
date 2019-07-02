@@ -1,0 +1,235 @@
+<div id="wrapper">
+	<header></header>
+	<div id="page-wrapper">
+		<h2 class="page-title">{{staffid?"עריכת מדריך":"יצירת מדריך"}}</h2>
+		<form ng-submit="SaveStaff()">
+			<div>
+				<p ng-if="staff.staffid">נרשם ב: {{staff.registerdate}}</p>
+				<p ng-if="staff.lastactivedate">פעילות אחרונה ב: {{staff.lastactivedate}}</p>
+			</div>
+			<div ng-if="usertype=='admin'">
+				<toggle toggle-disabled="true" ng-init="staff.status=='1'?true:false" ng-model="staff.status" ng-change="changed()" on="פעיל" off="לא פעיל"></toggle>
+			</div>
+			<br>
+			<h4 ng-if="staff.staffid">הפרופיל של {{staff.firstname+" "+staff.lastname}}</h4>			
+			<div class="form-row">
+				<div class="input-col">
+					<div class="input-col">
+						<div class="input-wrapper">
+							<label>שם פרטי בעברית</label>
+							<input ng-disabled="usertype!='admin'" required tabindex="1" class="form-input input-content" ng-model="staff.firstname">
+						</div>
+					</div>
+					<div class="input-col">
+						<div class="input-wrapper">
+							<label>שם משפחה בעברית</label>
+							<input ng-disabled="usertype!='admin'" required tabindex="2" class="form-input input-content" ng-model="staff.lastname">
+						</div>
+					</div>
+				</div>
+				<div class="input-col">
+					<div class="input-col">
+						<div class="input-wrapper">
+							<label>שם פרטי בערבית</label>
+							<input ng-disabled="usertype!='admin'" tabindex="3" class="form-input input-content" ng-model="staff.firstnameinarabic">
+						</div>
+					</div>
+					<div class="input-col">
+						<div class="input-wrapper">
+							<label>שם משפחה בערבית</label>
+							<input ng-disabled="usertype!='admin'" tabindex="4" class="form-input input-content" ng-model="staff.lastnameinarabic">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="form-row">
+				<div class="input-col">
+					<div class="input-wrapper">
+						<label>מס' טלפון</label>
+						<input ng-disabled="usertype!='admin'" required tabindex="5" type="text" pattern="[0-9,-]*" class="form-input input-content" ng-model="staff.phone">
+					</div>
+				</div>
+				<div class="input-col">
+					<div class="input-wrapper">
+						<label>מס' תעודת זהות</label>
+						<input ng-disabled="usertype!='admin'" required tabindex="6" type="text" pattern="[0-9]*" class="form-input input-content" ng-model="staff.tznumber">
+					</div>
+				</div>
+			</div>
+			
+			<div class="form-row">
+				<div class="input-col">
+					<div class="input-wrapper">
+						<label>תאריך לידה</label>
+						<input ng-disabled="usertype!='admin'" required tabindex="6" datepicker type="text"  class="form-input input-content" ng-model="staff.birthday">
+					</div>
+				</div>
+				<div class="input-col">
+					<div class="input-col">
+						<div class="input-wrapper">
+							<label>עיר</label>
+							<select ng-disabled="usertype!='admin'" required tabindex="7" class="form-input input-content" ng-model="staff.cityid" ng-options="city.cityid as city.name for city in cities">
+								<option></option>
+							</select>
+						</div>
+					</div>
+					<div class="input-col">
+						<div class="input-wrapper">
+							<label>כתובת</label>
+							<input ng-disabled="usertype!='admin'" tabindex="8" class="form-input input-content" ng-model="staff.adress">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="form-row">
+				<div class="input-col">
+					<div class="input-wrapper">
+						<label>מגזר</label>
+						<select ng-disabled="usertype!='admin'" required tabindex="9" class="form-input input-content" ng-model="staff.religionid" ng-options="religion.religionid as religion.name for religion in religions">
+							<option></option>
+						</select>
+					</div>
+				</div>
+				<div class="input-col">
+					<div class="input-wrapper">
+						<label>מגדר</label>
+						<select ng-disabled="usertype!='admin'" required tabindex="10" class="form-input input-content" ng-model="staff.genderid" ng-options="gender.genderid as gender.name for gender in genders">
+							<option></option>
+						</select>
+					</div>
+				</div>
+			</div>
+			
+			<div class="form-row">
+				<div class="input-col">
+					<div class="input-wrapper">
+						<label>מנהל ישיר</label>
+						<div tabindex="11" class="input-content form-input" ng-click="usertype=='admin'?chooseManager=true:''">{{staff.superstaffname}}</div>
+					</div>
+					<popup visibility="chooseManager">
+						<div class="popup-header">בחירת מנהל</div>
+						<div class="popup-content-wrap">
+							<search-selector on-search="searchManager" on-select="assignManager" value-index="'staffid'" text-index="'staffname'" search-placeholder="'חיפוש מנהל'" results-arr-index="'staff'"></search-selector>
+						</div>
+					</popup>
+				</div>
+				<div class="input-col">
+					<div class="input-wrapper">
+						<label>אימייל</label>
+						<input ng-disabled="usertype!='admin'" required type="email" tabindex="12" class="form-input input-content myEmail" ng-model="staff.email">
+					</div>
+				</div>
+			</div>
+			
+			<div class="form-row">
+				<div class="input-col">
+					<div class="input-wrapper">
+						<label>תעודות</label>
+						<multi-selector disable="usertype!='admin'" tabindex="13" options="certificates" value-index="'certificateid'" text-index="'name'" values="staff.certificates" class="form-input"></multi-selector>
+					</div>
+				</div>
+				<div class="input-col">
+					<div class="input-wrapper">
+						<label>שפות</label>
+						<multi-selector disable="usertype!='admin'" tabindex="14" options="languages" value-index="'languageid'" text-index="'name'" values="staff.languages" class="form-input"></multi-selector>
+					</div>
+				</div>
+			</div>
+			
+			<div class="form-row">
+				<div class="input-col">
+					<div class="input-wrapper">
+						<label>תעודות בגרות</label>
+						<multi-selector disable="usertype!='admin'" tabindex="15" options="professions" value-index="'professionid'" text-index="'name'" values="staff.professions" class="form-input"></multi-selector>
+					</div>
+				</div>
+			</div>
+			
+			<div class="form-row" ng-if="usertype=='admin'">
+				<div class="input-col">
+					<div class="input-wrapper">
+						<label>סוג עובד</label>
+						<select required tabindex="16" class="form-input input-content" ng-model="staff.type">
+							<option></option>
+							<option value="admin">admin</option>
+							<option value="madrich">madrich</option>
+						</select>
+					</div>
+				</div>
+				<div class="input-col">
+					<div ng-if="!staff.staffid || staff.staffid==''" class="input-wrapper" ng-class="{'is-in': staff.email}">
+						<label>סיסמה</label>
+						<input required tabindex="17" type="password" class="form-input input-content myPassword" ng-model="staff.password">
+					</div>
+				</div>
+			</div>
+			<div ng-if="usertype=='admin'" class="clickable button file-upload-button" tabindex="18" >
+				<label for="staff-image-upload">
+					בחר תמונה <i class="fa fa-upload"></i>
+				</label>
+				<input type="file" id="staff-image-upload" accept="application/msword, application/pdf, image/*" ngf-select="onFileSelect($files)">
+			</div>
+			<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" ng-if="fileUpload"></span>
+			<img ng-if="staff.image" ng-src="{{imgsDomain+'/'+staff.image}}" class="ng-scope card-profile-img">
+			<hr>
+			<div ng-if="courses.length>0">
+				<label>רשימת קורסים:</label>
+				<div ng-repeat="course in courses">
+					<input ng-click="goToCoursePage(course)" readonly class="clickable form-input" value="{{course.name}}">
+				</div>
+				<hr>
+			</div>
+			<div ng-if="substaff.length>0">
+				<label>רשימת עובדים:</label>
+				<div ng-repeat="s in substaff">
+					<input ng-click="goToStaffPage(s)" readonly class="clickable form-input" value="{{s.name}}">
+				</div>
+				<hr>
+			</div>
+			<label>נושאי דיווח:</label>
+			<br>
+			<div class="scrolling-table">
+				<table class="table table-striped table-bordered table-hover midrows">
+					<thead>
+						<tr>
+							<th class="large-cell">פרויקט</th>
+							<th class="large-cell">נושא</th>
+							<th class="large-cell">קוד לקוח</th>
+							<th class="large-cell">סטטוס</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="reportSubject in staff.reportSubjects">
+							<td class="large-cell">
+								<select ng-disabled="usertype!='admin'" required ng-model="reportSubject.projectid" ng-options="project.projectid as project.name for project in projects"><option></option></select>
+							</td>
+							<td class="large-cell">
+								<select ng-disabled="usertype!='admin'" required ng-model="reportSubject.subjectreportid" ng-options="rs.subjectreportid as rs.subject for rs in reportSubjects"><option></option></select>
+							</td>
+							<td class="large-cell">
+								<select ng-disabled="usertype!='admin'" required ng-model="reportSubject.clientcodeid" ng-options="cc.clientcodeid as cc.code for cc in clientCodes"><option></option></select>
+							</td>
+							<td class="large-cell">
+								<select ng-disabled="usertype!='admin'" required ng-model="reportSubject.reportSubjectStatus" selected="1">
+									<option value="1">פעיל</option>
+									<option value="0">לא פעיל</option>
+								</select>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<br>
+			<button ng-if="usertype=='admin'" ng-click="addReportSubject()" type="button" class="button add-subject">+ נושא דיווח</button>
+			<hr>
+			<div class="card-controls" ng-if="usertype=='admin'">
+				<button tabindex="16" type="submit" class="button card-control commit-card-edit">שמירה</button>
+				<button tabindex="17" type="button" class="button card-control cancel-card-edit" ng-click="goBack();">ביטול</button>
+				<button tabindex="18" type="button" class="button card-control duplicate-card" ng-click="duplicateStaff()">שכפול</button>
+			</div>
+			<br>
+		</form>
+	</div>
+</div>

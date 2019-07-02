@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.11 17.11">
+    <defs>
+        <style>
+            .cls-1{fill:none}.cls-2,.cls-4{fill:#15457d}.cls-3,.cls-4{stroke:none}
+        </style>
+    </defs>
+    <g id="Symbol_87_250" data-name="Symbol 87 – 250" transform="translate(6672.09 4203.09)">
+        <g id="Path_302" class="cls-1" data-name="Path 302">
+            <path d="M8.555 0A8.555 8.555 0 1 1 0 8.555 8.555 8.555 0 0 1 8.555 0z" class="cls-3" transform="translate(-6672.09 -4203.09)"/>
+            <path d="M8.555 1C4.39 1 1 4.39 1 8.555c0 4.166 3.39 7.555 7.555 7.555 4.166 0 7.555-3.389 7.555-7.555S12.721 1 8.555 1m0-1a8.555 8.555 0 1 1 0 17.11 8.555 8.555 0 0 1 0-17.11z" class="cls-4" transform="translate(-6672.09 -4203.09)"/>
+        </g>
+        <path id="Checkbox" d="M2.952 5.133L0 2.182l.6-.6 2.353 2.31L6.845 0l.6.6z" class="cls-2" transform="translate(-6667.385 -4197.102)"/>
+    </g>
+</svg>

@@ -1,0 +1,31 @@
+.youtube-results-wrap{
+	max-height: 70vh;
+	overflow-y: auto;
+	direction: rtl;
+}
+.youtube-result{
+	background-color: #FFF;
+	color: #15457d;
+	height: 3.5em;
+}
+.youtube-result:hover{
+	background-color: #15457d;
+	color: #FFF;
+}
+.youtube-result-thumbnail{
+	display: inline-block;
+	width: 35%;
+	height: 100%;
+}
+.youtube-result-thumbnail img{
+	height: 100%;
+	width: 100%;
+}
+.youtube-result-title{
+	text-align: right;
+	display: inline-block;
+	width: 60%;
+	text-overflow: ellipsis;
+	vertical-align: top;
+	font-size: 0.75em;
+}

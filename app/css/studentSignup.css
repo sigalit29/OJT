@@ -1,0 +1,167 @@
+.signup-stage-wrap {
+	height: 100%;
+	position: relative;
+	overflow: scroll;
+}
+
+.signup-form-wrap {
+	margin: 10%;
+    margin-bottom: initial;
+}
+
+.language-toggle-wrap {
+	padding: 2%;
+	background-color: #4A90E2;
+	color: white;
+	padding-bottom: 6%;
+}
+.signup-stage:not(.swiper-slide-transition):not(.swiper-slide-active)
+{
+	visibility: hidden;
+	/*height: 0px !important;*/
+}
+.language-toggle-wrap .right-toggle {
+	color: white;
+}
+
+.language-toggle-wrap .check-side {
+	background-color: white;
+}
+
+.language-toggle-wrap .check-button {
+	background-color: #b1cff2;
+}
+
+.next-signup-step {
+	color: white;
+	margin-bottom: 5%;
+}
+
+.gradient-foreground {
+	position: fixed;
+	height: 100vw;
+	width: 100%;
+	background: -moz-linear-gradient(top, rgba(74, 144, 226, 1) 0%,
+	rgba(74, 144, 226, 1) 64%, rgba(74, 144, 226, 0) 100%);
+	/* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgba(74, 144, 226, 1) 0%,
+	rgba(74, 144, 226, 1) 64%, rgba(74, 144, 226, 0) 100%);
+	/* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, rgba(74, 144, 226, 1) 0%,
+	rgba(74, 144, 226, 1) 64%, rgba(74, 144, 226, 0) 100%);
+	/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4a90e2',
+	endColorstr='#004a90e2', GradientType=0);
+	background: -moz-linear-gradient(top, rgba(74, 144, 226, 1) 0%,
+	rgba(74, 144, 226, 1) 64%, rgba(74, 144, 226, 0) 100%); /* IE6-9 */
+}
+.rtl-input.input-wrap {
+	direction: rtl;
+}
+
+.signup-stage-wrap .input-wrap {
+	color: #b1cff2;
+	text-align: right;
+}
+.signup-stage-wrap .input-wrap p {
+		margin-right: 14vw;
+}
+.signup-options-separator{
+	color: white;
+}
+.signup-stage-wrap .login-with-gp-wrap{
+	margin: 20px;
+}
+.profile-img-preview{
+	border-radius: 100%;
+    width: 50px;
+    height: 50px;
+	position: relative;
+}
+.invalidInput {
+	color: red;
+	text-shadow: 0 0 1vw white;
+	font-size: 80%;
+	margin-top: -2.5vw;
+}
+.add-profile-pic {
+	text-align: center;
+	margin-bottom: 5%;
+}
+
+.choose-pic-button {
+	width: 25vw;
+	height: 25vw;
+	border-radius: 100%;
+	background-image: url(../img/btn_add_image_normal.png);
+	background-size: cover;
+    background-position: center;
+	margin: auto;
+	margin-bottom: 5%;
+}
+.choose-pic-button input
+{
+	width:25vw;
+	height:25vw;
+	opacity:0;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=00);
+	-moz-opacity:0;
+	-khtml-opacity: 0;
+	opacity: 0;
+}
+.choose-pic-instruction {
+	color: #b1cff2;
+	font-size: 80%;
+}
+
+.options-popup {
+    color: #4a90e2;
+    right: 0;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    height: 70vh;
+    margin:auto;
+    z-index: 1000;
+}
+.popup-main.cities-popup
+{
+	height: 90%;
+}
+.popup-main.religions-popup
+{
+	height: 67%;
+}
+.popup-main.genders-popup
+{
+	height: 40vh;
+}
+
+.email-verification-popup p
+{
+	margin: 2%;
+}
+.replace-email-input
+{
+	font-size: 1em;
+    border: none;
+    border-bottom: 1px solid #4a90e2;
+    color: #15457d;
+    text-align: center;
+}
+.email-verification-popup .btn
+{
+	width: 60vw;
+}
+.btn.resend-email
+{
+	background-color: #4a90e2;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+.finish-signup
+{
+	background-color: #4a90e2;
+}

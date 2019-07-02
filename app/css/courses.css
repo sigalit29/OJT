@@ -1,0 +1,49 @@
+.course-listing-wrap {
+	text-align: right;
+	margin: 5vw;
+
+
+}
+.course-name {
+	color: #4a90e2;
+	font-size: 1.25em;
+	line-height: 1em;
+	font-weight: bold;
+	padding-bottom: 15px;
+	text-align: right;
+
+}
+.course-status-list {
+	color: #4a90e2;
+	font-size: 1.5em;
+	line-height: 1em;
+	font-weight: bold;
+	padding-bottom: 10px;
+}
+.course-status {
+	color: #888;
+	font-size: 0.75em;
+}
+
+.enroll-to-course {
+	width: 12vw;
+	height: 12vw;
+	border-radius: 100%;
+	background-color: #4a90e2;
+	background-image: url(../img/large-plus.svg);
+	background-repeat: no-repeat;
+	background-position: 50%;
+	background-size: 55%;
+	position: fixed;
+	right: 1.5em;
+	bottom: 1.5em;
+}
+.box > .box-title > .rot {
+
+	transform: rotate(90deg) ;
+}
+
+.box > .box-title > .rotreg {
+
+	transform: rotate(0deg) ;
+}

@@ -1,0 +1,16 @@
+<div class="content-by-mask">
+	<br/>
+	<div class="slider-wrap" ng-repeat="q in questions" ng-class="{'first': $first}" ng-init="q.questiontype ='close'">
+		<feedback-slider grading="q.grading" question="isArabic ? q.questioninarabic : q.question" answers="q.answers" answer-text-index="isArabic ? 'nameinarabic' : 'name'" answer-value-index="'value'" min-grading="0" max-grading="4" increment="1" display-answer="true"></feedback-slider>
+	</div>
+	<div class="comment-wrapper">
+		<comment placeholder="{{dictionary.addSomethingText}}" bgname="blue" comment-changed="commentChanged(comment)"></comment>
+	</div>
+</div>
+<div class="preload-images">
+    <img class="load-img" src="./img/01_ic_face.png" width="1" height="1">
+    <img class="load-img" src="./img/02_ic_face.png" width="1" height="1">
+    <img class="load-img" src="./img/03_ic_face.png" width="1" height="1">
+    <img class="load-img" src="./img/04_ic_face.png" width="1" height="1">
+    <img class="load-img" src="./img/05_ic_face.png" width="1" height="1">
+</div>

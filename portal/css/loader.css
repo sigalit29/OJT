@@ -1,0 +1,15 @@
+.loading-animation {
+	position: absolute;
+	display:  inline-block;
+	border: 4px solid #ddd; /* Light grey */
+	border-top: 4px solid #23527c; /* Blue */
+	border-radius: 50%;
+	width: 2em;
+	height: 2em;
+	animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

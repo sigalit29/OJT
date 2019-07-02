@@ -1,0 +1,20 @@
+.inverse-wrap{
+	color:#fff;
+    position: relative;
+	background-color: #4a90e2;
+}
+.inverse-wrap:before{
+	content: '';
+	top: 0;
+	left: 0;
+	position: absolute;
+	z-index: -10;
+	width: 100%;
+	height: 100%;
+}
+.vetical-padding-wrap-wide{
+	padding: 15vw 0;
+}
+.vetical-padding-wrap-narrow{
+	padding: 5vw 0;
+}

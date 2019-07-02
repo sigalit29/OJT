@@ -1,0 +1,76 @@
+.popupBackground {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	left: 0px;
+	bottom: 0px;
+	z-index: 1000;
+	background-color: rgba(0,0,0,0.5);
+}
+.popup {
+	width: 80%;
+	position: fixed;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 0px;
+	right: 0px;
+	margin: auto;
+	z-index: 2000;
+	background-color: #F8F7F6;
+	border-radius: 1vw;
+	-webkit-box-shadow: 7px 15px 52px -13px rgba(0,0,0,0.75);
+	-moz-box-shadow: 7px 15px 52px -13px rgba(0,0,0,0.75);
+	box-shadow: 7px 15px 52px -13px rgba(0,0,0,0.75);
+	box-sizing: border-box;
+}
+.popup-header{
+    text-align:center;
+	font-size: 1.5em;
+    padding: 1.5%;
+    background-color: #f1efef;
+    -webkit-border-top-left-radius: 1vw;
+    -webkit-border-top-right-radius: 1vw;
+    -moz-border-radius-topleft: 1vw;
+    -moz-border-radius-topright: 1vw;
+    border-top-left-radius: 1vw;
+    border-top-right-radius: 1vw;
+}
+.popup-content-wrap
+{
+	padding:2%;
+	white-space:initial;
+	max-height: 80vh;
+    overflow: auto;
+}
+.popup-controls
+{
+	margin-bottom: 2%;
+}
+.popup-control
+{
+	text-align:  center;
+	display:inline-block;
+	font-size:1.5em;
+	padding: 0.25em 1em;
+	border-radius: 1.5em;
+	background-color:  #E8E7E6;
+}
+.popup-control:hover
+{
+	background-color:  #D8D7D6;
+}
+.popup-control:active
+{
+	background-color:  #C8C7C6;
+}
+.popup-control.popup-cancel
+{
+	margin-left: 40%;
+	float:  left;
+}
+.popup-control.popup-approve
+{
+	margin-right: 40%;
+}

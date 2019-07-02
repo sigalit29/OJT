@@ -1,0 +1,306 @@
+<div id="wrapper">
+	<header></header>
+	<div id="page-wrapper">
+		<div class="panel-body">
+			<!-- Nav tabs -->
+			<ul class="nav nav-tabs" ng-init="tabindex='profile'">
+				<li style="cursor:pointer" ng-class="{active:tabindex=='home'}" ng-if="Type == 'admin'"><a ng-click="openCreatePage();">יצירת עובד</a>
+				</li>
+				<li style="cursor:pointer" ng-class="{active:tabindex=='profile'}"><a ng-click="goToOpenstaffs();">עובדים</a>
+				</li>
+			</ul>
+
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<div ng-if="tabindex=='home'" class="" id="home" ng-class="{active:tabindex=='home',in:tabindex=='home'}">{{CheckPermmetion()}}
+					<form name='myForm' ng-submit="myForm.$valid && SaveStaff()" role="form" ng-class="{'submitted': submitted}">
+					</br>
+						<div >
+							<div ng-if="Type=='admin'">
+								<toggle toggle-disabled="true" style="float: left;margin-right: 20px;" ng-init="staff.status=(staff.status && staff.status=='1')?true:false" ng-model="staff.status" ng-change="changed()" on="פעיל" off="לא פעיל"></toggle>
+							</div>
+							<div>
+								<h5 ng-if="staff.staffid">נרשם ב: {{staff.registerdate}}</h5>
+								<h5 ng-if="staff.lastactivedate">פעילות אחרונה ב: {{staff.lastactivedate}}</h5>
+								<h5 ng-if="Type!='admin'" ng-init="staff.status=(staff.status && staff.status=='1')?'פעיל':'לא פעיל'">סטטוס: {{staff.status}}</h5>
+							</div>
+						</div>
+						 <h4 ng-if="staff.staffid"  >הפרופיל של {{staff.firstname+" "+staff.lastname}}</h4>
+						 <h5 ng-if="staff.staffid && Type=='admin'">עריכת פרופיל</h5>
+						  
+								<div class="form-group" style="margin-top: 40px;margin-right:20px">
+								<div class="input-wraaper" style="width: 49%;float: left;" ng-class="{'is-in': staff.lastname}">
+									<input ng-required="true" mplaceholder tabindex="2" text="שם משפחה בעברית" class="form-control input-content" placeholder="" ng-model="staff.lastname">
+								</div>
+								
+								<div class="input-wraaper" style="width: 49%;margin-top: 30px;" ng-class="{'is-in': staff.firstname}">
+								<input ng-required="true"   mplaceholder tabindex="1" text="שם פרטי בעברית" class="form-control input-content" placeholder="" ng-model="staff.firstname">
+
+								</div>
+							
+								<div class="input-wraaper" style="width: 49%;float: left;margin-top: 30px;" ng-class="{'is-in': staff.lastnameinarabic}">
+									<input mplaceholder tabindex="4" text="שם משפחה בערבית" class="form-control input-content" placeholder="" ng-model="staff.lastnameinarabic">
+								</div>
+								
+								<div class="input-wraaper" style="width: 49%;margin-top: 30px;" ng-class="{'is-in': staff.firstnameinarabic}">
+									<input mplaceholder tabindex="3" text="שם פרטי בערבית" class="form-control input-content" placeholder="" ng-model="staff.firstnameinarabic">
+								</div>
+								
+								<div class="input-wraaper" style="width: 49%;float: left;margin-top: 30px;" ng-class="{'is-in': staff.tznumber}">
+									<input ng-required="true" mplaceholder tabindex="6" text="מס' תעודת זהות" type="number"  class="form-control input-content" placeholder="" ng-model="staff.tznumber">
+								</div>
+								
+								<div class="input-wraaper" style="width: 49%;margin-top: 30px;" ng-class="{'is-in': staff.phone}">
+									<input mplaceholder tabindex="5" text="מס' טלפון" type="text" pattern="[0-9]*" class="form-control input-content" placeholder="" ng-model="staff.phone">
+								</div>
+								
+								<div style="width: 49%;float: left;margin-top: 30px;position: relative;">
+									<div class="input-wraaper" style="width: 50%;position: absolute; left: 0;"  ng-class="{'is-in': staff.adress}">
+										<input mplaceholder text="כתובת" tabindex="8" class="form-control input-content" placeholder="" ng-model="staff.adress">
+									</div>
+									<div class="input-wraaper" style="width: 50%;position: absolute;" ng-class="{'is-in': staff.cityid}">
+									<select mplaceholder text="עיר" tabindex="7" class="form-control input-content" ng-model="staff.cityid">
+										<option ng-repeat="citie in cities" value="{{citie.cityid}}" ng-if="citie.IsShow && citie.IsShow=='1'">{{citie.name}}</option>
+									</select>
+									</div>
+								</div>
+								
+								<div class="input-wraaper" style="width: 49%;margin-top: 30px;" ng-class="{'is-in': staff.birthday}" ng-init="staff.birthday = staff.birthday.includes('0000-00-00')?staff.birthday='':staff.birthday">
+									<input mplaceholder text="תאריך לידה" tabindex="6" datepicker type="text"  class="form-control input-content" placeholder="" ng-model="staff.birthday">
+								</div>
+							
+								<div class="input-wraaper" style="width: 49%;float: left;margin-top: 30px;" ng-class="{'is-in': staff.genderid}">
+									<select ng-required="true" mplaceholder text="מגדר" tabindex="10" class="form-control input-content" ng-model="staff.genderid">
+										<option ng-repeat="gender in genders" value="{{gender.genderid}}" ng-if="gender.IsShow && gender.IsShow=='1'">{{gender.name}}</option>
+									</select>
+								</div>
+								
+								<div class="input-wraaper" style="width: 49%;margin-top: 30px;" ng-class="{'is-in': staff.religionid}">
+									<select ng-required="true" mplaceholder text="מגזר" tabindex="9" class="form-control input-content" ng-model="staff.religionid">
+										<option ng-repeat="religion in religions" value="{{religion.religionid}}" ng-if="religion.IsShow && religion.IsShow=='1'">{{religion.name}}</option>
+									</select>
+								</div>
+							
+								<div class="input-wraaper" style="width: 49%;float: left;margin-top: 30px;" ng-class="{'is-in': staff.email}">
+									<input ng-required="true" type="email" tabindex="12" mplaceholder text="אימייל" class="form-control input-content myEmail" placeholder="" ng-model="staff.email">
+								</div>
+								
+								<div class="input-wraaper" style="width: 49%;margin-top: 30px;" ng-class="{'is-in': staff.superstaffid}">
+									<select ng-required="true" mplaceholder text="מנהל ישיר" tabindex="11" class="form-control input-content" ng-model="staff.superstaffid">
+										<option ng-repeat="SuperStaff in SuperStaffs" value="{{SuperStaff.staffid}}">{{SuperStaff.firstname}} {{SuperStaff.lastname}}</option>
+									</select>
+								</div>
+								
+								<div class="input-wraaper" style="width: 49%;float: left;margin-top: 30px;" ng-class="{'is-in': staff.type}">
+									<select ng-required="true" mplaceholder tabindex="14" text="סוג עובד" class="form-control input-content" ng-model="staff.type">
+										<option ng-repeat="type in types" value="{{type}}">{{type}}</option>
+									</select>
+								</div>
+								<div ng-if="!staff.staffid || staff.staffid==''" class="input-wraaper" style="width: 49%;margin-top: 30px;" ng-class="{'is-in': staff.email}">
+									<input ng-required="true" required mplaceholder text="סיסמה" tabindex="13" type="password" onfocus="(this.type='text')" class="form-control input-content myPassword" placeholder="" ng-model="staff.password">
+									<span class='errorpassword' style="color:red; display:none; font-size: 13px;">סיסמה צריך להיות לפחות 12 תווים כוללת מספרים אותיות קטנות וגדולות</span>
+								</div>
+								
+								<div class="form-group" style="margin-top: 30px">
+									<div class="btn btn-info btn-file" tabindex="15" >
+									<label>בחר תמונה</label>
+										<i class="fa fa-upload"></i> <input type="file" accept="application/msword, application/pdf, image/*" ngf-select="onFileSelect($files)">
+									</div>
+									<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" ng-if="fileUpload"></span>
+									<img ng-if="staff.image" ng-src="{{imgsDomain+'/'+staff.image}}" class="ng-scope card-profile-img">
+								</div>
+								
+								<hr style="height: 1px; background-color: #ccc">
+								
+								<div class="input-wraaper"  style="margin-top: 30px;" ng-class="{'is-in': staff.languages.length>0}">
+									<dropdown-multiselect tabindex="16" class="input-content" text="שפות" dropdown-title="{{dropdownTitle}}" pre-selected="member.language" model="staff.languages" options="languages" ></dropdown-multiselect> 
+								</div>
+								
+								<div class="input-wraaper"   style="margin-top: 30px;" ng-class="{'is-in': staff.languages.length>0}">
+									<dropdown-multiselect tabindex="17" class="input-content" text="מקצועות בגרות" dropdown-title="{{dropdownTitle}}" pre-selected="memberprofession.profession" model="staff.professions" options="professions" ></dropdown-multiselect> 
+								</div>
+								
+								<div class="input-wraaper"   style="margin-top: 30px;" ng-class="{'is-in': staff.languages.length>0}">
+									<dropdown-multiselect tabindex="18" class="input-content" text="תעודות" dropdown-title="{{dropdownTitle}}" pre-selected="membercertificate.certificate" model="staff.certificates" options="certificates" ></dropdown-multiselect> 
+								</div>
+								
+									<hr style="height: 1px; background-color: #ccc">
+										רשימת קורסים:
+										<div ng-repeat="course in staff.mycourses">
+										<input ng-click="goToCourse(course.courseid)" style="width: 30%;margin-top: 10px;cursor:pointer;" readonly class="form-control input-content" value="{{course.name}}">
+										</div>
+									<hr style="height: 1px; background-color: #ccc">
+										רשימת עובדים:
+										<div ng-repeat="mystaff in staff.mystaffs">
+										<input ng-click="goToStaff(mystaff.id)" style="width: 30%;margin-top: 10px;cursor:pointer;" readonly class="form-control input-content" value="{{mystaff.name}}">
+										</div>
+							<!-- 	<div class="input-wraaper" style="margin-top: 30px;" ng-class="{'is-in': staff.email}">
+									<dropdown-multiselect class="input-content" text="עובדים תחת" dropdown-title="{{dropdownTitle}}" pre-selected="membertemp.staffs" model="staff.mystaffs" options="mystaffs" ></dropdown-multiselect> 
+								</div> -->
+								
+							 	<!-- <div class="input-wraaper" style="margin-top: 30px;" ng-class="{'is-in': staff.email}">
+									<dropdown-multiselect class="input-content" text="קורסים ופרויקטים" dropdown-title="{{dropdownTitle}}" pre-selected="membercourse.courses" model="staff.mycourses" options="mycourses" ></dropdown-multiselect> 
+								</div>  -->
+								
+							<!-- <hr style="height: 1px; background-color: #ccc">נושאי דיווח לקורסים
+							<span modal-Reports control="reportcontrol" model="reports" ng-model="staff.myreportsubject" mytype="true" on-confirm=""></span>
+							
+							<span style="margin-right: 15px;border-color: #49814d; background-color: #49814d;" class="btn btn-info" ng-click="AddSubReport(staff)">הוסף נושא דיווח</span>
+							
+							<div ng-if="staff.myreportsubject.length>0" class="table-responsive" style="margin-top:15px">
+								<table style="width: 50%;" class="table table-striped table-bordered table-hover midrows">
+									<thead>
+										<tr>
+											<th>פרויקט</th>
+											<th>נושא</th>
+											<th>קוד לקוח</th>
+											<th>קוד שכר</th>
+											<th>סטטוס</th>
+										</tr>
+									</thead>
+									<tbody ng-model="staffs">
+										<tr  style="cursor:pointer;" ng-click="editeReportforcourse(report,staff)" ng-if="report.autoforapp==1" ng-mouseleave="test.a={}" ng-mouseover="test.a=report" ng-repeat="report in staff.myreportsubject" >
+											<td>
+											{{report.project}}</td>
+											<td>{{report.subject}}</td>
+											<td>{{report.clientcode}}</td>
+											<td>{{report.salarycode}}</td>
+											<td>
+											<toggle ng-init="report.status=(report.status && report.status=='1')?true:false" ng-model="report.status" on="פעיל" off="לא פעיל"></toggle>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div> -->
+							<hr style="height: 1px; background-color: #ccc">נושאי דיווח כללי
+							<span modal-Reports control="reportcontroll" model="reports" ng-model="staff.myreportsubject" mytype="false" on-confirm=""></span>
+							
+							<span style="margin-right: 15px;border-color: #49814d; background-color: #49814d;" class="btn btn-info" ng-click="AddSubReportt(staff)">הוסף נושא דיווח</span>
+							
+							<div ng-if="staff.myreportsubject.length>0" class="table-responsive" style="margin-top:15px">
+								<table style="width: 50%; "class="table table-striped table-bordered table-hover midrows">
+									<thead>
+										<tr>
+											<th>פרויקט</th>
+											<th>נושא</th>
+											<th>קוד לקוח</th>
+											<th>קוד שכר</th>
+											<th>סטטוס</th>
+										</tr>
+									</thead>
+									<tbody ng-model="staffs">
+										<tr style="cursor:pointer;"  ng-mouseleave="test.a={}" ng-mouseover="test.a=report" ng-repeat="report in staff.myreportsubject" >
+											<td ng-click="editeReport(report)">
+											<!-- <div modal-Confirm3 on-confirm="DeleteReport(report,staff.myreportsubject);" text="האם אתה בטוח במחיקה?"  ng-mouseleave="test.a={}" ng-mouseover="test.a=report" style="cursor:pointer;position: absolute;margin-right: -30px;width: 23px;height: 25px;">
+													<img ng-if="test.a==report" src="./img/Xicon.png"></img>
+											</div> -->
+											{{report.project}}</td>
+											<td ng-click="editeReport(report)">{{report.subject}}</td>
+											<td ng-click="editeReport(report)">{{report.clientcode}}</td>
+											<td ng-click="editeReport(report)">{{report.salarycode}}</td>
+											<td>
+											<toggle ng-init="report.status=(report.status && report.status=='1')?true:false" ng-model="report.status" on="פעיל" off="לא פעיל"></toggle>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<hr style="height: 1px; background-color: #ccc">
+							<span modal-Reports control="reportedit" myid="id" pro="pro" sub="sub" cli="cli" sal="sal" model="reports" ng-model="staff.myreportsubject" mytype="false" on-confirm=""></span>
+							<span modal-Reports control="reporteditforcourse" myid="id" pro="pro" sub="sub" cli="cli" sal="sal" model="reports" ng-model="staff.myreportsubject" mytype="true" on-confirm=""></span>
+						</div>
+							
+							<button style="width: 20%; float: left;border-color: #49814d; background-color: #49814d;" type="submit" class="btn btn-info" ng-click="submitted = true;">שמור</button>
+							<button style="margin-left: 15px; width: 20%; float: left;border-color: gray; background-color: gray;" type="button" class="btn btn-info" ng-click="ClearStaff();submitted = false;">בטל</button>
+							<span modal-confirm2 control="deletingcontrol" text="האם למחוק את העובד?" on-confirm="DeleteStaff()">
+								<button style="margin-left: 15px; width: 20%; float: left;border-color: #a94442; background-color: #a94442;" type="button" class="btn btn-info" ng-click="IfDeleteStaff();submitted = false;">מחק</button>
+							</span>
+							<button style="margin-left: 15px; width: 20%; float: left;border-color: gray; background-color: gray;" type="button" class="btn btn-info" ng-click="DuplicateStaff();submitted = false;">שכפל</button>
+
+							<span modal-confirm control="alertcontrol" text="נשמר בהצלחה" on-confirm="goToOpenstaffs()">
+							</span>
+							
+							<span modal-confirm control="alertcontroldupl" text="שוכפל בהצלחה! נא למלא שדות חובה ולשמור">
+							</span>
+							
+							<span modal-confirm2 control="confirmcontrol" text="לעבור לדף אחר יגרום לאיבוד נתונים שלא נשמרו" on-confirm="movedTo()">
+							</span>
+						</form>
+				</div>
+				
+				<div ng-if="tabindex=='profile'" class="" id="profile" ng-class="{active:tabindex=='profile',in:tabindex=='profile'}">	
+					<h4>רשימת העובדים</h4>
+					<div class="panel-body">
+					
+					<input style="width: 14%;" type="text" id="searchcourse" class="form-control" placeholder="חיפוש עובד" ng-model="$word" ng-keyup="$event.keyCode == 13 && SearchWord($word)" ng-model-options='{ debounce: 1000 }'>
+					<!--
+					<select  style="width: 14%" class="form-control" ng-model="fillor" ng-options="x.name for x in fillter" ng-change="filltor(fillor)">
+							<option value="" disabled selected>סנן לפי</option>
+					</select>
+					-->
+						<div class="table-responsive" style="margin-top:15px">
+								<table class="table table-striped table-bordered table-hover midrows">
+									<thead>
+										<tr>
+											<th>תמונה</th>
+											<th ng-click="filltor('tznumber')" style="cursor:pointer">ת"ז <span class="fa fa-angle-down" ng-if="fill.tznumber=='asc'"> </span><span class="fa fa-angle-up" ng-if="fill.tznumber=='desc'"> </span></th>
+											<th ng-click="filltor('firstname')" style="cursor:pointer">שם <span class="fa fa-angle-down" ng-if="fill.firstname=='asc'"> </span><span class="fa fa-angle-up" ng-if="fill.firstname=='desc'"> </span></th>
+											<th ng-click="filltor('firstnameinarabic')" style="cursor:pointer">שם בערבית <span class="fa fa-angle-down" ng-if="fill.firstnameinarabic=='asc'"> </span><span class="fa fa-angle-up" ng-if="fill.firstnameinarabic=='desc'"> </span></th>
+											<th ng-click="filltor('lastname')" style="cursor:pointer">שם משפחה <span class="fa fa-angle-down" ng-if="fill.lastname=='asc'"> </span><span class="fa fa-angle-up" ng-if="fill.lastname=='desc'"> </span></th>
+											<th ng-click="filltor('lastnameinarabic')" style="cursor:pointer">שם משפחה בערבית <span class="fa fa-angle-down" ng-if="fill.lastnameinarabic=='asc'"> </span><span class="fa fa-angle-up" ng-if="fill.lastnameinarabic=='desc'"> </span></th>
+											<th ng-click="filltor('phone')" style="cursor:pointer">טלפון <span class="fa fa-angle-down" ng-if="fill.phone=='asc'"> </span><span class="fa fa-angle-up" ng-if="fill.phone=='desc'"> </span></th>
+											<th ng-click="filltor('adress')" style="cursor:pointer">כתובת <span class="fa fa-angle-down" ng-if="fill.adress=='asc'"> </span><span class="fa fa-angle-up" ng-if="fill.adress=='desc'"> </span></th>
+											<th ng-click="filltor('birthday')" style="cursor:pointer">תאריך לידה <span class="fa fa-angle-down" ng-if="fill.birthday=='asc'"> </span><span class="fa fa-angle-up" ng-if="fill.birthday=='desc'"> </span></th>
+											<th>מגדר</th>
+											<th>מגזר</th>
+											<th ng-click="filltor('email')" style="cursor:pointer">אימייל <span class="fa fa-angle-down" ng-if="fill.email=='asc'"> </span><span class="fa fa-angle-up" ng-if="fill.email=='desc'"> </span></th>
+											<th>שפות</th>
+											<th ng-click="filltor('superstaff')" style="cursor:pointer">מנהל ישיר<span class="fa fa-angle-down" ng-if="fill.superstaff=='asc'"> </span><span class="fa fa-angle-up" ng-if="fill.superstaff=='desc'"> </span></th>
+											<th ng-click="filltor('type')" style="cursor:pointer">סוג עובד <span class="fa fa-angle-down" ng-if="fill.type=='asc'"> </span><span class="fa fa-angle-up" ng-if="fill.type=='desc'"> </span></th>
+										</tr>
+									</thead>
+									<tbody ng-model="staffs">
+										<div class="scrollable-body">
+										<tr ng-click="staffClick(staff)" ng-repeat="staff in staffs" style="cursor:pointer">
+											<td><img  ng-if="staff.image" style="max-width:150px; height: 70px;" src="../{{staff.image}}"/></td>
+											<td>{{staff.tznumber}}</td>
+											<td>{{staff.firstname}}</td>
+											<td>{{staff.firstnameinarabic}}</td>
+											<td>{{staff.lastname}}</td>
+											<td>{{staff.lastnameinarabic}}</td>
+											<td>{{staff.phone}}</td>
+											<td>{{staff.cityname}} {{staff.adress}}</td>
+											<td ng-if="!staff.birthday.includes('0000-00-00')">{{staff.birthday}}</td>
+											<td ng-if="staff.birthday.includes('0000-00-00')"></td>
+											<td>{{staff.gendername}}</td>
+											<td>{{staff.religionname}}</td>
+											<td>{{staff.email}}</td>
+											<td>{{staff.languagesname}}</td>
+											<td>{{staff.superstaffname}}</td>
+											<td>{{staff.type}}</td>
+										</tr>
+										</div>
+									</tbody>
+								</table>
+							</div>
+				<div ng-if="Type == 'admin'" class="form-group">
+					<span class="form-group">
+						<div style="width: 200px;" class="btn btn-info btn-file">
+						<label>ייבוא מדריכים</label>
+							<i class="fa fa-upload"></i> <input type="file" accept=".csv,.xlsx" ngf-select="onStaffFileSelect($files)">
+						</div>
+						<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" ng-if="fileUpload"></span>
+						<span ng-if="regulations" >הסטודנטים נקלטו במערכת</span>
+					</span>
+				</div>
+							<!-- /.table-responsive -->
+							<button ng-if="Type=='admin'" ng-click="openCreatePage()" style="text-align:right; width: 120px;; float: left;border-color: #49814d; background-color: #49814d;" type="button" class="btn btn-info">הוסף עובד <img style="float: left;margin-top:  5px;" src="./img/icon-add.png" /></button>					
+					</div>
+						
+				</div>
+			</div>
+		</div>
+	<!-- /.panel-body -->
+	</div>
+
+</div>

@@ -1,0 +1,38 @@
+.selected-values{
+	width:100%;
+}
+.selected-values div
+{
+	display: inline-block;
+}
+.selected-value
+{
+	margin-left: 2%;
+}
+.selector-option {
+	font-size:1.25em;
+	padding: 0.25em 1.5em;
+	border-radius: 1.5em;
+	transition: background-color 0.25s ease-in-out;
+	-webkit-transition: background-color 0.25s ease-in-out;
+	-moz-transition: background-color 0.25s ease-in-out;
+	-o-transition: background-color 0.25s ease-in-out;
+}
+.selector-option:hover {
+	background-color: #E8E7E6;
+}
+.selector-option:active {
+	background-color: #D8D7D6;
+}
+.selector-option.selected
+{
+	background-color: #9AC4D5;
+}
+.selector-option.selected:hover
+{
+	background-color: #4499bb;
+}
+.selector-option.selected:active
+{
+	background-color: #227799;
+}

@@ -1,0 +1,8 @@
+.custom-field-property{
+	width: 25%;
+	margin-left: 2em;
+	display: inline-block;
+}
+.custom-field-property input, .custom-field-property select{
+	width: 100%;
+}

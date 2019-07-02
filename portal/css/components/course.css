@@ -1,0 +1,25 @@
+.syllabus-subject
+{
+	margin-bottom:0.25vw;
+}
+.syllabus-subject input
+{
+	width: calc(100% - 8em);
+	display: inline-block;
+}
+.button.add-subject
+{
+	width: 8em;
+	display:inline-block;
+}
+#yul{
+	display: flex;
+	flex-direction: column;
+	width: 20%;
+	height: 5vh;
+	justify-content: flex-start;
+	text-transform: uppercase;
+	font-weight: 600;
+	letter-spacing: 4px;
+
+}

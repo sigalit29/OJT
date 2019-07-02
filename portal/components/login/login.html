@@ -1,0 +1,31 @@
+<div class="login-wrap login-cover" style="height: 100%">
+	<gallery></gallery>
+	<div class="login-popup popup">
+	 	<div class="popup-header">
+			<img src="img/logo.png">
+		</div>
+		<div class="popup-content-wrap">
+			<form>
+				<div class="form-group">
+					<input required ng-keyup="$event.keyCode == 13 && login()" class="form-input" placeholder="אימייל" name="email" type="email" ng-model="email" autofocus>
+				</div>
+				<div class="form-group">
+					<input required ng-keyup="$event.keyCode == 13 && login()" class="form-input" placeholder="סיסמה" name="password" type="password" ng-model="pass">
+				</div>
+				<div class="form-group">
+					<div class="forgot-pass clickable" ng-click="forgotPass.resetPass=true">שכחתי סיסמה</div>
+				</div>
+				<button class="button login-button" type="button" ng-click="login()">התחברות</button>
+			</form>
+		</div>
+	</div>
+	<popup class="forgot-pass-popup" visibility="forgotPass.resetPass">
+		<div class="popup-header">אתחול סיסמה</div>
+		<div class="popup-content-wrap">
+			<div class="form-group">
+				<input type="email" class="form-input" placeholder="מייל" name="email" ng-model="forgotPass.resetMail">
+			</div>
+			<button class="button login-button" type="button" ng-click="sendForgotPassMail()">שליחת מייל לאתחול סיסמה</button>
+		</div>
+	</popup>
+</div>

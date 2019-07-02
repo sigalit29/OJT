@@ -1,0 +1,133 @@
+<!--<div class="course-wrap ">-->
+<div class="blue-back-color-guide">
+
+	<div class="popupBackground" ng-if="confirmCheckout">
+		<div class="popup">
+			<div class="popup-content-wrap">
+				<div class="title-popup editPopup">
+					{{dictionary.alredyFinishMeetingText}}
+				</div>
+				<div class="sentence-popup">
+					{{dictionary.mustFinishMeetingText}}
+				</div>
+			</div>
+			<div class="yes-no-btn editLesson">
+				<div class="cancel" ng-click="closePopup()">
+					{{dictionary.notYetText}}
+				</div>
+				<div class="pipe"></div>
+				<div class="confirm" ng-click="madrichConfirmCheckout()">
+					{{dictionary.finishText}}
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="tabs-wrap">
+		<div class="right-tab" ng-class="{'activeTab':rightActive}" ng-click="rightTab()">
+			<!--<div class="right-tab" ng-class="{'activeTab':rightActive}" ng-click="rightActive = true">-->
+			<div class="tab-text">
+				{{dictionary.messageText}}
+			</div>
+		</div>
+		<div class="left-tab" ng-class="{'activeTab':!rightActive}" ng-click="leftTab()">
+			<!--<div class="left-tab" ng-class="{'activeTab':!rightActive}" ng-click="rightActive = false">-->
+			<div class="tab-text">
+				{{dictionary.presenceText}}
+			</div>
+		</div>
+		<div class="line"></div>
+	</div>
+
+	<div class="right-list" ng-show="!rightActive">
+		<div class="box number1">
+			<div class="box-title">
+				<span>{{dictionary.comingText}}</span>
+				<div class="num-of-students-per-status">{{(studentsStatuses | filter:{status:'attendance'}:true).length}}</div>
+			</div>
+			<div class="box-content">
+				<div ng-repeat="student in studentsStatuses | orderBy:'firstname'" ng-if=" student.status == 'attendance'" class="list-pupil">
+					<div class="pupil-image" ng-click="goToStudentProfile(student.studentid)" style="{{student.image != '' ? 'background-image:url('+imgsDomain+ student.image+')':'background-image:url(./img/profile.png)'}}"></div>
+					<span class="text-pupil-name">{{student.firstname + ' '+ student.lastname}}</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="box number1">
+			<div class="box-title">
+				<span>{{dictionary.lateText}}</span>
+				<div class="num-of-students-per-status">{{(studentsStatuses | filter:{status:'late'}:true).length}}</div>
+			</div>
+			<div class="box-content">
+				<div  ng-repeat="student in studentsStatuses | orderBy:'firstname'" ng-if=" student.status == 'late'" class="list-pupil">
+					<div class="pupil-image" ng-click="goToStudentProfile(student.studentid)" style="{{student.image != '' ? 'background-image:url('+imgsDomain+ student.image+')':'background-image:url(./img/profile.png)'}}"></div>
+					<span class="text-pupil-name">{{student.firstname + ' '+ student.lastname}}</span>
+				</div>
+			</div>
+		</div>
+		
+		<div class="box number1">
+			<div class="box-title">
+				<span>{{dictionary.notComingText}}</span>
+				<div class="num-of-students-per-status">{{(studentsStatuses | filter:{status:'not attendance'}:true).length}}</div>
+			</div>
+			<div class="box-content">
+				<div  ng-repeat="student in studentsStatuses | orderBy:'firstname'" ng-if=" student.status == 'not attendance'" class="list-pupil">
+					<div class="pupil-image" ng-click="goToStudentProfile(student.studentid)" style="{{student.image != '' ? 'background-image:url('+imgsDomain+ student.image+')':'background-image:url(./img/profile.png)'}}"></div>
+					<span class="text-pupil-name">{{student.firstname + ' '+ student.lastname}}</span>
+				</div>
+			</div>
+		</div>
+		
+		<div class="box number1">
+			<div class="box-title">
+				<span>{{dictionary.didNotCheckin}}</span>
+				<div class="num-of-students-per-status">{{(studentsStatuses | filter:{status:'not checkin'}:true).length}}</div>
+			</div>
+			<div class="box-content">
+				<div  ng-repeat="student in studentsStatuses | orderBy:'firstname'" ng-if=" student.status == 'not checkin'" class="list-pupil">
+					<div class="pupil-image" ng-click="goToStudentProfile(student.studentid)" style="{{student.image != '' ? 'background-image:url('+imgsDomain+ student.image+')':'background-image:url(./img/profile.png)'}}"></div>
+					<span class="text-pupil-name">{{student.firstname + ' '+ student.lastname}}</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="right-list right-tab" ng-show="rightActive">
+
+		<div class="box number1">
+			<div class="box-title ">
+				<span>{{dictionary.studyMaterialText}}</span>
+			</div>
+			<div class="box-content location">
+				<div ng-repeat="subject in courseData.syllabus" class="subjects-learn">
+					<div ng-if="subject.isChecked == '1'">
+						{{!arabicLnguage ? subject.subject : subject.subjectinarabic}}
+					</div>
+					<div ng-repeat="subSubject in  subject.subsubjects" ng-if="subSubject.isChecked == '1'">
+						{{!arabicLnguage ? subSubject.subsubject : subSubject.subsubjectinarabic}}
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="box number2">
+			<div class="box-title">
+				<span>{{dictionary.goodKnowText}}</span>
+			</div>
+			<div class="box-content">
+					<div ng-repeat="event in celebrationEvents" class="celebration-event">
+						<p style="margin: 0 auto; margin: 10px;">{{event[getLangCode()]}}</p>
+					</div>
+			</div>
+		</div>
+		<div class="finish-course">
+			<div class="">
+				{{dictionary.finishMeetingQuestionText}}
+			</div>
+			<div ng-click="madrichCheckout()" class="main-btn"></div>
+		</div>
+	</div>
+
+</div>

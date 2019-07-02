@@ -1,0 +1,28 @@
+<div class="date-input-wrap">
+	<select
+		class="date-input-year"
+		ng-change="updateDate();"
+		ng-required="required"
+		ng-model="selectedYear"
+		ng-options="year as year.year for year in years">
+		<option value="">{{placeholderYear}}</option>
+	</select>
+	<select
+		class="date-input-month"
+		ng-change="updateDate();"
+		ng-required="required"
+		ng-model="selectedMonth"
+		ng-disabled="!selectedYear"
+		ng-options="month as month.month for month in selectedYear.months">
+		<option value="">{{placeholderMonth}}</option>
+	</select>
+	<select
+		class="date-input-day"
+		ng-change="updateDate();"
+		ng-required="required"
+		ng-model="selectedDay"
+		ng-disabled="!selectedMonth||!selectedYear"
+		ng-options="day for day in selectedMonth.days">
+		<option value="">{{placeholderDay}}</option>
+	</select>
+</div>

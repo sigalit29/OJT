@@ -1,0 +1,233 @@
+<div id="wrapper">
+	<header></header>
+	<div id="page-wrapper">
+		<div class="panel-body">
+			<!-- Nav tabs -->
+			<ul class="nav nav-tabs" ng-init="tabindex='activetable'">
+				<li style="cursor:pointer" ng-class="{active:tabindex=='create'}" ng-if="Type == 'admin'"><a ng-click="openCreatePage();">יצירת חניך</a>
+				</li>
+				<li style="cursor:pointer" ng-class="{active:tabindex=='activetable'}"><a ng-click="goToActivetab();">חניכים פעילים</a>
+				</li>
+				<li style="cursor:pointer" ng-class="{active:tabindex=='unactivetable'}"><a ng-click="goToUnactivetab();">חניכים לא פעילים</a>
+				</li>
+			</ul>
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<div ng-if="tabindex=='create'" id="create" ng-class="{active:tabindex=='create',in:tabindex=='create'}">
+				<form ng-submit="SaveStudent();submitted=false" role="form" ng-class="{'submitted': submitted}">
+					</br>
+					<div>
+						<div ng-if="Type == 'admin'">
+							<toggle style="float: left;margin-right: 20px;" ng-init="student.status=(student.status && student.status=='1')?true:false" ng-model="student.status" ng-change="changed()" on="פעיל" off="לא פעיל"></toggle>
+						</div>
+						<div style="position: absolute; left: 135px;top: 170px;">
+							<h5 ng-if="student.studentid">נרשם ב: {{student.registerdate}}</h5>
+							<h5 ng-if="student.lastactivedate">פעילות אחרונה ב: {{student.lastactivedate}}</h5>
+						</div>
+						<br>
+					</div>
+					<h4 ng-if="student.studentid"  >הפרופיל של {{student.firstname}}</h4>
+					<div class="form-group" style="margin-top: 40px;margin-right:20px">
+						<div style="margin-top:30px;">
+							<div class="input-wraaper" style="width: 49%;float: left;" ng-class="{'is-in': student.lastname}">
+								<input required mplaceholder tabindex="2" text="שם משפחה בעברית" class="form-control input-content" placeholder="" ng-model="student.lastname">
+							</div>
+								
+							<div class="input-wraaper" style="width: 49%;" ng-class="{'is-in': student.firstname}">
+								<input required  mplaceholder tabindex="1" text="שם פרטי בעברית" class="form-control input-content" placeholder="" ng-model="student.firstname">
+							</div>
+						</div>
+						<div style="margin-top:30px;">
+							<div class="input-wraaper" style="width: 49%;float: left;" ng-class="{'is-in': student.lastnameinarabic}">
+								<input mplaceholder tabindex="4" text="שם משפחה בערבית" class="form-control input-content" placeholder="" ng-model="student.lastnameinarabic">
+							</div>
+							<div class="input-wraaper" style="width: 49%;" ng-class="{'is-in': student.firstnameinarabic}">
+								<input mplaceholder tabindex="3" text="שם פרטי בערבית" class="form-control input-content" placeholder="" ng-model="student.firstnameinarabic">
+							</div>
+						</div>
+						<div style="margin-top:30px;">		
+							<div style="width: 49%;position: relative; float: left;">
+								<div class="input-wraaper" style="width: 50%;position: absolute; left: 0;"  ng-class="{'is-in': student.phone2owner}">
+									<input mplaceholder tabindex="8" text="שייך ל-" class="form-control input-content" placeholder="" ng-model="student.phone2owner">
+								</div>
+								<div class="input-wraaper" style="width: 49%;" ng-class="{'is-in': student.phone2}">
+									<input mplaceholder tabindex="6" text="מס' טלפון נוסף" type="text" pattern="[0-9]*" class="form-control input-content" placeholder="" ng-model="student.phone2">
+								</div>
+							</div>
+								
+							<div class="input-wraaper" style="width: 49%;" ng-class="{'is-in': student.phone}">
+								<input mplaceholder tabindex="5" text="מס' טלפון" type="text" pattern="[0-9]*" class="form-control input-content" placeholder="" ng-model="student.phone">
+							</div>
+						</div>
+						<div style="margin-top:30px;">
+							<div class="input-wraaper" style="width: 49%;float: left;" ng-class="{'is-in': student.tznumber}">
+								<input required mplaceholder tabindex="9" text="מס' תעודת זהות" type="number"  class="form-control input-content" placeholder="" ng-model="student.tznumber">
+							</div>
+								
+							<div style="width: 49%;position: relative;">
+								<div class="input-wraaper" style="width: 50%;position: absolute; left: 0;"  ng-class="{'is-in': student.adress}">
+									<input mplaceholder tabindex="8" text="כתובת" class="form-control input-content" placeholder="" ng-model="student.adress">
+								</div>
+								<div class="input-wraaper"  style="width: 50%;" ng-class="{'is-in': student.cityid}">
+									<select mplaceholder tabindex="7" text="עיר" class="form-control input-content" ng-model="student.cityid">
+										<option ng-repeat="citie in cities" value="{{citie.cityid}}" ng-if="citie.IsShow && citie.IsShow=='1'">{{citie.name}}</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div style="margin-top:30px;">
+							<div class="input-wraaper" style="width: 49%;float: left;" ng-class="{'is-in': student.birthday}" ng-init="student.birthday = student.birthday.includes('0000-00-00')?student.birthday='':student.birthday">
+								<input mplaceholder tabindex="11" text="תאריך לידה" datepicker type="text"  class="form-control input-content" placeholder="" ng-model="student.birthday">
+							</div>
+							<div class="input-wraaper" style="width: 49%;" ng-class="{'is-in': student.genderid}">
+								<select mplaceholder tabindex="10" text="מגדר" class="form-control input-content" ng-model="student.genderid">
+									<option ng-repeat="gender in genders" value="{{gender.genderid}}" ng-if="gender.IsShow && gender.IsShow=='1'">{{gender.name}}</option>
+								</select>
+							</div>
+						</div>
+						<div style="margin-top:30px;">
+							<div class="input-wraaper" style="width: 49%;float: left;" ng-class="{'is-in': student.religionid}">
+								<select mplaceholder tabindex="13" text="מגזר" class="form-control input-content" ng-model="student.religionid">
+									<option ng-repeat="religion in religions" value="{{religion.religionid}}" ng-if="religion.IsShow && religion.IsShow=='1'">{{religion.name}}</option>
+								</select>
+							</div>
+							<div class="input-wraaper" style="width: 49%;" ng-class="{'is-in': student.email}">
+								<input required type="email" mplaceholder tabindex="12" text="אימייל" class="form-control input-content myEmail" placeholder="" ng-model="student.email">
+							</div>
+						</div>
+						<div ng-if="!student.studentid || student.studentid==''" class="input-wraaper" style="width: 49%; margin-top:30px;" ng-class="{'is-in': student.email}">
+							<input  required mplaceholder tabindex="14" text="סיסמה" type="password" onfocus="(this.type='text')" class="form-control input-content myPassword" placeholder="" ng-model="student.password">
+							<span class='errorpassword' style="color:red; display:none; font-size: 13px;">סיסמה צריך להיות לפחות 12 תווים כוללת מספרים אותיות קטנות וגדולות</span>
+						</div>
+								
+						<div style="margin-top:30px;">
+							<b style="color:#818181;">הערות</b>
+ 							<br>
+							<textarea rows="6" style=" width:100%;" ng-model="student.notes"></textarea>
+						</div>
+								
+						<div class="form-group" style="margin-top: 30px">
+							<div class="btn btn-info btn-file">
+								<label>בחר תמונה</label>
+								<i class="fa fa-upload"></i> <input type="file" tabindex="15" accept="application/msword, application/pdf, image/*" ngf-select="onImageSelect($files)">
+							</div>
+							<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" ng-if="fileUpload"></span>
+							<img ng-if="student.image" ng-src="{{imgsDomain+'/'+student.image}}"  class="ng-scope card-profile-img">
+						</div>
+								
+						<hr style="height: 1px; background-color: #ccc">
+						
+					</div>
+				<button tabindex="16" style="width: 20%; float: left;border-color: #49814d; background-color: #49814d;" type="submit" class="btn btn-info" ng-click="submitted = true;">שמור</button>
+				<button tabindex="17" style="margin-left: 15px; width: 20%; float: left;border-color: gray; background-color: gray;" type="button" class="btn btn-info" ng-click="ClearStudent();submitted = false;">בטל</button>
+				<span modal-confirm control="alertcontrol" text="נשמר בהצלחה" on-confirm="goToStudentsPage()"></span>
+				<span modal-confirm2 control="confirmcontrol" text="לעבור לדף אחר יגרום לאיבוד נתונים שלא נשמרו" on-confirm="movedTo()"></span>
+			</form>
+		</div>
+			
+		<div ng-if="tabindex=='activetable'" id="activetable" ng-class="{active:tabindex=='activetable',in:tabindex=='activetable'}">
+			</br>
+			<input style="width: 14%;" type="text" id="searchcourse" class="form-control" placeholder="חיפוש חניך" ng-model="$word" ng-keyup="$event.keyCode == 13 && SearchWord($word,'1')">
+			<div class="table-responsive" style="margin-top:15px">
+				<table class="table table-striped table-bordered table-hover midrows">
+					<thead>
+						<tr>
+							<th ng-click="filltor('tznumber')" style="cursor:pointer">ת"ז <span class="fa fa-angle-down" ng-if="fill.tznumber=='asc'"> </span><span class="fa fa-angle-up" ng-if="fill.tznumber=='desc'"> </span></th>
+							<th ng-click="filltor('firstname')" style="cursor:pointer">שם <span class="fa fa-angle-down" ng-if="fill.firstname=='asc'"> </span><span class="fa fa-angle-up" ng-if="fill.firstname=='desc'"> </span></th>
+							<th ng-click="filltor('firstnameinarabic')" style="cursor:pointer">שם בערבית <span class="fa fa-angle-down" ng-if="fill.firstnameinarabic=='asc'"> </span><span class="fa fa-angle-up" ng-if="fill.firstnameinarabic=='desc'"> </span></th>
+							<th ng-click="filltor('lastname')" style="cursor:pointer">שם משפחה <span class="fa fa-angle-down" ng-if="fill.lastname=='asc'"> </span><span class="fa fa-angle-up" ng-if="fill.lastname=='desc'"> </span></th>
+							<th ng-click="filltor('lastnameinarabic')" style="cursor:pointer">שם משפחה בערבית <span class="fa fa-angle-down" ng-if="fill.lastnameinarabic=='asc'"> </span><span class="fa fa-angle-up" ng-if="fill.lastnameinarabic=='desc'"> </span></th>
+							<th ng-click="filltor('phone')" style="cursor:pointer">טלפון <span class="fa fa-angle-down" ng-if="fill.phone=='asc'"> </span><span class="fa fa-angle-up" ng-if="fill.phone=='desc'"> </span></th>
+							<th ng-click="filltor('adress')" style="cursor:pointer">כתובת <span class="fa fa-angle-down" ng-if="fill.adress=='asc'"> </span><span class="fa fa-angle-up" ng-if="fill.adress=='desc'"> </span></th>
+							<th ng-click="filltor('birthday')" style="cursor:pointer">תאריך לידה <span class="fa fa-angle-down" ng-if="fill.birthday=='asc'"> </span><span class="fa fa-angle-up" ng-if="fill.birthday=='desc'"> </span></th>
+							<th>מגדר</th>
+							<th>מגזר</th>
+							<th ng-click="filltor('email')" style="cursor:pointer">אימייל <span class="fa fa-angle-down" ng-if="fill.email=='asc'"> </span><span class="fa fa-angle-up" ng-if="fill.email=='desc'"> </span></th>
+						</tr>
+					</thead>
+					<tbody ng-model="staffs">
+						<tr ng-click="studentClick(student)" ng-repeat="student in activestudents" style="cursor:pointer">
+							<td>{{student.tznumber}}</td>
+							<td>{{student.firstname}}</td>
+							<td>{{student.firstnameinarabic}}</td>
+							<td>{{student.lastname}}</td>
+							<td>{{student.lastnameinarabic}}</td>
+							<td>{{student.phone}}</td>
+							<td>{{student.cityname}} {{student.adress}}</td>
+							<td ng-if="!student.birthday.includes('0000-00-00')">{{student.birthday}}</td>
+							<td ng-if="student.birthday.includes('0000-00-00')"></td>
+							<td>{{student.gendername}}</td>
+							<td>{{student.religionname}}</td>
+							<td>{{student.email}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- /.table-responsive -->
+			<button ng-if="Type=='admin'" ng-click="openCreatePage()" style="text-align:right; width: 120px;; float: left;border-color: #49814d; background-color: #49814d;" type="button" class="btn btn-info">הוסף חניך <img style="float: left;margin-top:  5px;" src="./img/icon-add.png" /></button>
+				
+			<div class="form-group">
+				<span class="form-group">
+					<div style="float: right; margin-left: 20px; width: 200px;" class="btn btn-info btn-file" ng-click="ExportStudents()">
+						<label>ייצוא סטודנטים</label>
+					</div>
+				</span>
+			</div>
+			<div ng-if="Type == 'admin'" class="form-group">
+				<span class="form-group">
+					<div style="width: 200px;" class="btn btn-info btn-file">
+						<label>ייבוא סטודנטים</label>
+							<i class="fa fa-upload"></i> <input type="file" accept=".csv,.xlsx" ngf-select="onFileSelect($files)">
+						</div>
+						<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" ng-if="fileUpload"></span>
+						<span ng-if="regulations" >הסטודנטים נקלטו במערכת</span>
+					</span>
+				</div>
+			</div>
+			
+			<div ng-if="tabindex=='unactivetable'" id="unactivetable" ng-class="{active:tabindex=='unactivetable',in:tabindex=='unactivetable'}">
+				</br>
+				<input style="width: 14%;" type="text" id="searchcourse" class="form-control" placeholder="חיפוש חניך" ng-model="$word" ng-keyup="$event.keyCode == 13 && SearchWord($word,'0')">
+					<div class="table-responsive" style="margin-top:15px">
+						<table class="table table-striped table-bordered table-hover midrows">
+							<thead>
+								<tr>
+									<th ng-click="filltor('tznumber')" style="cursor:pointer">ת"ז <span class="fa fa-angle-down" ng-if="fill.tznumber=='asc'"> </span><span class="fa fa-angle-up" ng-if="fill.tznumber=='desc'"> </span></th>
+									<th ng-click="filltor('firstname')" style="cursor:pointer">שם <span class="fa fa-angle-down" ng-if="fill.firstname=='asc'"> </span><span class="fa fa-angle-up" ng-if="fill.firstname=='desc'"> </span></th>
+									<th ng-click="filltor('firstnameinarabic')" style="cursor:pointer">שם בערבית <span class="fa fa-angle-down" ng-if="fill.firstnameinarabic=='asc'"> </span><span class="fa fa-angle-up" ng-if="fill.firstnameinarabic=='desc'"> </span></th>
+									<th ng-click="filltor('lastname')" style="cursor:pointer">שם משפחה <span class="fa fa-angle-down" ng-if="fill.lastname=='asc'"> </span><span class="fa fa-angle-up" ng-if="fill.lastname=='desc'"> </span></th>
+									<th ng-click="filltor('lastnameinarabic')" style="cursor:pointer">שם משפחה בערבית <span class="fa fa-angle-down" ng-if="fill.lastnameinarabic=='asc'"> </span><span class="fa fa-angle-up" ng-if="fill.lastnameinarabic=='desc'"> </span></th>
+									<th ng-click="filltor('phone')" style="cursor:pointer">טלפון <span class="fa fa-angle-down" ng-if="fill.phone=='asc'"> </span><span class="fa fa-angle-up" ng-if="fill.phone=='desc'"> </span></th>
+									<th ng-click="filltor('adress')" style="cursor:pointer">כתובת <span class="fa fa-angle-down" ng-if="fill.adress=='asc'"> </span><span class="fa fa-angle-up" ng-if="fill.adress=='desc'"> </span></th>
+									<th ng-click="filltor('birthday')" style="cursor:pointer">תאריך לידה <span class="fa fa-angle-down" ng-if="fill.birthday=='asc'"> </span><span class="fa fa-angle-up" ng-if="fill.birthday=='desc'"> </span></th>
+									<th>מגדר</th>
+									<th>מגזר</th>
+									<th ng-click="filltor('email')" style="cursor:pointer">אימייל <span class="fa fa-angle-down" ng-if="fill.email=='asc'"> </span><span class="fa fa-angle-up" ng-if="fill.email=='desc'"> </span></th>
+								</tr>
+							</thead>
+							<tbody ng-model="staffs">
+								<tr ng-click="studentClick(student)" ng-repeat="student in unactivestudents" style="cursor:pointer">
+									<td>{{student.tznumber}}</td>
+									<td>{{student.firstname}}</td>
+									<td>{{student.firstnameinarabic}}</td>
+									<td>{{student.lastname}}</td>
+									<td>{{student.lastnameinarabic}}</td>
+									<td>{{student.phone}}</td>
+									<td>{{student.cityname}} {{student.adress}}</td>
+									<td ng-if="!student.birthday.includes('0000-00-00')">{{student.birthday}}</td>
+									<td ng-if="student.birthday.includes('0000-00-00')"></td>
+									<td>{{student.gendername}}</td>
+									<td>{{student.religionname}}</td>
+									<td>{{student.email}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<button  ng-if="Type=='admin'" ng-click="openCreatePage()" style="text-align:right; width: 120px;; float: left;border-color: #49814d; background-color: #49814d;" type="button" class="btn btn-info">הוסף חניך <img style="float: left;margin-top:  5px;" src="./img/icon-add.png" /></button>	
+				</div>
+			</div>		
+		</div>
+		<!-- /.panel-body -->
+	</div>
+</div>
+

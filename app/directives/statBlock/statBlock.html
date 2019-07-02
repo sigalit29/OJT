@@ -1,0 +1,23 @@
+<div class="box stat-block">
+	<div class="box-title">
+		<div ng-if="onMoreClick" class="more-info" ng-click="onMoreInfo">i</div>
+		{{title}}
+	</div>
+	<div class="stat-flex-wrap">
+		<div class="stat-flex">
+			<div class="stat-value">
+				<div class="stat-value-number">{{val1}}</div>
+				<div class="stat-value-label">{{label1}}</div>
+			</div>
+			<div class="stat-of">{{preposition}}</div>
+			<div class="stat-value">
+				<div class="stat-value-number">{{val2}}</div>
+				<div class="stat-value-label">{{label2}}</div>
+			</div>
+		</div>
+	</div>
+	<div class="stat-icon" style="{{'background-image: url(./img/'+icon+')'}}"></div>
+	<div class="stat-label">
+		{{commentary}}
+	</div>
+</div>

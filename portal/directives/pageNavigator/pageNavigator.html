@@ -1,0 +1,19 @@
+<div class="list-page-nav">
+	<div class="page-nav-btn prev clickable" ng-class="{disabled:pageIndex==0}" ng-click="prevPage()">
+		<i class="fa fa-chevron-right" aria-hidden="true"></i>
+	</div>
+	<div class="page-selection" ng-show="pageIndex!=undefined&&pageCount!=undefined">
+		<span class="page-director clickable" ng-click="goToPage(0, data)" ng-if="pageIndex-2>0">1...</span>
+		<span class="page-director clickable" ng-click="goToPage(pageIndex-2, data)" ng-if="pageIndex-1>0">{{pageIndex-1}}</span>
+		<span class="page-director clickable" ng-click="goToPage(pageIndex-1, data)" ng-if="pageIndex>0">{{pageIndex}}</span>
+		<span class="page-director clickable curr-page" ng-click="goToPage(pageIndex, data)">{{pageIndex+1}}</span>
+		<span class="page-director clickable" ng-click="goToPage(pageIndex+1, data)" ng-if="pageIndex+1<=pageCount">{{pageIndex+2}}</span>
+		<span class="page-director clickable" ng-click="goToPage(pageIndex+2, data)" ng-if="pageIndex+2<=pageCount">{{pageIndex+3}}</span>
+		<span class="page-director clickable" ng-click="goToPage(pageCount, data)" ng-if="pageIndex+3<=pageCount">{{"..."+(pageCount+1) }}</span>
+	</div>
+	<div ng-if="pageIndex==undefined||pageCount==undefined" class="loading-page-count">טוען...</div>
+	<div class="page-nav-btn next clickable" ng-class="{disabled:pageIndex==pageCount}" ng-click="nextPage()">
+		<i class="fa fa-chevron-left" aria-hidden="true"></i>
+	</div>
+	<div class="loading-animation" ng-show="loading"></div>
+</div>

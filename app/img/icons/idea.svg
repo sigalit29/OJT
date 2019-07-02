@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 78.923 95.742">
+    <defs>
+        <style>
+            .cls-1,.cls-2{stroke:#15457d;stroke-linecap:round;stroke-linejoin:round;stroke-width:4px}.cls-1{fill:url(#linear-gradient)}.cls-2{fill:none}
+        </style>
+        <linearGradient id="linear-gradient" x1=".5" x2=".5" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#b5d7ff"/>
+            <stop offset=".42" stop-color="#7ebffe"/>
+            <stop offset="1" stop-color="#4a90e2"/>
+        </linearGradient>
+    </defs>
+    <g id="IDEA" transform="translate(-12 -2)">
+        <path id="Path_467" d="M66.476 81.632c0-14.526 6.881-18.348 6.881-18.348 9.556-9.556 10.03-24.564.482-34.12a24.465 24.465 0 0 0-34.594 0c-9.556 9.556-9.082 24.564.474 34.12 0 0 6.881 3.823 6.881 18.348z" class="cls-1" data-name="Path 467" transform="translate(-4.311 -4.239)"/>
+        <path id="Line_30" d="M9.174 0H0" class="cls-2" data-name="Line 30" transform="translate(47.639 95.742)"/>
+        <path id="Line_31" d="M15.29 0H0" class="cls-2" data-name="Line 31" transform="translate(44.581 86.568)"/>
+        <path id="Line_32" d="M0 0v4.587" class="cls-2" data-name="Line 32" transform="translate(51.461 4)"/>
+        <path id="Line_33" d="M0 0h4.587" class="cls-2" data-name="Line 33" transform="translate(14 41.461)"/>
+        <path id="Line_34" d="M0 0h3.058" class="cls-2" data-name="Line 34" transform="translate(85.865 41.461)"/>
+        <path id="Line_35" d="M0 3.242L3.242 0" class="cls-2" data-name="Line 35" transform="translate(24.971 64.71)"/>
+        <path id="Line_36" d="M0 2.164L2.164 0" class="cls-2" data-name="Line 36" transform="translate(75.788 14.971)"/>
+        <path id="Line_37" d="M0 0l3.242 3.242" class="cls-2" data-name="Line 37" transform="translate(24.971 14.971)"/>
+        <path id="Line_38" d="M0 0l2.164 2.164" class="cls-2" data-name="Line 38" transform="translate(75.788 65.788)"/>
+    </g>
+</svg>

@@ -1,0 +1,17 @@
+<div>
+	<input ng-if="fieldType=='TEXT'" type="text" ng-model="value"
+		ng-change="onChange(userId, enrollmentId, fieldId, value)">
+	</input>
+	<input ng-if="fieldType=='INT'" type="number" step="1" ng-model="value"
+		ng-change="onChange(userId, enrollmentId, fieldId, value)">
+	</input>
+	<input ng-if="fieldType=='FLOAT'" type="number" step="0.01" ng-model="value"
+		ng-change="onChange(userId, enrollmentId, fieldId, value)">
+	</input>
+	<input ng-if="fieldType=='DATE'" type="date" ng-model="value"
+		ng-change="onChange(userId, enrollmentId, fieldId, (value.getFullYear()+'/'+(value.getMonth()+1)+'/'+value.getDate()))">
+	</input>
+	<select ng-if="fieldType=='LISTITEM'" ng-model="value" ng-options="option.id as option.label for option in options"
+		ng-change="onChange(userId, enrollmentId, fieldId, value)">
+	</select>
+</div>

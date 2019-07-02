@@ -1,0 +1,11 @@
+<div class="toggle-wrap">
+	<div class="toggle-label unchecked-label" ng-class="{'semi-transparent':model}">
+		{{uncheckedLabel}}
+	</div>
+	<div class="check-button" ng-class="{'checked-toggle':!model}" ng-click="model=!model; onChange(model, onChangeParams)">
+		<div class="check-side"></div>
+	</div>
+	<div class="toggle-label checked-label" ng-class="{'semi-transparent':!model}">
+		{{checkedLabel}}
+	</div>
+</div>

@@ -1,0 +1,114 @@
+<div id="wrapper">
+	<header></header>
+	<div id="page-wrapper">
+		<div class="panel-body">
+				<!--<script> alert("2");</script>-->
+			<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" ng-if="fileUpload"></span>
+			</br>
+			<div class="results-filters-wrap">
+				<div class="results-filter">
+					חיפוש
+					<br>
+					<input type="text" class="form-input search-bar" placeholder="חיפוש מועמד" ng-model="search" ng-keyup="$event.keyCode == 13?pageIndex=0:''; $event.keyCode == 13?refreshResults():'';">
+					<div class="clickable search-button" ng-click="pageIndex=0; refreshResults();"><i class="fa fa-search" aria-hidden="true" ng-click="$event.keyCode == 13?pageIndex=0:''; $event.keyCode == 13?refreshResults():'';"></i></div>
+				</div>
+				<div class="results-filter">
+					סינון לפי עיר פעילות
+					<br>
+					<select class="form-input search-bar" ng-model="filter.netacityid" ng-change="refreshResults();" ng-options="NetaCity.CityId as NetaCity.CityName for NetaCity in Netacities">
+						<option value=""></option>
+					</select>
+				</div>
+		
+				<div class="results-filter">
+					סינון לפי סטטוס
+					<br>
+					<select class="form-input search-bar" ng-model="filter.nomineestatusid" ng-change="refreshResults();" ng-options="status.nomineestatusid as status.nomineestatus for status in NomineesStatuses">
+						<option value=""></option>
+					</select>
+				</div>
+			</div>
+			<hr></hr>
+			<div class="results-filters-wrap">
+				<div class="results-filter" ng-show="(checkedList|filter:true).length>0">
+					שינוי סטטוס
+					<br>
+					<select class="form-input search-bar" ng-model="new_status" ng-change="changeStatusByComboBox(new_status);" ng-options="status.nomineestatusid as status.nomineestatus for status in NomineesStatuses">
+						<option selected=""></option>
+					</select>
+				</div>
+				<div class="results-filter" ng-show="(checkedList|filter:true).length>0">
+					מחיקת מועמדים 
+					<br>
+					<button style="color: white; background-color: #c00;" class="form-input search-bar" ng-click="deleteSelectedNominees()">
+						מחיקה
+					</button>
+				</div>
+            </div>
+            <hr></hr>
+
+			<page-navigator page-count="pageCount" page-index="pageIndex" go-to-page="goToPage" loading="loading"></page-navigator>
+			<div class="scrolling-table-wrapper">
+				<div class="scrolling-table clickable">
+					<table id="nomineeId"class="table-striped table-bordered table-hover midrows">
+						<thead>
+							<tr>
+								<th sorter-table-header class="row1" field-index=""  field-text="" sort-by-field="" sorting-field="sortingField" reverse-order="reverseOrder" class="small-cell"></th>
+								<th sorter-table-header field-index="'netacityname'" field-text="'עיר פעילות'" sort-by-field="sortBy" sorting-field="sortingField" reverse-order="reverseOrder" class="small-cell"></th>
+								<th sorter-table-header field-index="'nomineestatus'" field-text="'סטטוס'" sort-by-field="sortBy" sorting-field="sortingField" reverse-order="reverseOrder" class="large-cell"></th>
+								<th sorter-table-header field-index="'firstname'" field-text="'שם'" sort-by-field="sortBy" sorting-field="sortingField" reverse-order="reverseOrder" class="small-cell"></th>
+								<th sorter-table-header field-index="'lastname'" field-text="'שם משפחה'" sort-by-field="sortBy" sorting-field="sortingField" reverse-order="reverseOrder" class="small-cell"></th>
+								<th sorter-table-header field-index="'phone'" field-text="'טלפון'" sort-by-field="sortBy" sorting-field="sortingField" reverse-order="reverseOrder" class="small-cell"></th>
+                                <th sorter-table-header field-index="'Parentphone'" field-text="'טלפון הורים'" sort-by-field="sortBy" sorting-field="sortingField" reverse-order="reverseOrder" class="small-cell"></th>
+                                <th sorter-table-header field-index="'class'" field-text="'כיתה'" sort-by-field="sortBy" sorting-field="sortingField" reverse-order="reverseOrder" class="small-cell"></th>
+								<th sorter-table-header field-index="'CityName'" field-text="'עיר מגורים'" sort-by-field="sortBy" sorting-field="sortingField" reverse-order="reverseOrder" class="small-cell"></th>
+								<th sorter-table-header field-index="'SchoolName'" field-text="'בית ספר'" sort-by-field="sortBy" sorting-field="sortingField" reverse-order="reverseOrder" class="small-cell"></th>
+								<th sorter-table-header field-index="'birthday'" field-text="'תאריך לידה'" sort-by-field="sortBy" sorting-field="sortingField" reverse-order="reverseOrder" class="small-cell"></th>
+								<th sorter-table-header field-index="'email'" field-text="'אימייל'" sort-by-field="sortBy" sorting-field="sortingField" reverse-order="reverseOrder" class="large-cell"></th>
+								<th sorter-table-header field-index="'hearabout'" field-text="'איך שמעת עלינו?'" sort-by-field="sortBy" sorting-field="sortingField" reverse-order="reverseOrder" class="large-cell"></th>
+								<th sorter-table-header field-index="'gender'" field-text="'מגדר'" sort-by-field="sortBy" sorting-field="sortingField" reverse-order="reverseOrder" class="small-cell"></th>
+                                <th sorter-table-header field-index="'RegistrationDate'" field-text="'תאריך הרשמה'" sort-by-field="sortBy" sorting-field="sortingField" reverse-order="reverseOrder" class="large-cell"></th>
+								<th sorter-table-header field-index="'comments'"  field-text="'הערות'" sort-by-field="sortBy" sorting-field="sortingField" reverse-order="reverseOrder" class="large-cell"></th>
+							</tr>
+						</thead>
+						<tbody id="tablebody" >
+							<tr ng-class="{ 'checked': checkedList[$index] }" ng-repeat="nominee in nominees">
+								<td class="row1" class="small-cell">
+								<input class="cb" type="checkbox" ng-model="checkedList[$index]"/>
+								<td class="small-cell">{{nominee.netacityname}}</td>
+								<td class="large-cell">
+									<select ng-model="nominee.nomineestatusid" ng-change="UpdateNomineeStatus(nominee)" ng-options="status.nomineestatusid as status.nomineestatus for status in NomineesStatuses">
+									</select>
+								</td>
+								<td class="small-cell">
+									<a ng-href="#singleNominee/{{nominee.nomineeid}}">{{nominee.firstname}}</a>
+								</td>
+								<td class="small-cell">
+									<a ng-href="#singleNominee/{{nominee.nomineeid}}">{{nominee.lastname}}</a>
+								</td>
+								<td class="small-cell">{{nominee.phone}}</td>
+                                <td class="small-cell">{{nominee.Parentphone}}</td>
+                                <td class="small-cell">{{nominee.classname}}</td>
+								<td class="small-cell">{{nominee.CityName}}</td>
+								<td class="small-cell">{{nominee.SchoolName}}</td>
+								<td class="small-cell">{{(!nominee.birthday.includes('0000-00-00'))?nominee.birthday:''}}</td>
+								<td class="large-cell">{{nominee.email}}</td>
+								<td class="large-cell">{{nominee.hearabout}}</td>
+								<td class="small-cell">{{nominee.gender}}</td>
+                                <td class="large-cell">{{nominee.RegistrationDate}}</td>
+								<td class="large-cell">
+									<input type="text" class="txt" contenteditable="true" ng-change="UpdateNomineeComments(nominee)" ng-model="nominee.comments">
+								</td>
+
+				</tr>
+				</tbody>
+				</table>
+			</div>
+			</div>
+			<page-navigator page-count="pageCount" page-index="pageIndex" go-to-page="goToPage" loading="loading"></page-navigator>
+			<div>
+				<input type="checkbox" ng-model="allSelected" ng-click="SelectAllRows()"> סימון הכל </input>
+			</div>
+		</div>
+	</div>
+</div>

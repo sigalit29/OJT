@@ -1,0 +1,38 @@
+<div ng-if="isAdmin" id="wrapper">
+	<header></header>
+<div id="page-wrapper">
+	<div class="panel-body">
+		<div class="tab-content">
+		<form ng-submit="SaveData()" role="form">
+
+			<h5>מגזרים:</h5>
+			<hr>
+			<h5 style="margin-right: 33px;">עברית:</h5>
+			<h5 style="margin-right: 35%;margin-top: -25px;">ערבית:</h5>
+			<div class="form-group" ng-repeat="religion in religions">
+				<div>
+				<!--
+					<label ng-init="religion.IsShow=(religion.IsShow && religion.IsShow=='1')?true:false" class="myradio" ng-class="{radiochecked: religion.IsShow,radiounchecked: !religion.IsShow}" ng-click="religion.IsShow=!religion.IsShow" ng-model="religion.IsShow"></label>
+				-->
+					<toggle style="float: right; margin-left: 10px;" ng-init="religion.IsShow=(religion.IsShow && religion.IsShow=='1')?true:false" ng-model="religion.IsShow" ng-change="changed()" on="פעיל" off="לא פעיל"></toggle>
+					<input required style="width: 30%;margin-left: 20px; float: right;" class="form-control" placeholder="שם דת" ng-model="religion.name">
+					<input style="width: 30%;" class="form-control" placeholder="שם דת" ng-model="religion.nameinarabic">
+				</div>
+			</div>
+			<button ng-click="CreateData()" style="text-align: right;border-color: #49814d; background-color: #49814d;" type="button" class="btn btn-info">הוסף דת&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="./img/icon-add.png" /></button>
+
+			<hr>
+			<button style="width: 20%; float: left;border-color: #49814d; background-color: #49814d;" ng-if="religions" type="submit" class="btn btn-info">שמור</button>
+			<button style="margin-left: 15px; width: 20%; float: left;border-color: gray; background-color: gray;" ng-if="religions" type="button" class="btn btn-info" ng-click="ClearData()">בטל</button>
+
+			<span modal-confirm control="alertcontrol" text="הנתונים נשמרו בהצלחה.">
+			</span>
+			
+		</form>
+		</div>
+	</div>
+	<!-- /.panel-body -->
+</div>
+
+</div>
+

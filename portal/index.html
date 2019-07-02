@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html data-ng-app="apple" dir="rtl">
+	<head>
+		<meta charset="utf-8" />
+		<meta HTTP-EQUIV="CACHE-CONTROL" content="NO-CACHE">
+		<title>תפוח - ניהול</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		
+		<!-- Bootstrap Core CSS -->
+		<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="bower_components/startbootstrap-sb-admin-2/dist/css/sb-admin-2.css?v=3" rel="stylesheet">
+		
+		<!-- Custom Fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Assistant:bold,regular" rel="stylesheet">
+		<link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="bower_components/angular-emoji-filter/dist/emoji.min.css" rel="stylesheet" type="text/css">
+		<link href="bower_components/datetimepicker/jquery.datetimepicker.css" rel="stylesheet" type="text/css">
+		<link href="bower_components/angular-bootstrap-toggle/dist/angular-bootstrap-toggle.min.css" rel="stylesheet" type="text/css">
+
+		<link href="css/rtl-sb-admin-2.css?v=5" rel="stylesheet" />
+		<link href="directives/modal/modal.css" rel="stylesheet" />
+		<link href="directives/datetimebtn/datetimebtn.css" rel="stylesheet" />
+		<link href="directives/emojipanel/emojipanel.css" rel="stylesheet" />
+		<link href="css/style.css?v=5" rel="stylesheet" />
+		<link href="css/hoursreport.css?v=5" rel="stylesheet" />
+		<link href="css/hierarchy.css?v=5" rel="stylesheet" />
+		<link href="css/scrolling-table.css?v=5" rel="stylesheet" />
+		<link href="css/popups/popup.css?v=5" rel="stylesheet" />
+		<link href="css/page-navigation.css?v=5" rel="stylesheet" />
+		<link href="css/buttons.css?v=5" rel="stylesheet" />
+		<link href="css/card-controls.css?v=5" rel="stylesheet" />
+		<link href="css/form.css?v=5" rel="stylesheet" />
+		<link href="css/loader.css?v=5" rel="stylesheet" />
+		<link href="css/multi-selector.css?v=5" rel="stylesheet" />
+		<link href="css/carousel.css?v=5" rel="stylesheet" />
+		<link href="css/components/course.css?v=5" rel="stylesheet" />
+		<link href="css/components/project.css?v=5" rel="stylesheet" />
+		<link href="css/components/login.css?v=5" rel="stylesheet" />
+		<link href="css/components/nomineeList.css?v=5" rel="stylesheet" />
+	</head>
+	
+	<body>
+		<div style="height:100%;" id="main-view" data-ui-view="main" class="main-view"></div>
+		
+		<script src="bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+		
+		<!-- Angular -->
+		<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+		<script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+		<script type="text/javascript" src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+		<script type="text/javascript" src="bower_components/angular-ui-sortable/sortable.min.js"></script>
+		<script type="text/javascript" src="bower_components/angular-emoji-filter/dist/emoji.min.js"></script>
+		<script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+		<script type="text/javascript" src="bower_components/jquery-canvas-area-draw-master/jquery.canvasAreaDraw.min.js"></script>
+		<script type="text/javascript" src="bower_components/datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
+		<script type="text/javascript" src="bower_components/angular-bootstrap-toggle/dist/angular-bootstrap-toggle.min.js"></script>
+		<script src="config.js?v=3"></script>
+		<script src="app.js?v=3"></script>
+		<script src="services/server.js?v=7"></script>
+
+		<script src="directives/header/header.js?v=5"></script>
+		<script src="directives/modal/modal.js?v=3"></script>
+		<script src="directives/modal/holderDirectives.js?v=3"></script>
+		<script src="directives/datetimebtn/datetimebtn.js?v=3"></script>
+		<script src="directives/emojipanel/emojipanel.js?v=3"></script>
+		<script src="directives/popup/popup.js?v=3"></script>
+		<script src="directives/hierarchy/hierarchy.js?v=3"></script>
+		<script src="directives/pageNavigator/pageNavigator.js?v=3"></script>
+		<script src="directives/sorterTableHeader/sorterTableHeader.js?v=3"></script>
+		<script src="directives/multiSelector/multiSelector.js?v=3"></script>
+		<script src="directives/searchSelector/searchSelector.js?v=3"></script>
+		<script src="directives/gallery/gallery.js?v=3"></script>
+		<script src="directives/customField/customField.js?v=3"></script>
+		<script src="directives/saveAsExcel/saveAsExcelDir.js"></script>
+
+		<script src="components/login/login.js?v=3"></script>
+		<script src="components/course/singleCourse.js?v=3"></script>
+		<script src="components/lesson/singleLesson.js?v=1"></script>
+		<script src="components/course/courseList.js?v=3"></script>
+		<script src="components/user/singleUser.js?v=3"></script>
+		<script src="components/user/userList.js?v=3"></script>
+		<script src="components/city/city.js?v=3"></script>
+		<script src="components/gender/gender.js?v=3"></script>
+		<script src="components/religion/religion.js?v=3"></script>
+		<script src="components/language/language.js?v=3"></script>
+		<script src="components/project/project.js?v=3"></script>
+		<script src="components/question/question.js?v=3"></script>
+		<script src="components/yearbudget/yearbudget.js?v=3"></script>
+		<script src="components/hoursreport/hoursreport.js?v=9"></script>
+		<script src="components/checkreport/checkreport.js?v=9"></script>
+		<script src="components/clientcode/clientcode.js?v=3"></script>
+		<script src="components/subjectreport/subjectreport.js?v=3"></script>
+		<script src="components/studentstatus/studentstatus.js?v=3"></script>
+		<script src="components/myprofile/myprofile.js?v=3"></script>
+		<script src="components/profession/profession.js?v=3"></script>
+		<script src="components/certificate/certificate.js?v=3"></script>
+		<!--neta join-->
+		<script src="components/nominee/singleNominee.js?v=3"></script>
+		<script src="components/nominee/nomineeList.js?v=3"></script>
+		
+		<script src="js/moment.js"></script>
+		
+		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.8/angular-filter.min.js"></script>
+		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.1/xlsx.full.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/alasql/0.3/alasql.min.js"></script>
+		
+		</body>
+
+</html>

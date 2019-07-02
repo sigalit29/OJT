@@ -1,0 +1,112 @@
+<div id="wrapper">
+	<header></header>
+	<div id="page-wrapper">
+		<div class="panel-body">
+			<form ng-submit="SaveData()">
+				<div class="month-controls">
+					<span style="cursor:pointer;" class="fa fa-caret-right" ng-click="goLeft()"></span>
+					<span style="margin: 10px;"><b>{{month}} {{year}}</b></span>
+					<span style="cursor:pointer;" class="fa fa-caret-left" ng-click="goRight()"></span>
+				</div>
+				<div class="hours-sum">
+					{{loading?"...":("סכום שעות: "+sumHours())}}
+				</div>
+				<div ng-if="loading">loading...</div>
+				<div class="report-table-wrap" style="margin-top: 20px; margin-right: 20px;">
+					<table ng-if="reports.length>0" class="hours-reporting-table table-bordered">
+						<thead>
+						<tr>
+							<th class="row-actions"></th>
+							<th style="width: 6em;">תאריך</th>
+							<th style="width: 10em;">פרויקט</th>
+							<th style="width: 10em;">מס/שם קורס</th>
+							<th style="width: 7em;">נושא פעילות</th>
+							<th style="width: 4em;">שעת התחלה</th>
+							<th style="width: 4em;">שעת סיום</th>
+							<th style="width: 4em;">סה"כ שעות</th>
+							<th style="width: 5em;">רכב פרטי ק"מ</th>
+							<th style="width: 5em;">תחבורה ציבורית ש"ח</th>
+							<th style="width: 15em;">הערות</th>
+							<th style="width: 7em;">זמן שינוי סטטוס ע"י מנהל</th>
+							<th style="width: 5em;">אישור נוכחות</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr ng-class="{'missing-report-subject': rep.missingreportsubject}" ng-repeat="rep in reports">
+							<td class="row-actions">
+								<div class="row-action" ng-click="DuplicateData(rep);">
+									<img src="./img/duplicate.png"></img>
+								</div>
+								<div class="row-action" ng-click="Delete(rep);">
+									<img src="./img/Xicon.png"></img>
+								</div>
+							</td>
+
+							<td ng-class="{changedByManager:rep.copyreport.date!=rep.date, 'invalid-field-value':rep.notIntersecting==false, 'auto-reported':rep.automatic}">
+								<input ng-disabled="rep.approval||rep.automatic" required datepicker selectmonth="monthindex" selectyear="year" ng-change="rep.copyreport.date=rep.date" ng-model="rep.date" />
+							</td>
+
+							<td ng-class="{'invalid-field-value':rep.isSetProject==false, changedByManager:rep.copyreport.projectid!=rep.projectid, 'auto-reported':rep.automatic}">
+								<select ng-change="rep.copyreport.projectid=rep.projectid" ng-disabled="rep.approval||rep.automatic" required ng-model="rep.projectid" ng-options="project.projectid as project.projectName for project in reportingPerimeter">
+								</select>
+							</td>
+
+							<td ng-class="{changedByManager:rep.copyreport.courseid!=rep.courseid, 'auto-reported':rep.automatic}">
+								<select ng-change="rep.copyreport.courseid=rep.courseid" ng-disabled="rep.approval||rep.automatic" ng-model="rep.courseid" ng-options="course.courseid as course.courseName for course in reportingPerimeter[rep.projectid].courses">
+									<option value="">כללי</option>
+								</select>
+							</td>
+
+							<td ng-class="{'invalid-field-value':rep.isSetSubject==false, changedByManager:rep.copyreport.actionid!=rep.actionid, 'auto-reported':rep.automatic}">
+								<select ng-change="rep.copyreport.actionid=rep.actionid" ng-disabled="rep.approval||rep.automatic" required ng-model="rep.actionid" ng-options="subject.reportsubjectid as subject.subject for subject in reportingPerimeter[rep.projectid].subjects">
+									<option value=""></option>
+								</select>
+							</td>
+
+							<td ng-class="{'invalid-field-value':rep.starthourvalid==false, changedByManager:rep.copyreport.starthour!=rep.starthour}">
+								<input ng-disabled="rep.approval" required timepicker ng-model="rep.starthour" ng-change="resetEndHour(rep); rep.copyreport.starthour=rep.starthour" />
+							</td>
+
+							<td ng-class="{'invalid-field-value':rep.finishhourvalid==false, changedByManager:rep.copyreport.finishhour!=rep.finishhour}">
+								<input ng-disabled="rep.approval" required endtimepicker ng-model="rep.finishhour" starttime="rep.starthour" ng-change="calculateHours(rep); rep.copyreport.finishhour=rep.finishhour" ng-if="rep.starthour"/>
+							</td>
+
+							<td ng-class="{'invalid-field-value':rep.hoursvalid==false}" ng-init="calculateHours(rep);">
+								{{rep.hours}}
+							</td>
+
+							<td ng-class="{changedByManager:rep.copyreport.carkm!=rep.carkm}">
+								<input ng-disabled="rep.approval" type="number" step="0.1" ng-model="rep.carkm" ng-change="rep.copyreport.carkm=rep.carkm" class="inputv2report" />
+							</td>
+
+							<td ng-class="{changedByManager:rep.copyreport.cost!=rep.cost}">
+								<input ng-disabled="rep.approval" type="number" step="0.01" ng-model="rep.cost" ng-change="rep.copyreport.cost=rep.cost" class="inputv2report" />
+							</td>
+
+							<td ng-class="{changedByManager:rep.copyreport.comment!=rep.comment}">
+								<textarea ng-change="rep.copyreport.comment=rep.comment" ng-disabled="rep.approval" ng-model="rep.comment" rows="1" class="inputv2report" ng-keydown="$event.keyCode == 9 && AddData()" />
+							</td>
+							<td ng-class = "{'invalid-field-value':rep.hoursvalid==false}">
+								{{rep.checkdate}}
+							</td>
+
+							<td>
+								<div class = "hrep-status-wait" ng-if="(rep.approval===0)">ממתין</div>
+								<div class = "hrep-status-approved" ng-if="(rep.approval===1)">אושר</div>
+								<div class = "hrep-status-rejected" ng-if="(rep.approval===-1)">נדחה</div>
+								<!-- {{rep.approval?'אושר':'ממתין'}} -->
+							</td>
+						</tr>
+						</tbody>
+					</table>
+					<button style="border-color: #49814d; background-color: #49814d;" type="button" class="btn btn-info" ng-click="AddData()">הוסף רשומה</button>
+					<div excel-export file-name="{{stateName}}_{{month}}_{{year}}" get-data = "getReportsFull" make-header = "false" ng-show="reports.length>0"></div>
+					<hr>
+					<button style="width: 20%; float: left;border-color: #49814d; background-color: #49814d;" type="submit" class="btn btn-info">שמור</button>
+					<button style="margin-left: 15px; width: 20%; float: left;border-color: gray; background-color: gray;" type="button" class="btn btn-info" ng-click="ClearData()">בטל</button>
+				</div>
+				<span modal-confirm2 control="deletingcontrol" text="האם למחוק את הדוח?" on-confirm="DeleteData();"></span>
+			</form>
+		</div>
+	</div>
+</div>

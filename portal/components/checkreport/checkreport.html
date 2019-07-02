@@ -1,0 +1,184 @@
+<div id="wrapper" ng-click="displayRowActions=false">
+	<header></header>
+	<div id="page-wrapper">
+		<div class="panel-body">
+			<span style="cursor:pointer;" class="fa fa-caret-right" ng-click="goLeft()"></span>
+			<span style="margin: 10px;"><b>{{month}} {{year}}</b></span>
+			<span style="cursor:pointer;" class="fa fa-caret-left" ng-click="goRight()"></span>
+			<div>
+				<input type="text" class="form-input search-bar" placeholder="חיפוש עובד" ng-model="search" ng-keyup="$event.keyCode == 13?pageIndex=0:''; $event.keyCode == 13?refreshResults():'';">
+				<div class="clickable search-button" ng-click="pageIndex=0; refreshResults();"><i class="fa fa-search" aria-hidden="true" ng-click="$event.keyCode == 13?pageIndex=0:''; $event.keyCode == 13?refreshResults():'';"></i></div>
+			</div>
+			<page-navigator page-count="pageCount" page-index="pageIndex" go-to-page="goToPage" loading="loading"></page-navigator>
+
+			<div ng-if="loading">loading...</div>
+			<!-- <div ng-if="!loading&&(reporter.reports.length>0||reporter.status==1)" ng-repeat="($reporterIndex, reporter) in (allreporters | orderBy:'firstname') track by reporter.userid" -->
+			<div ng-if="!loading" ng-repeat="($reporterIndex, reporter) in (allreporters | orderBy:'firstname') track by reporter.userid"
+
+				style="position: relative; margin-top: 20px;">
+				<div style="cursor:pointer;" ng-click="showdiv=!showdiv">
+					<h4>
+						<b>
+							<div class="timetracking-form-header">
+								<span ng-show="showdiv" class="fa fa-angle-down"></span>
+								<span ng-show="!showdiv" class="fa fa-angle-left"></span>
+								<div class="timetracking-reporter-name">
+									{{reporter.firstname}} {{reporter.lastname}}
+								</div>
+								<div class="hours-sum">
+									שעות שאושרו:
+									<span ng-style="{color:reporter.approvedHours>0?'green':''}">
+										{{reporter.approvedHours}}
+									</span>
+									| שעות שנדחו:
+									<span ng-style="{color:reporter.rejectedHours>0?'red':''}">
+										{{reporter.rejectedHours}}
+									</span>
+									| שעות שממתינות:
+									<span ng-style="{color:reporter.unapprovedHours>0?'blue':''}">
+										{{reporter.unapprovedHours}}
+									</span>
+									| סה"כ שעות {{reporter.reportedHours}}
+								</div>
+							</div>
+						</b>
+					</h4>
+				</div>
+				<div ng-if="showdiv">
+					<div style="width:105%">
+						<div style="float:left;padding-left: 70px;">
+							<div class="report-selection-button-action approve-selected-button" ng-class="{'some-selected':getSelectedRows(reporter).length>0}"
+								 ng-click="ApproveRows(getSelectedRows(reporter), reporter);">
+								אישור הרשומות המסומנות
+							</div>
+							<div class="report-selection-button-action reject-selected-button" ng-class="{'some-selected':getSelectedRows(reporter).length>0}"
+								 ng-click="RejectRows(getSelectedRows(reporter), reporter);">
+								דחיית הרשומות המסומנות
+							</div>
+							<div class="report-selection-button-action select-all-button">
+								<div>סימון כל הרשומות</div>
+								<div class="row-selection-indicator" ng-class="{'checked-row':reporter.chooseAll}" ng-click="chooseAll(reporter)"></div>
+							</div>
+						</div>
+					</div>
+					<br>
+					<div class="report-table-wrap" style="width:100%">
+						<table class="hours-reporting-table table-bordered">
+							<thead>
+							<tr>
+								<th class="row-actions"></th>
+								<th style="width: 6em;">תאריך</th>
+								<th style="width: 10em;">פרויקט</th>
+								<th style="width: 10em;">מס/שם קורס</th>
+								<th style="width: 7em;">נושא פעילות</th>
+								<th style="width: 4em;">שעת התחלה</th>
+								<th style="width: 4em;">שעת סיום</th>
+								<th style="width: 4em;">סה"כ שעות</th>
+								<th style="width: 5em;">רכב פרטי ק"מ</th>
+								<th style="width: 5em;">תחבורה ציבורית ש"ח</th>
+								<th style="width: 15em;">הערות</th>
+								<th style="width: 7em;">זמן שינוי סטטוס ע"י מנהל</th>
+								<th style="width: 7em;">אישור נוכחות</th>
+							</tr>
+							</thead>
+							<tbody>
+							<!-- <tr ng-repeat="($index, rep) in reporter.reports"> -->
+							<!-- <tr ng-repeat="($index, rep) in reporter.reports | orderBy : ( orderByDate ? 'date' : '' ) "> -->
+							<tr ng-repeat="($index, rep)  in reporter.reports track by $index | orderBy : 'date' &&  (orderByDate == true ) ">
+								<td class="row-actions">
+									<div ng-if="!editing">
+										<div class="row-action" ng-click="DuplicateData(getReporterIndexByID(reporter.userid), $index);">
+											<img src="./img/duplicate.png"></img>
+										</div>
+										<div class="row-action" ng-click="enableRowEditing(rep);">
+											<img src="./img/edit.png"></img>
+										</div>
+									</div>
+									<div ng-if="rep.editing">
+										<div class="approve-row-button" ng-click="SaveData(getReporterIndexByID(reporter.userid), $index);">
+											שמירה
+										</div>
+										<div class="cancel-row-button" ng-click="cancelEdit(getReporterIndexByID(reporter.userid), $index);">
+											ביטול
+										</div>
+									</div>
+								</td>
+								<td ng-class="{changedByManager:rep.copyreport.date!=rep.date,'auto-reported':rep.automatic, 'invalid-field-value':rep.notIntersecting==false}">
+									<input ng-disabled="!rep.editing||rep.automatic" required datepicker selectmonth="monthindex" selectyear="year"
+										   ng-change="rep.copyreport.date=rep.date" ng-model="rep.date" />
+								</td>
+								<td ng-class="{changedByManager:rep.copyreport.projectid!=rep.projectid,'invalid-field-value':rep.isSetProject==false, 'auto-reported':rep.automatic}">
+									<select ng-disabled="!rep.editing||rep.automatic" required ng-model="rep.projectid" ng-options="project.projectid as project.projectName for project in reporter.reportingPerimeter">
+									</select>
+								</td>
+								<td ng-class="{changedByManager:rep.copyreport.courseid!=rep.courseid,'auto-reported':rep.automatic}">
+									<select ng-disabled="!rep.editing||rep.automatic" ng-model="rep.courseid" ng-options="course.courseid as course.courseName for course in reporter.reportingPerimeter[rep.projectid].courses">
+										<option value="">כללי</option>
+									</select>
+								</td>
+								<td ng-class="{changedByManager:rep.copyreport.actionid!=rep.actionid,'invalid-field-value':rep.isSetSubject==false, 'auto-reported':rep.automatic}">
+									<select ng-disabled="!rep.editing||rep.automatic" required ng-model="rep.actionid" ng-options="subject.reportsubjectid as subject.subject for subject in reporter.reportingPerimeter[rep.projectid].subjects">
+										<option value=""></option>
+									</select>
+								</td>
+								<td ng-class="{changedByManager:rep.copyreport.starthour!=rep.starthour,'invalid-field-value':rep.starthourvalid==false}">
+									<input ng-disabled="!rep.editing" required timepicker ng-model="rep.starthour" ng-change="resetEndHour(rep)" />
+								</td>
+								<td ng-class="{ changedByManager:rep.copyreport.finishhour!=rep.finishhour,'invalid-field-value':rep.finishhourvalid==false}">
+									<input ng-disabled="!rep.editing" required endtimepicker ng-model="rep.finishhour" starttime="rep.starthour"
+										   ng-change="calculateHours(rep); calculateHoursSummary(reporter);" ng-if="rep.starthour" />
+								</td>
+								<td ng-class="{'invalid-field-value':rep.hoursvalid==false}">
+									{{rep.hours}}
+								</td>
+								<td>
+									<input ng-disabled="!rep.editing" type="number" step="0.1" ng-model="rep.carkm" ng-change="rep.copyreport.carkm=rep.carkm"
+										   class="inputv2report" />
+								</td>
+								<td>
+									<input ng-disabled="!rep.editing" type="number" step="0.01" ng-model="rep.cost" ng-change="rep.copyreport.cost=rep.cost"
+										   class="inputv2report" />
+								</td>
+								<td ng-class="{changedByManager:rep.copyreport.comment!=rep.comment}">
+									<textarea ng-disabled="!rep.editing" ng-model="rep.comment" rows="1" class="inputv2report" ng-keydown="$event.keyCode == 9 && AddData()" />
+								</td>
+								<td ng-class = "{'invalid-field-value':rep.hoursvalid==false}">
+									{{rep.checkdate}}
+								</td>
+								<td ng-click="$event.stopPropagation();">
+									<div class="row-selection-indicator" ng-class="{'checked-row':rep.choose}" ng-click="rep.choose=!rep.choose"></div>
+									<div ng-if="rep.missingreportsubject">
+										פנו למנהל המערכת
+									</div>
+									<div ng-if="(rep.approval===1)&&!rep.missingreportsubject">
+										<div class="cancel-approved-row-button" ng-click="UnapproveRows([rep], reporter);"><span class="approved-row-label">מאושר</span><span> - ביטול</span></div>
+									</div>
+									<div ng-if="(rep.approval===-1)&&!rep.missingreportsubject">
+										<div class="cancel-rejected-row-button" ng-click="UnapproveRows([rep], reporter);"><span class="rejected-row-label">נדחה</span><span> - ביטול</span></div>
+									</div>
+
+									<div class = "col-md-6 approve-row-button" ng-if="!rep.approval &&!rep.missingreportsubject" ng-click="ApproveSingleRow(getReporteIndexById(reporter.userid), $index);">
+										<span class="approved-row-label">אשר</span>
+										אשר
+									</div>
+									<div class = "col-md-6 reject-row-button" ng-if="!rep.approval &&!rep.missingreportsubject" ng-click="RejectSingleRow(getReporteIndexById(reporter.userid), $index);">
+										<span class="rejected-row-label">דחה</span>
+										דחה
+									</div>
+
+								</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+					<!-- add a new row button -->
+					<button ng-if="!editing"style="border-color: #49814d; background-color: #49814d;" type="button" class="btn btn-info" ng-click="AddData(reporter)">הוסף רשומה</button>
+					<div excel-export file-name="{{stateName}}_{{month}}_{{year}}" get-data = "getReportsFull" param-obj = "{'param1': reporter}" make-header = "false" ng-show="reporter.reports"></div>
+					<hr>
+				</div>
+			</div>
+			<hr style="height: 1px; background-color: #ccc">
+		</div>
+	</div>
+	<!-- /.panel-body -->
+</div>

@@ -1,0 +1,33 @@
+.popup.login-popup{
+	width: 22.5em;
+	font-size:1.25em;
+	background-color: #F8F7F699;
+}
+.popup.login-popup .popup-header{
+	background-color: #f1efef88;
+}
+.popup.login-popup .popup-header img{
+	width: 80%;
+    padding: 0.3em 0;
+}
+.popup.login-popup .popup-content-wrap
+{
+	padding:5%;
+}
+.login-button{
+	width: 100%;
+	text-align: center;
+	margin: 0 auto;
+	display: block;
+	border-radius: 0.5vw;
+}
+.forgot-pass{
+	margin:0px 3px;
+	text-align: center;
+}
+.forgot-pass:hover{
+	text-shadow:0px 0px 1px black;
+}
+.forgot-pass-popup .popup{
+	width:40em;
+}

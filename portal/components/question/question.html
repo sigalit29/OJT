@@ -1,0 +1,100 @@
+<div ng-if="isAdmin" id="wrapper">
+	<header></header>
+<div id="page-wrapper">
+	<div class="panel-body">
+	
+		<!-- Nav tabs -->
+		<ul class="nav nav-tabs">
+			<li style="cursor:pointer" ng-class="{active:tabindex=='home'}"><a ng-click="goToMadrich()">שאלות למדריכים</a>
+			</li>
+			<li style="cursor:pointer" ng-class="{active:tabindex=='profile'}"><a ng-click="goToStudent()">שאלות לתלמידים</a>
+			</li>
+		</ul>
+		<!-- Tab panes -->
+		</br>
+		<div class="tab-content">
+		<div ng-if="tabindex=='home'" class="tab-pane fade" id="home" ng-class="{active:tabindex=='home',in:tabindex=='home'}">
+			<form ng-submit="SaveMadrichQuestions()" role="form">
+
+				<h5>שאלות קבועות למדרכים:</h5>
+				<hr>
+				<h5 style="margin-right: 33px;">עברית:</h5>
+				<h5 style="margin-right: 48.5%;margin-top: -25px;">ערבית:</h5>
+				<div class="form-group" ng-repeat="MadrichQuestion in MadrichQuestions">
+					<div  ng-mouseleave="test.a={}" ng-mouseover="test.a=MadrichQuestion">
+					<!--
+						<label ng-init="MadrichQuestion.IsShow=(MadrichQuestion.IsShow && MadrichQuestion.IsShow=='1')?true:false" class="myradio" ng-class="{radiochecked: MadrichQuestion.IsShow,radiounchecked: !MadrichQuestion.IsShow}" ng-click="MadrichQuestion.IsShow=!MadrichQuestion.IsShow" ng-model="MadrichQuestion.IsShow"></label>
+					-->	
+						<toggle style="float: right; margin-left: 10px;" ng-init="MadrichQuestion.IsShow=(MadrichQuestion.IsShow && MadrichQuestion.IsShow=='1')?true:false" ng-model="MadrichQuestion.IsShow" ng-change="changed()" on="פעיל" off="לא פעיל"></toggle>
+						<input required style="width: 30%;margin-left: 16%; float: right;" class="form-control" placeholder="שאלה" ng-model="MadrichQuestion.question">
+						<input style="width: 30%;" class="form-control" placeholder="שאלה" ng-model="MadrichQuestion.questioninarabic">
+						<!--change the top line to the under comment-->
+						<!--
+						<input required ng-if="test.a!=MadrichQuestion" style="width: 30%;" class="form-control" placeholder="שאלה" ng-model="MadrichQuestion.question">
+						<input required ng-if="test.a==MadrichQuestion" style="width: 30%;float: right;" class="form-control" placeholder="שאלה" ng-model="MadrichQuestion.question">		
+						<button ng-if="test.a==MadrichQuestion" ng-click="CreateMadrichQuestionAns(MadrichQuestion.questionid, MadrichQuestion.id)" style="margin-right: 10px;border-color: #49814d; background-color: #49814d;" type="button" class="btn btn-info">הוסף תשובה אפשרית לשאלה  &nbsp; <img src="./img/icon-add.png" /></button>
+						-->
+					</div>
+					<div ng-repeat="answer in MadrichQuestion.answer" style="margin-top: 1%;margin-right: 16%;">
+						<input required style="width: 35%;margin-left: 16%; float: right;" class="form-control" placeholder="תשובה" ng-model="answer.name">
+						<input style="width: 35%;" class="form-control" placeholder="תשובה" ng-model="answer.nameinarabic">
+					</div>
+				</div>
+				<button ng-click="CreateMadrichQuestion()" style="text-align: right;border-color: #49814d; background-color: #49814d;" type="button" class="btn btn-info">הוסף שאלה&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="./img/icon-add.png" /></button>
+
+				<hr>
+				<button style="width: 20%; float: left;border-color: #49814d; background-color: #49814d;" ng-if="MadrichQuestions" type="submit" class="btn btn-info">שמור</button>
+				<button style="margin-left: 15px; width: 20%; float: left;border-color: gray; background-color: gray;" ng-if="MadrichQuestions" type="button" class="btn btn-info" ng-click="ClearMadrichQuestions()">בטל</button>
+		
+			</form>
+		</div>
+		
+		<span modal-confirm control="alertcontrol" text="הנתונים נשמרו בהצלחה.">
+		</span>
+		
+		<span modal-confirm2 control="confirmcontrol" text="לעבור לדף אחר יגרום לאיבוד נתונים שלא נשמרו" on-confirm="movedTo(goToTap)">
+		</span>
+		
+			<div ng-if="tabindex=='profile'" class="tab-pane fade" id="profile" ng-class="{active:tabindex=='profile',in:tabindex=='profile'}">
+			<form ng-submit="SaveStudentQuestions()" role="form">
+
+				<h5>שאלות קבועות לתלמידים:</h5>
+				<hr>
+				<h5 style="margin-right: 33px;">עברית:</h5>
+				<h5 style="margin-right: 48.5%;margin-top: -25px;">ערבית:</h5>
+				<div class="form-group" ng-repeat="StudentQuestion in StudentQuestions">
+					<div  ng-mouseleave="test.a={}" ng-mouseover="test.a=StudentQuestion">
+						<!--
+						<label ng-init="StudentQuestion.IsShow=(StudentQuestion.IsShow && StudentQuestion.IsShow=='1')?true:false" class="myradio" ng-class="{radiochecked: StudentQuestion.IsShow,radiounchecked: !StudentQuestion.IsShow}" ng-click="StudentQuestion.IsShow=!StudentQuestion.IsShow" ng-model="StudentQuestion.IsShow"></label>
+						-->
+						<toggle style="float: right; margin-left: 10px;" ng-init="StudentQuestion.IsShow=(StudentQuestion.IsShow && StudentQuestion.IsShow=='1')?true:false" ng-model="StudentQuestion.IsShow" ng-change="changed()" on="פעיל" off="לא פעיל"></toggle>
+						<input required style="width: 30%;margin-left: 16%; float: right;" class="form-control" placeholder="שאלה" ng-model="StudentQuestion.question">
+						<input style="width: 30%;" class="form-control" placeholder="שאלה" ng-model="StudentQuestion.questioninarabic">
+						<!--change the top line to the under comment-->
+						<!--
+						<input required ng-if="test.a!=StudentQuestion" style="width: 30%;" class="form-control" placeholder="שאלה" ng-model="StudentQuestion.question">
+						<input required ng-if="test.a==StudentQuestion" style="width: 30%;float: right;" class="form-control" placeholder="שאלה" ng-model="StudentQuestion.question">
+						<button ng-if="test.a==StudentQuestion" ng-click="CreateStudentQuestionAns(StudentQuestion.questionid,StudentQuestion.id)" style="margin-right: 10px;border-color: #49814d; background-color: #49814d;" type="button" class="btn btn-info">הוסף תשובה אפשרית לשאלה  &nbsp; <img src="./img/icon-add.png" /></button>
+						-->
+					</div>
+					<div ng-repeat="answer in StudentQuestion.answer" style="margin-top: 1%;margin-right: 16%;">
+						<input required style="width: 35%;margin-left: 16%; float: right;" class="form-control" placeholder="תשובה" ng-model="answer.name">
+						<input style="width: 35%;" class="form-control" placeholder="תשובה" ng-model="answer.nameinarabic">
+					</div>
+				</div>
+				<button ng-click="CreateStudentQuestions()" style="text-align: right;border-color: #49814d; background-color: #49814d;" type="button" class="btn btn-info">הוסף שאלה&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="./img/icon-add.png" /></button>
+
+				<hr>
+				<button style="width: 20%; float: left;border-color: #49814d; background-color: #49814d;" ng-if="StudentQuestions" type="submit" class="btn btn-info">שמור</button>
+				<button style="margin-left: 15px; width: 20%; float: left;border-color: gray; background-color: gray;" ng-if="StudentQuestions" type="button" class="btn btn-info" ng-click="ClearStudentQuestions()">בטל</button>
+
+			</form>
+		</div>
+		
+		</div>
+	</div>
+	<!-- /.panel-body -->
+</div>
+
+</div>
+

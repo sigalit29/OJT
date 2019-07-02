@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 101.252 113.33">
+    <defs>
+        <style>
+            .cls-1{fill:none}.cls-2{fill:#cfe5ff}.cls-3{fill:#eef6ff}.cls-4{fill:#d4e8ff}.cls-5{fill:#eff6ff}.cls-6{fill:url(#linear-gradient)}.cls-7,.cls-8{stroke:none}.cls-8{fill:#4a90e2}
+        </style>
+        <linearGradient id="linear-gradient" x1=".5" x2=".5" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#b5d7ff"/>
+            <stop offset=".42" stop-color="#7ebffe"/>
+            <stop offset="1" stop-color="#4a90e2"/>
+        </linearGradient>
+    </defs>
+    <g id="crossing_fingers" data-name="crossing fingers" transform="translate(-833 -603)">
+        <g id="Path_289" class="cls-1" data-name="Path 289">
+            <path d="M42.165 0h3.922a42.165 42.165 0 0 1 0 84.33h-3.922a42.165 42.165 0 0 1 0-84.33z" class="cls-7" transform="translate(846 632)"/>
+            <path d="M42.165 2a40.034 40.034 0 0 0-28.401 11.764A40.034 40.034 0 0 0 2 42.165a40.034 40.034 0 0 0 11.764 28.401A40.034 40.034 0 0 0 42.165 82.33h3.922a40.034 40.034 0 0 0 28.401-11.764 40.034 40.034 0 0 0 11.764-28.4 40.034 40.034 0 0 0-11.764-28.401A40.034 40.034 0 0 0 46.088 2h-3.923m0-2h3.922c23.287 0 42.165 18.878 42.165 42.165S69.374 84.33 46.087 84.33h-3.922C18.878 84.33 0 65.452 0 42.165S18.878 0 42.165 0z" class="cls-8" transform="translate(846 632)"/>
+        </g>
+        <circle id="Ellipse_284" cx="3.922" cy="3.922" r="3.922" class="cls-2" data-name="Ellipse 284" transform="translate(851.631 625.554)"/>
+        <circle id="Ellipse_288" cx="1.961" cy="1.961" r="1.961" class="cls-3" data-name="Ellipse 288" transform="translate(855.553 614.767)"/>
+        <circle id="Ellipse_285" cx="5.393" cy="5.393" r="5.393" class="cls-4" data-name="Ellipse 285" transform="translate(833 635.359)"/>
+        <circle id="Ellipse_287" cx="3.922" cy="3.922" r="3.922" class="cls-5" data-name="Ellipse 287" transform="translate(833 621.631)"/>
+        <circle id="Ellipse_286" cx="6.864" cy="6.864" r="6.864" class="cls-2" data-name="Ellipse 286" transform="translate(836.922 603)"/>
+        <g id="noun_Fingers_Crossed_52940_000000" data-name="noun_Fingers Crossed_52940_000000" transform="translate(844.311 633.275)">
+            <g id="Group_147" data-name="Group 147" transform="translate(21.69 10.725)">
+                <path id="Path_455" d="M32.144 59.687a4.882 4.882 0 0 0 4.606-6.494l-5.573-15.906a4.88 4.88 0 0 0-9.211 3.227l5.573 15.9a4.885 4.885 0 0 0 4.605 3.273z" class="cls-6" data-name="Path 455" transform="translate(-21.69 -13.846)"/>
+                <path id="Path_456" d="M43.574 54.227a4.882 4.882 0 0 0 4.606-6.494l-6.224-17.642a4.88 4.88 0 1 0-9.211 3.225l6.223 17.641a4.887 4.887 0 0 0 4.606 3.27z" class="cls-6" data-name="Path 456" transform="translate(-23.134 -12.882)"/>
+                <path id="Path_457" d="M65.734 18.456a4.88 4.88 0 1 0-8.626-4.566l-.159.3 4.368 12.61z" class="cls-6" data-name="Path 457" transform="translate(-26.413 -10.801)"/>
+                <path id="Path_458" d="M65.314 52.693l-2.634-6.281-.865-2.061h-.014l-.056-.164-1.583-3.772a4.88 4.88 0 1 0-9.005 3.766l4.115 9.832-1-.2c-2.845-.549-8.052 1.958-9.414 7l-1.058-.287c1.29-4.777 5.912-7.885 9.571-7.885h.14L50.148 44.6a5.968 5.968 0 0 1 9.363-6.862l-7.724-22.3-.49-1.414v-.013a4.88 4.88 0 0 0-9.228 3.189l7.464 21.546-1.032.359-3.657-10.549-1.615 3.053 4.8 13.6a5.965 5.965 0 0 1-9.674 6.366 5.96 5.96 0 0 1-11.588 2.082l-2.2-6.27-.937.329c4.476 16.231 9.124 19.242 10.938 26l-.191 7.05 12.3 1.2 11.029-1.2c1.27-11.988 8.1-15.46 8.1-24.2a14.39 14.39 0 0 0-.244-2.62 5.3 5.3 0 0 0-.248-1.253z" class="cls-6" data-name="Path 458" transform="translate(-21.95 -10.725)"/>
+            </g>
+        </g>
+    </g>
+</svg>

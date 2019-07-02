@@ -1,0 +1,5 @@
+<div class="meeting-comment" ng-show="editable||commentModelWrap[commentModelIndex].length">
+	<div class="comment-profile-pic" style="{{profilePic?'background-image:url(../'+profilePic+');':''}}" alt="{{profileName}}" title="{{profileName}}"></div>
+	<textarea ng-if="editable" class="meeting-comment-content" autofocus rows="1" ng-model="commentModelWrap[commentModelIndex]"  placeholder="{{placeholder}}"></textarea>
+	<div ng-if="!editable" class="meeting-comment-content">{{commentModelWrap[commentModelIndex]}}</div>
+</div>

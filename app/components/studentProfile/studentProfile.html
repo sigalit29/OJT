@@ -1,0 +1,193 @@
+<div class="blue-gradient-background user-profile">
+	<div ng-if="editingNotes" class = "popup-add-lesson-wrap">
+		<div class="popup-add-lesson">
+			<textarea ng-disabled="!editing" ng-model="user.notes" class="user-notes ng-pristine ng-valid ng-empty ng-touched"></textarea>
+		</div>
+	</div>
+	<div class="no-permission" ng-if="noPermission">
+		{{dictionary.noPermission}}
+	</div>
+	<form class="signup-form" id="user-details-form" ng-if="!noPermission">
+		<div class="add-profile-pic">
+			<div class="choose-pic-button" style="{{user.image==''?'':'background-image:url('+imgsDomain+user.image+');'}}" ng-click="openImageOptions()"></div>
+			<p class="choose-pic-instruction">
+				{{user.image==''?dictionary.chooseProfilePic:dictionary.updateProfilePic}}
+			</p>
+		</div>
+		<div class="student-profile-fullname">
+			{{user.firstname+" "+user.lastname}}
+		</div>
+		<div class="contact-options" ng-if="userType == 'madrich' && isMobile()">
+			<a href="#" id="contact-sms-link"><div class="contact-option contact-sms"></div></a>
+			<a href="#" id="contact-tel-link"><div class="contact-option contact-tel"></div></a>
+			<a ng-href="https://api.whatsapp.com/send?phone=972{{user.phone.substring(1)}}"><div class="contact-option contact-whatsapp"></div></a>
+		</div>
+		<div class="profile-field-list">
+			<div class="profile-field-wrap">
+				<div class="profile-field-icon cell"></div>
+				<div class="profile-field ltr">
+					<input type="text" ng-disabled="!editing" ng-model="user.phone" placeholder="{{dictionary.inputPrivatePhoneNum}}" />
+					<br>
+					<p class="profile-field-error" ng-show="!validatePhone1()">
+						{{dictionary.invalidPhone}}
+					</p>
+				</div>
+			</div>
+			<div class="profile-field-wrap">
+				<div class="profile-field-icon cell"></div>
+				<div class="profile-field ltr">
+					<input type="text" ng-disabled="!editing" ng-model="user.phone2" placeholder="{{dictionary.inputHomePhoneNum}}" />
+					<br>
+					<p class="profile-field-error" ng-show="!validatePhone2()">
+						{{dictionary.invalidPhone}}
+					</p>
+				</div>
+			</div>
+			<div class="profile-field-wrap">
+				<div class="profile-field-icon location"></div>
+				<div class="profile-field" ng-click="editing?showCitiesForm=!showCitiesForm:''">
+					<div class="profile-field-value">
+						{{getCityById(user.cityid).name}}
+					</div>
+				</div>
+			</div>
+			
+			<div ng-show="showCitiesForm" class="options-popup">
+				<div class="popupBackground" ng-click="showCitiesForm=false"></div>
+				<div class="popup cities-popup">
+					<div class="options-popup-content" dir="rtl">
+						<h2 class="options-popup-title">{{dictionary.chooseCity}}</h2>
+						<div class="options-wrap" ng-click="showCitiesForm=false">
+							<div ng-repeat="city in cityList" class="popup-option">
+								<div class="popup-option-content" ng-click="setCity(city.cityid);">
+										{{city.name}}
+								</div>
+							</div>
+						</div>
+						<div class="popup-cancel" ng-click="showCitiesForm=!showCitiesForm">
+							<h2>{{dictionary.cancelText}}</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="profile-field-wrap">
+				<div class="profile-field-icon location"></div>
+				<div class="profile-field">
+					<input type="text" ng-disabled="!editing" ng-model="user.address" placeholder="{{dictionary.inputAddress}}" />
+					<br>
+					<p class="profile-field-error" ng-show="!validateAddress()">
+						{{dictionary.invalidAddress}}
+					</p>
+				</div>
+			</div>
+
+			<div class="profile-field-wrap">
+				<div class="profile-field-icon cal"></div>
+				<div class="profile-field ltr">
+					<input type="text" ng-disabled="!editing" ng-model="user.birthday" placeholder="{{dictionary.inputBirthday}}" />
+					<br>
+					<p class="profile-field-error" ng-show="!validateDate()">
+						{{dictionary.invalidBirthday}}
+					</p>
+				</div>
+			</div>
+
+			<!--<div class="profile-field-wrap">
+				<div class="profile-field-icon email"></div>
+				<div class="profile-field ltr">
+					<input type="text" ng-disabled="!editing" ng-model="user.email" placeholder="{{dictionary.mailText}}" />
+					<br>
+					<p class="profile-field-error" ng-show="!validateEmail()">
+						{{dictionary.invalidEmail}}
+					</p>
+				</div>
+			</div>-->
+
+			<div class="profile-field-wrap">
+				<div class="profile-field-icon id"></div>
+				<div class="profile-field ltr">
+					<input type="text" ng-disabled="!editing" ng-model="user.tznumber" placeholder="{{dictionary.inputId}}" />
+					<br>
+					<p class="profile-field-error" ng-show="!validateId()">
+						{{dictionary.invalidId}}
+					</p>
+				</div>
+			</div>
+
+			<div class="profile-field-wrap" ng-if="userType == 'madrich'">
+				<div class="profile-field-icon account"></div>
+				<div class="profile-field" ng-click="editing?showReligionForm=!showReligionForm:''">
+					<div class="profile-field-value">
+						{{user.religionid?getReligionById(user.religionid).name:dictionary.chooseReligion}}
+					</div>
+				</div>
+				<div ng-show="showReligionForm" class="options-popup">
+					<div class="popupBackground" ng-click="showReligionForm=!showReligionForm"></div>
+					<div class="popup religions-popup">
+						<div class="options-popup-content" dir="rtl">
+							<h2 class="options-popup-title">{{dictionary.chooseReligion}}</h2>
+							<div class="options-wrap" ng-click="showReligionForm=false">
+								<div ng-repeat="religion in religionList" class="popup-option">
+										<div class="popup-option-content" ng-click="setReligion(religion.religionid);">
+											{{religion.name}}
+										</div>
+								</div>
+							</div>
+							<div class="popup-cancel" ng-click="showReligionForm=!showReligionForm">
+								<h2>{{dictionary.cancelText}}</h2>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="profile-field-wrap">
+				<div class="profile-field-icon gender"></div>
+				<div class="profile-field" ng-click="editing?showGendersForm=!showGendersForm:''">
+					<div class="profile-field-value">
+						{{arabicLnguage?getGenderById(user.genderid).nameinarabic:getGenderById(user.genderid).name}}
+					</div>
+				</div>
+			</div>
+			
+			<div ng-show="showGendersForm" class="options-popup">
+				<div class="popupBackground" ng-click="showGendersForm=!showGendersForm"></div>
+				<div class="popup genders-popup">
+					<div class="options-popup-content" dir="rtl">
+						<h2 class="options-popup-title">{{dictionary.chooseGender}}</h2>
+						<div class="options-wrap" ng-click="showGendersForm=false">
+							<div ng-repeat="gender in genderList" class="popup-option">
+								<div class="popup-option-content" ng-click="setGender(gender.genderid)">
+										{{arabicLnguage?gender.nameinarabic:gender.name}}
+								</div>
+							</div>
+						</div>
+						<div class="popup-cancel" ng-click="showGendersForm=!showGendersForm">
+							<h2>{{dictionary.cancelText}}</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</form>
+	
+	<div class="edit-control-wrap" ng-if="!noPermission">
+		<div class="edit-control edit" ng-show="!editing" ng-click="startEdit();"></div>
+		<div class="edit-control cancel-edit" ng-show="editing" ng-click="cancelEdit();"></div>
+			<div class="edit-control change-password-btn btn-text btn" ng-if="userType == 'student'" ng-show="editing" ng-click="changePassword();"><div class="changePass-btn">{{dictionary.replacePass}}</div></div>
+			<div class="edit-control change-password-btn btn-text btn" ng-if="userType == 'madrich'" ng-show="editing" ng-click="openNoteEditor();"><div class="changePass-btn">{{dictionary.editNotes}}</div></div>
+		<div class="edit-control save-edit" ng-show="editing" ng-click="saveEdit();"></div>
+	</div>
+
+	<div class="page-footer" ng-show="choosePicSelected">
+		<div class="page-footer-button" ng-if="isIos" ng-click="isIos ? openGallery() : ''">From Photo Library</div>
+		<div class="wrap-page-footer-button">
+			<div class="page-footer-button" ng-if="!isIos">From Photo Library</div>
+			<input class="page-footer-button input-uploade-image" type="file" accept="image/*;capture=camera" ngf-select="onImageSelect($files)" ng-if="!isIos">
+		</div>
+		<div class="page-footer-button" ng-click="openCamera()">From Camera</div>
+		<div class="page-footer-button" ng-click="closePicSelected()">Cancel</div>
+	</div>
+</div>

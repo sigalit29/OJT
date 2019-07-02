@@ -1,0 +1,334 @@
+
+<div id="wrapper">
+	<header></header>
+	<div id="page-wrapper">
+		<h2 class="page-title">{{userId?"עריכת משתמש":"יצירת משתמש"}}</h2>
+		<form ng-submit="SaveUser()">
+			<div>
+				<p ng-if="user.userid">נרשם ב: {{user.registerdate}}</p>
+				<!--<p ng-if="user.lastactivedate">פעילות אחרונה ב: {{user.lastactivedate}}</p>-->
+			</div>
+			<div ng-if="isAdmin && access.approveRegistration">
+				<toggle toggle-disabled="true" ng-init="user.status=='1'?true:false" ng-model="user.status" ng-change="changed()" on="פעיל" off="לא פעיל"></toggle>
+			</div>
+			<br>
+			<h4 ng-if="user.userid">הפרופיל של {{user.firstname+" "+user.lastname}}</h4>
+			<div class="button clickable" ng-if="user.needacceptregister" ng-click="approveUserRegistration()">אישור הרשמה</div>
+			<div class="form-row">
+				<div class="input-col">
+					<div class="input-col">
+						<div class="input-wrapper">
+							<label>שם פרטי בעברית</label>
+							<input ng-disabled="!access.edit" required tabindex="1" class="form-input input-content" ng-model="user.firstname">
+						</div>
+					</div>
+					<div class="input-col">
+						<div class="input-wrapper">
+							<label>שם משפחה בעברית</label>
+							<input ng-disabled="!access.edit" required tabindex="2" class="form-input input-content" ng-model="user.lastname">
+						</div>
+					</div>
+				</div>
+				<div class="input-col">
+					<div class="input-col">
+						<div class="input-wrapper">
+							<label>שם פרטי בערבית</label>
+							<input ng-disabled="!access.edit" tabindex="3" class="form-input input-content" ng-model="user.firstnameinarabic">
+						</div>
+					</div>
+					<div class="input-col">
+						<div class="input-wrapper">
+							<label>שם משפחה בערבית</label>
+							<input ng-disabled="!access.edit" tabindex="4" class="form-input input-content" ng-model="user.lastnameinarabic">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="input-col">
+					<div class="input-wrapper">
+						<label>מס' טלפון</label>
+						<input ng-disabled="!access.edit" required tabindex="5" type="text" pattern="[0-9,-]*" class="form-input input-content" ng-model="user.phone">
+					</div>
+				</div>
+
+				<div class="input-col">
+					<div class="input-col">
+						<div class="input-wrapper">
+							<label>מס' טלפון נוסף</label>
+							<input ng-disabled="!access.edit" tabindex="6" type="text" pattern="[0-9,-]*" class="form-input input-content" ng-model="user.phone2">
+						</div>
+					</div>
+					<div class="input-col">
+						<div class="input-wrapper">
+							<label>שייך ל-</label>
+							<input ng-disabled="!access.edit" tabindex="7" class="form-input input-content" ng-model="user.phone2owner">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="input-col">
+					<div class="input-wrapper">
+						<label>תאריך לידה</label>
+						<input ng-disabled="!access.edit" required tabindex="8" datepicker type="text"  class="form-input input-content" ng-model="user.birthday">
+					</div>
+				</div>
+				<div class="input-col">
+					<div class="input-col">
+						<div class="input-wrapper">
+							<label>עיר</label>
+							<select ng-disabled="!access.edit" required tabindex="9" class="form-input input-content" ng-model="user.cityid" ng-options="city.cityid as city.name for city in cities">
+								<option></option>
+							</select>
+						</div>
+					</div>
+					<div class="input-col">
+						<div class="input-wrapper">
+							<label>כתובת</label>
+							<input ng-disabled="!access.edit" tabindex="10" class="form-input input-content" ng-model="user.address">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="input-col">
+					<div class="input-wrapper">
+						<label>מס' תעודת זהות</label>
+						<input ng-disabled="!access.edit" required tabindex="11" type="text" pattern="[0-9]*" class="form-input input-content" ng-model="user.tznumber">
+					</div>
+				</div>
+				<div class="input-col">
+					<div class="input-col">
+						<div class="input-wrapper">
+							<label>מגזר</label>
+							<select ng-disabled="!access.edit" required tabindex="12" class="form-input input-content" ng-model="user.religionid" ng-options="religion.religionid as religion.name for religion in religions">
+								<option></option>
+							</select>
+						</div>
+					</div>
+					<div class="input-col">
+						<div class="input-wrapper">
+							<label>מגדר</label>
+							<select ng-disabled="!access.edit" required tabindex="13" class="form-input input-content" ng-model="user.genderid" ng-options="gender.genderid as gender.name for gender in genders">
+								<option></option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="input-col">
+					<div class="input-wrapper">
+						<label>אימייל</label>
+						<input ng-disabled="!access.edit" required type="email" tabindex="14" class="form-input input-content myEmail" ng-model="user.email">
+					</div>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="input-col">
+					<div class="input-wrapper">
+						<label>מנהל ישיר</label>
+						<div tabindex="15" class="input-content form-input" ng-click="isAdmin?chooseManager=true:''">{{user.superstaffname}}</div>
+					</div>
+					<popup visibility="chooseManager">
+						<div class="popup-header">בחירת מנהל</div>
+						<div class="popup-content-wrap">
+							<search-selector on-search="searchManager" on-select="assignManager" value-index="'userId'" text-index="'fullname'" search-placeholder="'חיפוש מנהל'" results-arr-index="'users'"></search-selector>
+						</div>
+					</popup>
+				</div>
+				<div class="input-col">
+					<div class="input-wrapper">
+						<label>מאשרי שעות נוספים</label>
+						<div tabindex="16" class="input-content form-input">
+							<span dir="rtl" ng-repeat="hrsApproversName in hrsApproversNames " class="selected-value">
+								{{hrsApproversName}}
+								<span ng-if="!disable" ng-click="removeApprover(hrsApproversName)" class="clickable"><span class="fa fa-times"></span></span>
+							</span>
+							<span class="fa fa-plus" ng-click="allowApproversForm()"></span>
+						</div>
+					</div>
+					<popup visibility="addHoursApproval">
+						<div class="popup-header">בחירת מאשרי שעות</div>
+						<div class="popup-content-wrap">
+							<search-selector on-search="searchHoursApprovers" on-select="addHoursApproversToList" value-index="'userid'" text-index="'userinfo'" search-placeholder="'חיפוש משתמש'" results-arr-index="'users'" selected="toAssignAsApprovers"></search-selector>
+						</div>
+						<div class="popup-controls">
+							<div class="popup-control popup-approve" ng-click="commitNewHoursApprovers()">אישור</div>
+							<div class="popup-control popup-cancel" ng-click="closeApproversForm()">ביטול</div>
+						</div>
+					</popup>
+				</div>
+
+
+			</div>
+
+			<div class="form-row">
+				<div class="input-col">
+					<div class="input-wrapper">
+						<label>תעודות</label>
+						<multi-selector disable="!access.edit" tabindex="16" options="certificates" value-index="'certificateid'" text-index="'name'" values="user.certificates" class="form-input"></multi-selector>
+					</div>
+				</div>
+				<div class="input-col">
+					<div class="input-wrapper">
+						<label>שפות</label>
+						<multi-selector disable="!access.edit" tabindex="17" options="languages" value-index="'languageid'" text-index="'name'" values="user.languages" class="form-input"></multi-selector>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="input-col">
+					<div class="input-wrapper">
+						<label>תעודות בגרות</label>
+						<multi-selector disable="!access.edit" tabindex="18" options="professions" value-index="'professionid'" text-index="'name'" values="user.professions" class="form-input"></multi-selector>
+					</div>
+				</div>
+
+				<div class="input-col">
+					<div class="input-wrapper">
+						<label>פרוייקטים</label>
+						<div tabindex="24" class="input-content form-input">
+							<span dir="rtl" ng-repeat="project in Userprojects " class="selected-value">
+								{{project.projectname}}
+								<span ng-if="!disable" ng-click="removeProject(project)" class="clickable"><span class="fa fa-times"></span></span>
+							</span>
+							<span class="fa fa-plus" ng-click="allowProjectsForm()"></span>
+						</div>
+					</div>
+					<popup visibility="ShowProjectsPopUp">
+						<div class="popup-header">בחירת פרוייקטים</div>
+						<div class="popup-content-wrap">
+							<search-selector on-search="searchProjects" on-select="addProjectsToList" value-index="'projectid'" text-index="'name'" search-placeholder="'חיפוש פרוייקט'" results-arr-index="'projects'" selected="toAssignProjects"></search-selector>
+						</div>
+						<div class="popup-controls">
+							<div class="popup-control popup-approve" ng-click="commitNewProjects()">אישור</div>
+							<div class="popup-control popup-cancel" ng-click="closeProjectsForm()">ביטול</div>
+						</div>
+					</popup>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="input-col">
+					<div class="input-wrapper">
+						<div>
+							<input tabindex="20" type="checkbox" ng-model="password.update">
+							שינוי סיסמה
+						</div>
+						<div ng-if="password.update">
+							<label>סיסמה</label>
+							<input required tabindex="21" type="password" onfocus="(this.type='text')" class="form-input input-content" ng-model="user.password">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div ng-if="access.edit" class="clickable button file-upload-button" tabindex="22">
+				<label for="staff-image-upload">
+					בחר תמונה <i class="fa fa-upload"></i>
+				</label>
+				<input type="file" accept="image/x-png, image/gif, image/jpeg, image/jpg, image/bmp" id="staff-image-upload" accept="application/msword, application/pdf, image/*" ngf-select="onFileSelect($files)">
+			</div>
+			<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" ng-if="fileUpload"></span>
+			<img ng-if="user.image" ng-src="{{imgsDomain+'/'+user.image}}" class="ng-scope card-profile-img">
+			<hr>
+			<div ng-repeat="role in roles" ng-if="displayedEnrollments[role.enrollmentroleid].courses.length">
+				<p>{{role.enrollmentrole}}</p>
+				<div>
+					<input type="text" class="form-input search-bar" placeholder="חיפוש קורס" ng-model="displayedEnrollments[role.enrollmentroleid].search" ng-keypress="preventSubmit($event)" ng-keyup="$event.keyCode == 13?displayedEnrollments[role.enrollmentroleid].page=0:''; $event.keyCode == 13?getEnrolledInCoursesInRole(role.enrollmentroleid):'';">
+					<div class="clickable search-button"><i class="fa fa-search" aria-hidden="true" ng-click="displayedEnrollments[role.enrollmentroleid].page=0; getEnrolledInCoursesInRole(role.enrollmentroleid);"></i></div>
+				</div>
+				<page-navigator data="{'roleid':role.enrollmentroleid}" page-count="displayedEnrollments[role.enrollmentroleid].pageCount" page-index="displayedEnrollments[role.enrollmentroleid].page" go-to-page="goToEnrolledInCoursesPage" loading="displayedEnrollments[role.enrollmentroleid].loading"></page-navigator>
+				<div class="scrolling-table-wrapper">
+					<div class="scrolling-table">
+						<table class="table-striped table-bordered table-hover midrows">
+							<thead>
+							<tr>
+								<th class="large-cell">קורס</th>
+								<th class="large-cell">פרוייקט</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr ng-repeat="course in displayedEnrollments[role.enrollmentroleid].courses">
+								<td class="clickable large-cell" ng-click="goToCoursePage(course)">{{course.coursename}}</td>
+								<td class="clickable large-cell" ng-click="goToCoursePage(course)">{{course.projectname}}</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<page-navigator data="{'roleid':role.enrollmentroleid}" page-count="displayedEnrollments[role.enrollmentroleid].pageCount" page-index="displayedEnrollments[role.enrollmentroleid].page" go-to-page="goToEnrolledInCoursesPage" loading="displayedEnrollments[role.enrollmentroleid].loading"></page-navigator>
+				<div excel-export file-name = "{{user.firstname+'_'+user.lastname}}_{{role.enrollmentrole}}" get-data = "getEnrolledInCoursesInRoleFull" param-obj = "{'param1':  role}" make-header="false" ng-show="displayedEnrollments[role.enrollmentroleid].courses"></div>
+				<hr>
+			</div>
+			<div ng-if="substaff.length>0">
+				<label>רשימת עובדים פעילים:</label>
+				<div ng-repeat="s in substaff">
+					<input ng-click="goToUserPage(s)" readonly class="clickable form-input" value="{{s.name}}">
+				</div>
+				<hr>
+			</div>
+			<div ng-if="getApprovedstaff.length>0">
+				<label>רשימת עובדים פעילים להם אני מאשר שעות בנוסף :</label>
+				<div ng-repeat="s in getApprovedstaff">
+					<input ng-click="goToUserPage(s)" readonly class="clickable form-input" value="{{s.name}}">
+				</div>
+				<hr>
+			</div>
+			<div ng-if="user.reportSubjects.length">
+				<label>נושאי דיווח:</label>
+				<br>
+				<div class="scrolling-table">
+					<table class="table table-striped table-bordered table-hover midrows">
+						<thead>
+						<tr>
+							<th class="large-cell">פרויקט</th>
+							<th class="large-cell">נושא</th>
+							<th class="large-cell">קוד לקוח</th>
+							<th class="large-cell">סטטוס</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr ng-repeat="reportSubject in user.reportSubjects">
+							<td class="large-cell">
+								<select ng-disabled="!isAdmin" required ng-model="reportSubject.projectid" ng-options="project.projectid as project.projectname for project in projects"><option></option></select>
+							</td>
+							<td class="large-cell">
+								<select ng-disabled="!isAdmin" required ng-model="reportSubject.reportsubjectid" ng-options="rs.reportsubjectid as rs.subject for rs in reportSubjects"><option></option></select>
+							</td>
+							<td class="large-cell">
+								<select ng-disabled="!isAdmin" required ng-model="reportSubject.clientcodeid" ng-options="cc.clientcodeid as cc.code for cc in clientCodes"><option></option></select>
+							</td>
+							<td class="large-cell">
+								<select ng-disabled="!isAdmin" required ng-model="reportSubject.reportSubjectStatus" selected="1">
+									<option value="1">פעיל</option>
+									<option value="0">לא פעיל</option>
+								</select>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<br>
+			<button ng-if="isAdmin&&user.userid" ng-click="addReportSubject()" type="button" class="button add-subject">+ נושא דיווח</button>
+			<div excel-export file-name="נושאי דיווח" get-data = "getUserReportSubjectFull" make-header = "false" ng-show="user.reportSubjects.length>0"></div>
+			<hr>
+			<div class="card-controls" ng-if="access.edit">
+				<button tabindex="16" type="submit" class="button card-control commit-card-edit">שמירה</button>
+				<button tabindex="17" type="button" class="button card-control cancel-card-edit" ng-click="goBack();">ביטול</button>
+				<button tabindex="18" type="button" class="button card-control duplicate-card" ng-click="duplicateStaff()">שכפול</button>
+			</div>
+			<br>
+		</form>
+	</div>
+</div>
+

@@ -1,0 +1,30 @@
+
+<div class="lesson-grading-wrap">
+    <dynamicmask></dynamicmask>
+
+    <div class="content-by-mask">
+
+        <div class="title-text">
+            <div>{{dictionary.tellUsText}}</div>
+            <div>{{dictionary.lastLessonStudyText}}</div>
+        </div>
+
+        <div class="content-by-mask">
+            <div class="slider-wrap" ng-repeat="subject in subjestQuestion" ng-class="{'first': $first}">
+                <div class="question-title">{{subject.question}}</div>
+                <div id="question-{{subject.questionid}}" ng-model="subject.answer"   ng-ishebrew="{{!arabicLnguage}}" data-range-slider data-floor="0" data-ceiling="4" data-step="1" data-precision="4" data-grade="subject.answers" data-dragstop="false"></div>
+
+            </div>
+
+            <div class="plcaeHolderParent">
+                <comment placeholder="{{dictionary.addSomethingTextSubjects}}" bgname="blue" comment-changed="commentChanged(comment)"></comment>
+            </div>
+
+            <div class="main-btn open" ng-click="finishClick()"><span class="text">{{dictionary.finishNameText}}</span></div>
+
+        </div>
+
+    </div>
+
+
+</div>

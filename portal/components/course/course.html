@@ -1,0 +1,387 @@
+<div id="wrapper">
+	<header></header>
+<div id="page-wrapper">
+	<div class="panel-body">
+	
+		<!-- Nav tabs -->
+		<ul class="nav nav-tabs" ng-init="tabindex='profile'">
+			<li ng-class="{active:tabindex=='home'}" ng-if="Type == 'admin'"><a ng-click="goToCreateCourse();">יצירת קורס</a>
+			</li>
+			<li ng-class="{active:tabindex=='profile'}"><a ng-click="goToOpenCourses();">קורסים פתוחים</a>
+			</li>
+			<li ng-class="{active:tabindex=='messages'}"><a ng-click="goToCloseCourses()">קורסים סגורים</a>
+			</li>
+		</ul>
+		
+		<!-- Tab panes -->
+		<div class="tab-content">
+			<div ng-if="tabindex=='home'" class="tab-pane fade" id="home" ng-class="{active:tabindex=='home',in:tabindex=='home'}"> {{CheckPermmetion()}}
+			</br>
+			  <h5 style="display: inline; ">פרטי קורס: </h5> {{course.code}}
+			  <br/><br/>
+				<form ng-submit="SaveCourse();submitted=false" role="form" ng-class="{'submitted': submitted}">
+					<div class="form-group">
+						<input style="display: none;" class="form-control" placeholder="מספר קורס" ng-model="course.code">
+						
+						<div class="input-wraaper" ng-class="{'is-in': course.name}" style="margin-top: 10px;">
+							<input required mplaceholder text="שם קורס מלא" class="input-content form-control ng-invalid" placeholder="" ng-model="course.name">
+						</div>
+						
+						<div class="input-wraaper" ng-class="{'is-in': course.subname}" style="width: 49%;margin-top: 30px;">
+							<input mplaceholder text="שם קורס מקוצר בעברית" class="input-content form-control" placeholder="" ng-model="course.subname">
+						</div>
+						
+						<div class="input-wraaper" ng-class="{'is-in': course.subnameinarabic}" style="width: 49%;margin-top: -35px;float: left;">
+							<input mplaceholder text="שם קורס מקוצר בערבית" class="input-content form-control" placeholder="" ng-model="course.subnameinarabic">
+						</div>
+						
+					</div>	
+					<div class="input-wraaper" ng-class="{'is-in': course.projectid}" style="margin-top: 30px;">	
+						<select mplaceholder text="פרוייקט" class="input-content form-control" ng-model="course.projectid" ng-change="SelectProject(course.projectid)">
+							<option ng-repeat="project in projects" value="{{project.projectid}}" ng-if="project.IsShow && project.IsShow=='1'">{{project.name}}</option>
+						</select>
+					</div>	
+					
+					<div class="form-group">
+					
+						<div class="input-wraaper" style="margin-top: 30px;" ng-class="{'is-in': staff.tags.length>0}">
+							<dropdown-multiselect class="input-content" text="תגיות" dropdown-title="{{dropdownTitle}}" pre-selected="member.tags" model="course.tags" options="tags">
+						</div>
+						
+						<div class="input-wraaper" ng-class="{'is-in': course.cityid}" style="width: 49%;float: left;margin-top: 30px;">
+							<select mplaceholder text="עיר" class="input-content form-control" ng-model="course.cityid">
+								
+								<option ng-repeat="city in cities" value="{{city.cityid}}" ng-if="city.IsShow && city.IsShow=='1'">{{city.name}}</option>
+							</select>
+						</div>
+						
+						<div class="input-wraaper" ng-class="{'is-in': course.yearbudgetid}" style="width: 49%;margin-top: 30px;">
+							<select mplaceholder text="שנת תקציב" class="input-content form-control" ng-model="course.yearbudgetid">
+							
+								<option ng-repeat="yearbudget in yearbudgets" value="{{yearbudget.yearbudgetid}}" ng-if="yearbudget.IsShow && yearbudget.IsShow=='1'">{{yearbudget.year}}</option>
+							</select>
+						</div>
+						
+						<div class="input-wraaper" ng-class="{'is-in': course.madrichid}" style="float: left; width: 49%;margin-top: 30px">
+							<select required mplaceholder text="מדריך" class="input-content form-control" ng-model="course.madrichid">
+								<option value=""></option>
+								<option ng-repeat="madrich in madrichs" value="{{madrich.staffid}}">{{madrich.firstname}} {{madrich.lastname}}</option>
+							</select>
+						</div>
+						
+						<div class="input-wraaper" ng-class="{'is-in': course.status}" style="width: 49%;margin-top: 30px;">
+						<select required mplaceholder text="סטטוס"  class="input-content form-control" ng-model="course.status">
+							
+							<option value="active">פעיל</option>
+							<option value="closed">לא פעיל</option>
+						</select>
+						</div>
+						
+			<hr>
+			<h5 style="float:right">סילבוס:</h5>
+			
+			<div class="form-group" style="text-align: left;">
+					<div style="cursor:pointer; border-color: #49814d; background-color: #49814d;" class="btn btn-info btn-file">
+						<label>העלה סילבוס</label>
+						<i class="fa fa-upload"></i> <input type="file" accept=".csv,.xlsx" ngf-select="onFileSelect($files)">
+					</div>
+					<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" ng-if="fileUpload"></span>
+			</div>
+			
+			<br ng-if="Type!='admin'">
+			<br ng-if="Type!='admin'">
+			<div>
+				<h5 style="margin-right: 3px;" ng-if="subjects.length>0">עברית:</h5>
+				<h5 style="margin-right: 38%;margin-top: -25px;position: absolute;" ng-if="subjects.length>0">ערבית:</h5>
+				<div class="form-group" ng-repeat="subject in subjects">
+					<div ng-mouseleave="test.a={}" ng-mouseover="test.a=subject">
+						<input required ng-if="test.a!=subject || Type!='admin'" style="width: 30%;" class="form-control" placeholder="נושא" ng-model="subject.subject">
+						<input required ng-if="test.a==subject  && Type=='admin'" style="width: 30%;float: right;" class="form-control" placeholder="נושא" ng-model="subject.subject">
+						<button ng-if="test.a==subject   && Type=='admin'" ng-click="CreateSubSubject(subject.subjectid, subject.id)" style="margin-right: 10px;border-color: #49814d; background-color: #49814d;" type="button" class="btn btn-info">הוסף תת נושא  &nbsp; <img src="./img/icon-add.png" /></button>
+						<input style="width: 23%;margin-top: -34px;margin-right: 38%;position: absolute;" class="form-control" placeholder="נושא" ng-model="subject.subjectinarabic">
+						
+						<div ng-repeat="subsubject in subject.subsubjects" style="margin-top: 1%;margin-right: 16%;">
+							<input required style="width: 35%;" class="form-control" placeholder="תת נשא" ng-model="subsubject.subsubject">
+							<input style="width: 23%;margin-top: -34px;margin-right: 38%;position: absolute;" class="form-control" placeholder="תת נשא" ng-model="subsubject.subsubjectinarabic">
+						</div>
+					</div>
+				</div>
+				<button ng-click="AddSubject()" style="text-align: right;border-color: #49814d; background-color: #49814d;" type="button" class="btn btn-info">הוסף נושא&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="./img/icon-add.png" /></button>
+
+				<hr style="border-color: black;">
+				<span modal-search-add-student all-students='StudentsNotInCourse' on-confirm="addStudent" style="text-align: right;border-color: #49814d; background-color: #49814d;"  class="btn btn-info savebotton">הוסף חניך&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<img src="./img/icon-add.png" />
+				</span>
+				</br>
+				</br>
+				<div class="table-responsive">
+					<table class="table table-striped table-bordered table-hover midrows">
+						<thead>
+							<tr>
+								<th>ת"ז</th>
+								<th>שם</th>
+								<th>שם בערבית</th>
+								<th>שם משפחה</th>
+								<th>שם משפחה בערבית </th>
+								<th>טלפון</th>
+								<th>כתובת</th>
+								<th>תאריך לידה</th>
+								<th>מגדר</th>
+								<th>מגזר</th>
+								<th>אימייל</th>
+								<th>סטטוס</th>
+							</tr>
+						</thead>
+						<tbody ng-model="staffs">
+							<tr ng-click="studentClick(student)" ng-repeat="student in activestudents">
+								<td>{{student.tznumber}}</td>
+								<td>{{student.firstname}}</td>
+								<td>{{student.firstnameinarabic}}</td>
+								<td>{{student.lastname}}</td>
+								<td>{{student.lastnameinarabic}}</td>
+								<td>{{student.phone}}</td>
+								<td>{{student.cityname}} {{student.adress}}</td>
+								<td>{{!student.birthday.includes('0000-00-00')?student.birthday:''}}</td>
+								<td>{{student.gendername}}</td>
+								<td>{{student.religionname}}</td>
+								<td>{{student.email}}</td>
+								<td style="position:relative; cursor:pointer;">
+									<span class="fa fa-angle-down fa-myreportselect"></span>
+									<select required ng-model="student.statusincourse" class="reportinput report-select" ng-options="status.studentstatusid as status.status for status in statuses">
+									</select>
+									{{getStatusNameById(student.statusincourse)}}
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>	
+<br>				
+<br>				
+				
+				<button style="width: 20%; float: left;border-color: #49814d; background-color: #49814d;" type="submit" class="btn btn-info savebotton" ng-click="submitted= true;">שמור</button>
+				<span modal-confirm control="alertcontrol" text="נשמר בהצלחה" on-confirm="goToOpenCourses()">
+				</span>
+				<span modal-confirm control="alertcontrolmultyname" text="השמירה נכשילה: שם קורס מלא קיים במערכת">
+				</span>
+				<button style="margin-left: 15px; width: 20%; float: left;border-color: gray; background-color: gray;" type="button" class="btn btn-info" ng-click="ClearCourse();submitted = false;">בטל</button>
+				<span modal-confirm2 control="deletingcontrol" text="האם למחוק את הקורס?" on-confirm="DeleteCourse()">
+					<button style="margin-left: 15px; width: 20%; float: left;border-color: #a94442; background-color: #a94442;" type="button" class="btn btn-info" ng-click="IfDeleteCourse();submitted = false;">מחק</button>
+				</span>
+				<button style="margin-left: 15px; width: 20%; float: left;border-color: gray; background-color: gray;" type="button" class="btn btn-info" ng-click="DuplicateCourse();submitted = false;">שכפל</button>
+
+			</div>
+		</div>
+		<span modal-confirm2 control="confirmcontrol" text="לעבור לדף אחר יגרום לאיבוד נתונים שלא נשמרו" on-confirm="movedTo(goToTap)">
+		</span>
+		
+		<span modal-confirm control="alertcontroldupl" text="שוכפל בהצלחה! נא למלא שדות חובה ולשמור">
+		</span>
+					
+	</form>
+</div>
+			<div ng-if="tabindex=='profile'" class="tab-pane fade" id="profile" ng-class="{active:tabindex=='profile',in:tabindex=='profile'}">
+				<div class="panel-body">
+				<input style="width: 33%;" type="text" id="searchcourse" class="form-control" placeholder="חיפוש..." ng-model="$word" ng-keyup="$event.keyCode == 13 && SearchWord($word)">
+						<div class="table-responsive" style="margin-top:15px">
+							<table class="table table-striped table-bordered table-hover midrows">
+								<thead>
+									<tr>
+									   <th>
+										  <a style="color: black;" ng-click="sortTypetemp = 'code'; sortReverse = !sortReverse; SearchWord($word)">
+											מס' קורס 
+											<span ng-show="sortTypetemp == 'code' && !sortReverse" class="fa fa-caret-down"></span>
+											<span ng-show="sortTypetemp == 'code' && sortReverse" class="fa fa-caret-up"></span>
+										  </a>
+										</th>
+                                        <th>
+											<a style="color: black;" ng-click="sortType = 'name'; sortReverse = !sortReverse; SearchWord($word)">
+												שם קורס מלא
+												<span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+												<span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+											  </a>
+										</th>
+                                        <th>
+											<a style="color: black;" ng-click="sortType = 'subname'; sortReverse = !sortReverse; SearchWord($word)">
+												שם קורס מקוצר
+												<span ng-show="sortType == 'subname' && !sortReverse" class="fa fa-caret-down"></span>
+												<span ng-show="sortType == 'subname' && sortReverse" class="fa fa-caret-up"></span>
+											 </a>
+										</th>
+										<th>
+											<a style="color: black;" ng-click="sortType = 'subnameinarabic'; sortReverse = !sortReverse; SearchWord($word)">
+												שם מקוצר בערבית
+												<span ng-show="sortType == 'subnameinarabic' && !sortReverse" class="fa fa-caret-down"></span>
+												<span ng-show="sortType == 'subnameinarabic' && sortReverse" class="fa fa-caret-up"></span>
+											 </a>
+										</th>
+										<th>
+											<a style="color: black;" ng-click="sortType = 'project'; sortReverse = !sortReverse; SearchWord($word)">
+												פרויקט
+												<span ng-show="sortType == 'project' && !sortReverse" class="fa fa-caret-down"></span>
+												<span ng-show="sortType == 'project' && sortReverse" class="fa fa-caret-up"></span>
+											 </a>
+										</th>
+										<th>
+											<a style="color: black;" ng-click="sortType = 'tagsname'; sortReverse = !sortReverse; SearchWord($word)">
+												תגיות
+												<span ng-show="sortType == 'tagsname' && !sortReverse" class="fa fa-caret-down"></span>
+												<span ng-show="sortType == 'tagsname' && sortReverse" class="fa fa-caret-up"></span>
+											 </a>
+										</th>
+										<th>
+											<a style="color: black;" ng-click="sortType = 'year'; sortReverse = !sortReverse; SearchWord($word)">
+												שנת תקציב
+												<span ng-show="sortType == 'year' && !sortReverse" class="fa fa-caret-down"></span>
+												<span ng-show="sortType == 'year' && sortReverse" class="fa fa-caret-up"></span>
+											 </a>
+										</th>
+										<th>
+											<a style="color: black;" ng-click="sortType = 'city'; sortReverse = !sortReverse; SearchWord($word)">
+												עיר
+												<span ng-show="sortType == 'city' && !sortReverse" class="fa fa-caret-down"></span>
+												<span ng-show="sortType == 'city' && sortReverse" class="fa fa-caret-up"></span>
+											 </a>
+										</th>
+										<th>
+											<a style="color: black;" ng-click="sortType = 'madrichname'; sortReverse = !sortReverse; SearchWord($word)">
+												מדריך
+												<span ng-show="sortType == 'madrichname' && !sortReverse" class="fa fa-caret-down"></span>
+												<span ng-show="sortType == 'madrichname' && sortReverse" class="fa fa-caret-up"></span>
+											 </a>
+										</th>
+										<th>
+											<a style="color: black;" ng-click="sortType = 'studentnum'; sortReverse = !sortReverse; SearchWord($word)">
+												מס' סטודנטים
+												<span ng-show="sortType == 'studentnum' && !sortReverse" class="fa fa-caret-down"></span>
+												<span ng-show="sortType == 'studentnum' && sortReverse" class="fa fa-caret-up"></span>
+											</a>
+										</th>
+									</tr>
+								</thead>
+								<tbody ng-model="courses">
+									<tr style="cursor:pointer" ng-click="CourseClick(course,'פעיל')"  ng-repeat="course in courses | orderBy:sortType:sortReverse">
+										<td>{{course.code}}</td>
+										<td>{{course.name}}</td>
+										<td>{{course.subname}}</td>
+										<td>{{course.subnameinarabic}}</td>
+										<td>{{course.project}}</td>
+										<td>{{course.tagsname}}</td>
+										<td>{{course.year}}</td>
+										<td>{{course.city}}</td>
+										<td>{{course.madrichname}}</td>
+										<td>{{course.studentnum}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- /.table-responsive -->
+					</div>
+					
+			</div>
+			
+			<div ng-if="tabindex=='messages'" class="tab-pane fade" id="messages" ng-class="{active:tabindex=='messages',in:tabindex=='messages'}">
+				<div class="panel-body">
+				<input style="width: 33%;" type="text" id="searchcourse" class="form-control" placeholder="חיפוש..." ng-model="$word" ng-keyup="$event.keyCode == 13 && SearchWordinCloseCourse($word)">
+						<div class="table-responsive" style="margin-top:15px">
+							<table class="table table-striped table-bordered table-hover midrows">
+								<thead>
+									<tr>
+									   <th>
+										  <a style="color: black;" ng-click="sortTypetemp = 'code'; sortReverse = !sortReverse; SearchWord($word)">
+											מס' קורס 
+											<span ng-show="sortTypetemp == 'code' && !sortReverse" class="fa fa-caret-down"></span>
+											<span ng-show="sortTypetemp == 'code' && sortReverse" class="fa fa-caret-up"></span>
+										  </a>
+										</th>
+                                        <th>
+											<a style="color: black;" ng-click="sortType = 'name'; sortReverse = !sortReverse; SearchWord($word)">
+												שם קורס מלא
+												<span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+												<span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+											  </a>
+										</th>
+                                        <th>
+											<a style="color: black;" ng-click="sortType = 'subname'; sortReverse = !sortReverse; SearchWord($word)">
+												שם קורס מקוצר
+												<span ng-show="sortType == 'subname' && !sortReverse" class="fa fa-caret-down"></span>
+												<span ng-show="sortType == 'subname' && sortReverse" class="fa fa-caret-up"></span>
+											 </a>
+										</th>
+										<th>
+											<a style="color: black;" ng-click="sortType = 'subnameinarabic'; sortReverse = !sortReverse; SearchWord($word)">
+												שם מקוצר בערבית
+												<span ng-show="sortType == 'subnameinarabic' && !sortReverse" class="fa fa-caret-down"></span>
+												<span ng-show="sortType == 'subnameinarabic' && sortReverse" class="fa fa-caret-up"></span>
+											 </a>
+										</th>
+										<th>
+											<a style="color: black;" ng-click="sortType = 'project'; sortReverse = !sortReverse; SearchWord($word)">
+												פרויקט
+												<span ng-show="sortType == 'project' && !sortReverse" class="fa fa-caret-down"></span>
+												<span ng-show="sortType == 'project' && sortReverse" class="fa fa-caret-up"></span>
+											 </a>
+										</th>
+										<th>
+											<a style="color: black;" ng-click="sortType = 'tagsname'; sortReverse = !sortReverse; SearchWord($word)">
+												תגיות
+												<span ng-show="sortType == 'tagsname' && !sortReverse" class="fa fa-caret-down"></span>
+												<span ng-show="sortType == 'tagsname' && sortReverse" class="fa fa-caret-up"></span>
+											 </a>
+										</th>
+										<th>
+											<a style="color: black;" ng-click="sortType = 'year'; sortReverse = !sortReverse; SearchWord($word)">
+												שנת תקציב
+												<span ng-show="sortType == 'year' && !sortReverse" class="fa fa-caret-down"></span>
+												<span ng-show="sortType == 'year' && sortReverse" class="fa fa-caret-up"></span>
+											 </a>
+										</th>
+										<th>
+											<a style="color: black;" ng-click="sortType = 'city'; sortReverse = !sortReverse; SearchWord($word)">
+												עיר
+												<span ng-show="sortType == 'city' && !sortReverse" class="fa fa-caret-down"></span>
+												<span ng-show="sortType == 'city' && sortReverse" class="fa fa-caret-up"></span>
+											 </a>
+										</th>
+										<th>
+											<a style="color: black;" ng-click="sortType = 'madrichname'; sortReverse = !sortReverse; SearchWord($word)">
+												מדריך
+												<span ng-show="sortType == 'madrichname' && !sortReverse" class="fa fa-caret-down"></span>
+												<span ng-show="sortType == 'madrichname' && sortReverse" class="fa fa-caret-up"></span>
+											 </a>
+										</th>
+										<th>
+											<a style="color: black;" ng-click="sortType = 'studentnum'; sortReverse = !sortReverse; SearchWord($word)">
+												מס' סטודנטים
+												<span ng-show="sortType == 'studentnum' && !sortReverse" class="fa fa-caret-down"></span>
+												<span ng-show="sortType == 'studentnum' && sortReverse" class="fa fa-caret-up"></span>
+											</a>
+										</th>
+									</tr>
+								</thead>
+								<tbody ng-model="courses">
+									<tr style="cursor:pointer" ng-click="CourseClick(course,'לא פעיל')" ng-repeat="course in Closecourses | orderBy:sortType:sortReverse">
+										<td>{{course.code}}</td>
+										<td>{{course.name}}</td>
+										<td>{{course.subname}}</td>
+										<td>{{course.subnameinarabic}}</td>
+										<td>{{course.project}}</td>
+										<td>{{course.tagsname}}</td>
+										<td>{{course.year}}</td>
+										<td>{{course.city}}</td>
+										<td>{{ course.madrichname }}</td>
+										<td>{{course.studentnum}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- /.table-responsive -->
+					</div>
+					
+			</div>
+			
+		</div>
+	</div>
+	<!-- /.panel-body -->
+</div>
+
+</div>

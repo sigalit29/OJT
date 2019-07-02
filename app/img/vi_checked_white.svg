@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.189 17.19">
+    <defs>
+        <style>
+            .cls-1{fill:#fff}.cls-2{fill:#15457d}
+        </style>
+    </defs>
+    <g id="Group_143" data-name="Group 143" transform="translate(-46 -235.186)">
+        <path id="Path_333" d="M8.595 0A8.595 8.595 0 1 1 0 8.595 8.595 8.595 0 0 1 8.595 0z" class="cls-1" data-name="Path 333" transform="translate(46 235.186)"/>
+        <path id="Checkbox" d="M2.965 5.157L0 2.192l.6-.6 2.365 2.319L6.876 0l.6.6z" class="cls-2" transform="translate(50.727 241.202)"/>
+    </g>
+</svg>

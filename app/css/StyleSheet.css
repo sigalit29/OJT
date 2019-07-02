@@ -1,0 +1,534 @@
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	overflow: hidden;
+	direction: rtl;
+	font-size: 5vw;
+	color: #4a90e2;
+}
+html {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	text-align: center;
+	background-color: #fff;
+}
+.page-wrap{
+	color:#4a90e2;
+	height: calc(100% - 15vw);
+}
+.page-wrap.active{
+	color:#fff;
+}
+.page {
+	height: 100%;
+	overflow-y: auto;
+	background-image: url(../img/apple_shadow.png);
+	background-repeat: repeat-x;
+	background-position: top;
+	transition: background 1s ease-in-out;
+}
+
+.page.no-shadow {
+	background-image: none;
+}
+.page-background{
+	height: calc(100vh - 15vw);
+	width:  100%;
+	transition: background 1s ease-in-out;
+	z-index: -100;
+	position: absolute;
+}
+.page-wrap.active .page-background {
+	background-color: #4a90e2;
+	color:#fff;
+}
+.page-wrap.gradient .page-background {
+	background: rgb(74, 144, 226); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(74, 144, 226, 1) 12%, rgba(21, 69, 125, 1) 62%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgba(74, 144, 226, 1) 12%, rgba(21, 69, 125, 1) 62%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, rgba(74, 144, 226, 1) 12%, rgba(21, 69, 125, 1) 62%);
+	/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4a90e2', endColorstr='#15457d', GradientType=0); /* IE6-9 */
+	color: #fff;
+}
+.page-padding {
+	padding-top: 5%;
+	padding-right: 10%;
+	padding-left: 10%;
+}
+
+.page-padding-top {
+	padding-top: 2%;
+}
+
+body.login-background {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	overflow: hidden;
+	direction: rtl;
+	font-size: 5vw;
+	font-family: 'Assistant', sans-serif;
+	color: white;
+}
+
+::-webkit-input-placeholder {
+	opacity:0.5;
+	font-family: 'Assistant', sans-serif;
+}
+
+:-moz-placeholder, ::-moz-placeholder, :-ms-input-placeholder {
+	opacity:0.5;
+	font-family: 'Assistant', sans-serif;
+}
+
+.input-wrap {
+	width: 80vw;
+	margin: auto;
+	background-color: #64A0E6;
+	height: 12vw;
+	border-radius: 94px;
+	padding: 3%;
+	box-sizing: border-box;
+	position: relative;
+	margin-bottom: 5%;
+	direction: ltr;
+}
+
+.input-wrap input {
+	height: 100%;
+	width: 59vw;
+	background-color: transparent;
+	border: none;
+	font-size: 5vw;
+	color: white;
+	vertical-align: top;
+	margin-right: 14vw;
+	box-sizing: border-box;
+	font-family: 'Assistant', sans-serif;
+	padding: 0;
+	text-align: right;
+}
+.input-wrap input::placeholder{
+	color:white
+}
+.input-wrap .radio {
+    height: auto;
+    vertical-align: middle;
+    text-align: right;
+    width: auto;
+    margin-right: 5%;
+    direction: rtl;
+}
+.input-icon {
+	position: absolute;
+	right: 4vw;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	width: 10vw;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+}
+.preload-images {
+	position: fixed;
+}
+.preload-images img {
+	width: 1px;
+	height: 1px;
+	opacity: 0;
+	position: fixed;
+}
+
+.input-icon.password {
+	background-image: url(../img/ic_password.png);
+}
+
+.input-icon.email {
+	background-image: url(../img/ic_mail.png);
+}
+.input-icon.gender, .profile-field-icon.gender {
+	background-image: url(../img/ic_gender.png);
+}
+.input-icon.id, .profile-field-icon.id {
+	background-image: url(../img/ic_id.png);
+}
+.input-icon.location, .profile-field-icon.location {
+	background-image: url(../img/ic_location.png);
+}
+.input-icon.cell, .profile-field-icon.cell {
+	background-image: url(../img/ic_cell.png);
+}
+.input-icon.cal, .profile-field-icon.cal {
+	background-image: url(../img/ic_cal.png);
+}
+.input-icon.account, .profile-field-icon.account {
+	background-image: url(../img/ic_account.png);
+}
+.profile-field-icon.email{
+	background-image: url(../img/ic_profile_mail.png);
+}
+
+.input-wrap .forget {
+	position: absolute;
+	left: 7%;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	height: 7vw;
+	color: white;
+}
+
+.btn {
+	width: 80vw;
+	height: 16vw;
+	margin: auto;
+	text-align: center;
+	background-color: transparent;
+	border: 2px solid white;
+	border-radius: 94px;
+	padding: 4.5%;
+	box-sizing: border-box;
+}
+
+.btn .btn-text {
+	vertical-align: top;
+	font-weight: bold;
+}
+
+.btn.disable {
+	border-color: #83ACE1;
+	color: #83ACE1;
+}
+
+.blue-btn {
+	border-radius: 32px;
+	border: 2px solid;
+	color: #4a90e2;
+	font-size: 110%;
+	font-weight: bold;
+}
+
+.blue-btn.disable {
+	opacity: 0.5;
+}
+
+.fullBlueBack {
+	background-color: #4a90e2;
+}
+
+.picture-gallery {
+	background-image: url(../img/bg_psd1.jpg);
+	width: 100%;
+	height: 100%;
+	background-repeat-x: no-repeat;
+	background-size: cover;
+	background-position: center bottom;
+	background-repeat: no-repeat;
+	color: white;
+	animation: colors 12s;
+	-moz-animation: colors 12s infinite;
+	-webkit-animation: colors 12s infinite;
+	position: absolute;
+	top: 0;
+	z-index: -1;
+}
+
+.invalid {
+	color: #f13e3e;
+	margin-top: 1.5vh;
+	opacity: 0;
+}
+
+.addSubject {
+	font-size: 5vw;
+	color: #15457d;
+	margin-top: 3vw;
+}
+
+.addSubject-sentence {
+	opacity: 0.5;
+}
+
+.verticalLine {
+	line-height: 10vh;
+}
+
+.line {
+	background: #C2DAF5;
+	height: 1px;
+	margin-top: 1vh;
+	border: none;
+}
+
+.line2 {
+	background: #C2DAF5;
+	/*height: 1px;*/
+	margin-top: 1vh;
+}
+
+.right-text {
+	font-size: 5vw;
+	color: #15457d;
+	position: relative;
+	opacity: 0.5;
+}
+
+.active {
+	opacity: 1;
+}
+
+.right-text.left-text {
+	direction: rtl;
+}
+
+.right-sentence {
+	position: relative;
+	width: 49%;
+	display: inline-block;
+	vertical-align: top;
+	direction: rtl;
+	text-align: right;
+}
+
+.left-sentence {
+	width: 49%;
+	font-size: 23px;
+	display: inline-block;
+	position: relative;
+	text-align: left;
+	direction: ltr;
+	vertical-align: top;
+}
+
+.notes {
+	position: relative;
+}
+
+.timeCreateLesson {
+	margin-top: 2.5vh;
+}
+
+/*move to createLesson.css? Or maybe create a separate css file for this?*/
+/*wrap required for the scrolling to work properly*/
+.popup-add-lesson-wrap {
+	top: 15vw;
+	bottom: 0px;
+	position: fixed;
+	width: 100%;
+	z-index: 1000;
+	right: 0px;
+}
+
+.popup-add-lesson {
+	right: 0;
+	width: 100%;
+	background-color: #FFFFFF;
+	bottom: 0px;
+	z-index: 1000;
+	height: 100%;
+	text-align: right;
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
+}
+
+.comment-wrapper {
+	width: 53%;
+	margin-top: 10%;
+	margin: auto;
+	margin-top: 10%;
+}
+
+.comment-wrap {
+	display: inline;
+	width: 100%;
+}
+
+.comment {
+	margin-top: 30px;
+}
+
+.comment-wrap textarea {
+	background-color: transparent;
+	border: none;
+	text-align: center;
+	width: 100%;
+	font-size: 20px;
+	outline: none;
+	color: white;
+	height: 26px;
+	resize: none;
+	overflow: hidden;
+}
+
+.comment textarea.open {
+}
+
+.comment-wrap .line {
+	margin-top: 0;
+	border: none;
+}
+
+.comment-wrap textarea::-webkit-input-placeholder {/* Chrome/Opera/Safari */
+	color: #15457d;
+	opacity: 0.5;
+}
+
+.comment-wrap textarea::-moz-placeholder {/* Firefox 19+ */
+	color: #15457d;
+	opacity: 0.5;
+}
+
+.comment-wrap textarea:-ms-input-placeholder {/* IE 10+ */
+	color: #15457d;
+	opacity: 0.5;
+}
+
+.comment-wrap textarea:-moz-placeholder {/* Firefox 18- */
+	color: #15457d;
+	opacity: 0.5;
+}
+
+.comment-wrap.comment-in-blue-page textarea::-webkit-input-placeholder {/* Chrome/Opera/Safari */
+	color: white;
+	opacity: 1;
+}
+
+.comment-wrap.comment-in-blue-page textarea::-moz-placeholder {/* Chrome/Opera/Safari */
+	color: white;
+	opacity: 1;
+}
+
+.comment-wrap.comment-in-blue-page textarea::-ms-input-placeholder {/* Chrome/Opera/Safari */
+	color: white;
+	opacity: 1;
+}
+
+.comment-wrap.comment-in-blue-page textarea:-moz-placeholder {/* Chrome/Opera/Safari */
+	color: white;
+	opacity: 1;
+}
+
+.comment-wrap.comment-in-blue-page .line {
+	background-color: white;
+}
+
+.tabs-wrap {
+	width: 100%;
+	overflow-x: auto;
+	white-space: nowrap;
+	border-bottom: 1px solid #F1F6FC;
+	position: relative;
+    z-index: 6;
+}
+
+.tab-header {
+	color: #0E3B6F;
+	font-size: 3vh;
+	text-align: center;
+	display: inline-block;
+	width: 49.5%;
+	box-sizing: border-box;
+}
+
+.activeTab {
+	color: #F1F6FC;
+	border-bottom: 3px solid #F1F6FC;
+}
+
+.tab-contents {
+	width: 100%;
+	overflow-y: auto;
+	height: calc(100% - 10vh);
+}
+
+.box {
+	margin: 5% auto;
+}
+.box .num-of-students-per-status{
+	display: inline-block;
+    float: left;
+    margin: 0 5%;
+    font-weight: normal;
+}
+
+.pupil-image {
+	height: 7vh;
+	width: 7vh;
+	background-image:url(../img/profile.svg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	display: inline-block;
+	vertical-align: middle;
+	border-radius: 50%;
+	border: 4px solid #DBE9F9;
+	background-position: center;
+}
+
+.tab-text {
+	padding: 1vh 0;
+	line-height: 7vh;
+}
+
+.no-permission
+{
+	color: #fff;
+	padding:5%;
+}
+
+@-moz-keyframes colors /* Firefox */
+{
+0% {
+background-image: url(../img/openScreen.jpg);
+}
+
+22% {
+background-image: url(../img/bg_psd2.jpg);
+}
+
+44% {
+background-image: url(../img/bg_psd3.jpg);
+}
+
+68% {
+background-image: url(../img/bg_psd4.jpg);
+}
+
+85% {
+background-image: url(../img/bg_psd5.jpg);
+}
+
+100% {
+background-image: url(../img/bg_psd1.jpg);
+}
+}
+
+@-webkit-keyframes colors /* Safari and Chrome */
+{
+0% {
+background-image: url(../img/bg_psd1.jpg);
+}
+
+22% {
+background-image: url(../img/bg_psd2.jpg);
+}
+
+44% {
+background-image: url(../img/bg_psd3.jpg);
+}
+
+68% {
+background-image: url(../img/bg_psd4.jpg);
+}
+
+85% {
+background-image: url(../img/bg_psd5.jpg);
+}
+
+100% {
+background-image: url(../img/bg_psd1.jpg);
+}
+}

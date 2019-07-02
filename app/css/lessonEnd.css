@@ -1,0 +1,38 @@
+.yay-icon{
+	width: 30%;
+	margin: 10% auto 2.5% auto;
+}
+.lesson-end-comment{
+	font-size: 1.25em;
+	font-family: Assistant-semibold;
+}
+.capsule-button {
+	border-radius: 10vh;
+	line-height: 5vh;
+	margin: 5vh 0.5em;
+	display: inline-block;
+	border: 2px solid #4a90e2;
+	font-weight: bold;
+}
+.capsule-button.inverse-capsule-button{
+	color: white;
+	background-color: #4a90e2;
+}
+.lesson-nav-options .capsule-button{
+	width:  max-content;
+	padding: 0 1em;
+}
+.peace-icon{
+}
+.feedback-progress-wrap{
+	margin: 5em 0;
+}
+.feedback-progress-comment{
+	color: #707070;
+	margin-bottom: 1em;
+}
+.feedback-progress{
+    width: 85%;
+    display: block;
+    margin: auto;
+}

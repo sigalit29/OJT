@@ -1,0 +1,41 @@
+.button.card-control
+{
+	width: 12em;
+	text-shadow: 0px 0px 5px #000;
+}
+.button.duplicate-card
+{
+	background-color:#ca0
+}
+.button.cancel-card-edit
+{
+	background-color: #955;
+}
+.button.commit-card-edit
+{
+	background-color: #595;
+}
+.button.duplicate-card:hover
+{
+	background-color:#b90
+}
+.button.cancel-card-edit:hover
+{
+	background-color: #844;
+}
+.button.commit-card-edit:hover
+{
+	background-color: #484;
+}
+.button.duplicate-card:active
+{
+	background-color:#a80
+}
+.button.cancel-card-edit:active
+{
+	background-color: #733;
+}
+.button.commit-card-edit:active
+{
+	background-color: #373;
+}

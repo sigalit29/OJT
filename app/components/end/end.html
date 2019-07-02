@@ -1,0 +1,24 @@
+<div class="grade-wrap">
+    <div class="thanks-wrap" >
+		<img class="yay-icon" src="./img/icons/yay.svg"/>
+        <div class="lesson-end-comment">
+            <div>{{dictionary.thanksText}} {{me.firstname}}</div>
+            <div>{{dictionary.seeYouNextMeetingText}}</div>
+        </div>
+		<div ng-if="role == 2" class="feedback-progress-wrap">
+			<div class="feedback-progress-comment">{{(feedbackProgress<0.6?(dictionary.just+" "):'')+((feedbackProgress*100)|number:0)+dictionary.gaveFeedbackPercentage}}</div>
+			<progress-bar class="feedback-progress" percentage="feedbackProgress"/>
+		</div>
+		<div class="lesson-nav-options">
+			<div class="capsule-button" ng-click="backSingleCourse()">
+				<span class="text">{{dictionary.backCourseText}}</span>
+			</div>
+			<!--TODO - fix hardcoding of enrollmentroleid-->
+			<div class="capsule-button inverse-capsule-button" ng-if="role == 2" ng-click="goToMadrichDashboard()">
+				<span class="text">{{dictionary.seeStatisticText}}</span>
+			</div>
+		</div>
+    </div>
+</div>
+
+

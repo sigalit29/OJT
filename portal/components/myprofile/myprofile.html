@@ -1,0 +1,107 @@
+<div id="wrapper">
+	<header></header>
+<div id="page-wrapper">
+	<div class="panel-body">
+		<div class="tab-content">
+			
+			<form ng-submit="SaveStaff();submitted=false" role="form" ng-class="{'submitted': submitted}">
+			</br>
+			<div>
+			  <h5>נרשם ב: {{staff.registerdate}}</h5>
+			  <h5 ng-if="staff.lastactivedate">פעילות אחרונה ב: {{staff.lastactivedate}}</h5>
+			  <h5 ng-init="status=(staff.status && staff.status=='1')?'לא פעיל':'פעיל'">סטטוס: {{status}}</h5>
+			</div>
+			  <h4>הפרופיל של {{staff.firstname}}:</h4>
+					<div class="form-group">
+                        <div class="input-wraaper" style="width: 49%;float: left;" ng-class="{'is-in': staff.lastname}">
+							<input required mplaceholder text="שם משפחה בעברית" class="form-control input-content" placeholder="" ng-model="staff.lastname">
+						</div>
+						
+						<div class="input-wraaper" style="width: 49%;margin-top: 30px;" ng-class="{'is-in': staff.firstname}">
+						<input required  mplaceholder text="שם פרטי בעברית" class="form-control input-content" placeholder="" ng-model="staff.firstname">
+						</div>
+					
+						<div class="input-wraaper" style="width: 49%;float: left;margin-top: 30px;" ng-class="{'is-in': staff.lastnameinarabic}">
+							<input mplaceholder text="שם משפחה בערבית" class="form-control input-content" placeholder="" ng-model="staff.lastnameinarabic">
+						</div>
+						
+						<div class="input-wraaper" style="width: 49%;margin-top: 30px;" ng-class="{'is-in': staff.firstnameinarabic}">
+							<input mplaceholder text="שם פרטי בערבית" class="form-control input-content" placeholder="" ng-model="staff.firstnameinarabic">
+						</div>
+						
+						<div class="input-wraaper" style="width: 49%;float: left;margin-top: 30px;" ng-class="{'is-in': staff.tznumber}">
+							<input required mplaceholder text="מס' תעודת זהות" type="number"  class="form-control input-content" placeholder="" ng-model="staff.tznumber">
+						</div>
+						
+						<div class="input-wraaper" style="width: 49%;margin-top: 30px;" ng-class="{'is-in': staff.phone}">
+							<input mplaceholder text="מס' טלפון" type="number"  class="form-control input-content" placeholder="" ng-model="staff.phone">
+						</div>
+						
+						<div class="input-wraaper" style="width: 49%;float: left;margin-top: 30px;" ng-class="{'is-in': staff.adress}">
+							<input mplaceholder text="כתובת" class="form-control input-content" placeholder="" ng-model="staff.adress">
+						</div>
+						
+						<div class="input-wraaper" style="width: 49%;margin-top: 30px;" ng-class="{'is-in': staff.birthday}">
+							<input mplaceholder text="תאריך לידה" datepicker type="text"  class="form-control input-content" placeholder="" ng-model="staff.birthday">
+						</div>
+					
+						<div class="input-wraaper" style="width: 49%;float: left;margin-top: 30px;" ng-class="{'is-in': staff.genderid}">
+							<select mplaceholder text="מגדר" class="form-control input-content" ng-model="staff.genderid">
+								<option ng-repeat="gender in genders" value="{{gender.genderid}}" ng-if="gender.IsShow && gender.IsShow=='1'">{{gender.name}}</option>
+							</select>
+						</div>
+						
+						<div class="input-wraaper" style="width: 49%;margin-top: 30px;" ng-class="{'is-in': staff.religionid}">
+							<select mplaceholder text="מגזר" class="form-control input-content" ng-model="staff.religionid">
+								<option ng-repeat="religion in religions" value="{{religion.religionid}}" ng-if="religion.IsShow && religion.IsShow=='1'">{{religion.name}}</option>
+							</select>
+						</div>
+					
+						<div class="input-wraaper" style="width: 49%;float: left;margin-top: 30px;" ng-class="{'is-in': staff.email}">
+							<input required type="email" mplaceholder text="אימייל" class="form-control input-content" placeholder="" ng-model="staff.email">
+						</div>
+						
+						<div class="input-wraaper" style="width: 49%;margin-top: 30px;" ng-class="{'is-in': staff.superstaff}">
+							<input readonly mplaceholder text="מנהל ישיר" class="form-control input-content" ng-model="staff.superstaff">
+						</div>
+						
+						<div class="input-wraaper"   style="width: 49%; margin-top: 30px;" ng-class="{'is-in': staff.languages.length>0}">
+							<dropdown-multiselect class="input-content" text="שפות" dropdown-title="{{dropdownTitle}}" pre-selected="member.language" model="staff.languages" options="languages" ></dropdown-multiselect> 
+						</div>
+						
+						<div class="form-group" style="width: 49%;margin-top: 30px;">
+							<div class="btn btn-info btn-file">
+							<label>בחר תמונה</label>
+								<i class="fa fa-upload"></i> <input type="file" accept="application/msword, application/pdf, image/*" ngf-select="onFileSelect($files)">
+							</div>
+							<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" ng-if="fileUpload"></span>
+							<img ng-if="staff.image" ng-src="{{imgsDomain+'/'+staff.image}}" class="ng-scope card-profile-img">
+						</div>
+						
+					</div>
+					<!-- <hr style="height: 1px; background-color: #ccc">
+					
+					רשימת העובדים שלי:
+					<div ng-repeat="staff in MyStaffs">
+					<input style="width: 49%;margin-top: 10px;" readonly class="form-control input-content" value="{{staff.firstname}} {{staff.lastname}}">
+					</div> -->
+					<hr style="height: 1px; background-color: #ccc">
+					<button style="width: 20%; float: left;border-color: #49814d; background-color: #49814d;" type="submit" class="btn btn-info" ng-click="submitted = true;">שמור</button>
+					
+					<span modal-Change-Pass ng-model="staff" on-confirm="ChangePassword">
+						<span  style="margin-left: 15px;width: 20%; float: left;border-color: #49814d; background-color: #49814d;" class="btn btn-info">החלפת סיסמה</span>
+					</span>
+					
+					<!-- <a ng-if="staff.email" href="mailto:{{staff.email}}" style="margin-left: 15px;width: 20%; float: left;border-color: #49814d; background-color: #49814d;" class="btn btn-info">שליחת מייל</a> -->
+					
+					<br>
+					 <span modal-confirm control="alertcontrol" text="נשמר בהצלחה" > 
+					</span>
+					
+				</form>
+		</div>
+	</div>
+	<!-- /.panel-body -->
+</div>
+
+</div>

@@ -1,0 +1,132 @@
+.table-bordered td.fixed-col0 {
+    border: none;
+    position:absolute;
+    margin-right:-16em;
+}
+
+.fixed-tbl{
+    padding-right:14em;
+}
+
+th.fixed-col1, th.fixed-col2{
+    background-color: white;
+}
+
+.fixed-col1  {
+    background-color:inherit;
+    position:absolute;
+    margin-right:-14em;
+}
+
+.fixed-col2 {
+    background-color:inherit;
+    position:absolute;
+    margin-right:-7em;
+}
+
+.table-striped>tbody.fixed-tbl>tr:nth-of-type(even) {
+    background-color: white;
+}
+
+
+/*///////////////////////////////////// */
+.scrolling-table {
+    max-width	 : 100%;
+    overflow-x   : auto;
+    overflow	 : auto;
+    margin		 : 0 auto;
+    display		 : inline-block;
+    box-shadow 	 : 0px 0px 1px black;
+    text-align 	 : right;
+}
+
+.scrolling-table-wrapper{
+    width: 100%;
+}
+
+.scrolling-table table
+{
+    margin-bottom:0px;
+    width: 80%;
+}
+.scrolling-table thead
+{
+    display:block;
+}
+
+.scrolling-table tbody
+{
+    display:block;
+    max-height:90vh;
+    overflow-y:auto;
+}
+
+.scrolling-table tbody.fixed-tbl
+{
+    max-height:initial;
+}
+
+.scrolling-table th
+{
+    direction:  rtl;
+    text-align: center;
+    vertical-align:top;
+}
+.scrolling-table th, .scrolling-table  td
+{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 8px;
+}
+.scrolling-table th.no-padding, .scrolling-table  td.no-padding
+{
+    padding: 0px;
+}
+.scrolling-table th.large-cell, .scrolling-table td.large-cell
+{
+    min-width:14em;
+    max-width:14em;
+}
+.scrolling-table th.small-cell, .scrolling-table td.small-cell
+{
+    min-width:7em;
+    max-width:7em;
+}
+.scrolling-table tr td.warning {
+    background-color:#f88;
+}
+/*No border for edge cells*/
+.scrolling-table tr:first-child th {
+    border-top: 0;
+}
+.scrolling-table tr:last-child td {
+    border-bottom: 0;
+}
+.scrolling-table tr td:first-child,
+.scrolling-table tr th:first-child {
+    border-right: 0;
+}
+.scrolling-table tr td:last-child,
+.scrolling-table tr th:last-child {
+    border-left: 0;
+}
+
+.scrolling-table tr td select
+{
+    direction:  rtl;
+    font: inherit;
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    vertical-align:  top;
+}
+.scrolling-table tr td input
+{
+    direction:  rtl;
+    font: inherit;
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    vertical-align:  top;
+}

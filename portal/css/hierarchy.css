@@ -1,0 +1,32 @@
+hierarchy{
+	padding-right: 5%;
+	display:block;
+	transition: background-color 0.5s;
+}
+hierarchy input{
+	width:80%;
+	border:none;
+	border-bottom: 1px solid #555;
+	padding:0.4vw;
+	background-color:transparent;
+	transition: text-shadow 0.5s;
+	outline: none;
+}
+hierarchy:hover
+{
+	background-color:rgba(113,145,145,0.1)
+}
+
+hierarchy input:focus
+{
+	text-shadow: 0px 0px 1px rgb(113, 145, 145);
+	border-bottom-width: 2px;
+}
+
+hierarchy .subject-action{
+	display: none;
+}
+
+hierarchy .node-content:hover .subject-action{
+	display: inline-block;
+}

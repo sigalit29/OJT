@@ -1,0 +1,25 @@
+.results-filters-wrap{
+	white-space: nowrap;
+}
+.results-filters-wrap .results-filter{
+	display: inline-block;
+	padding-left: 1.5%;
+}
+
+.txt{
+	background: rgba(0, 0, 0, 0);
+	border: none;
+	outline: none;
+}
+.row1{
+	min-width:3em;
+}
+.cb{
+	margin: 0 auto !important;
+	display: block;
+	text-align:center;
+}
+
+.checked {
+	background-color: lightblue !important;
+}

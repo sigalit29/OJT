@@ -1,0 +1,135 @@
+<div class="registration-form-wrap">
+<Form ng-submit="register()" id="registration-form">
+	<br>
+	<div ng-if="isArabic">
+		<label class="required">
+			{{dictionary.firstnameinarabic}}:
+		</label><br>
+		<input required type="text" ng-model="nominee.firstnameinarabic">
+		<br>
+	</div>
+	
+	<label class="required">
+		{{dictionary.firstname}}:
+	</label>
+	<br>
+	<input required type="text" ng-model="nominee.firstname">
+
+	<div ng-if="isArabic">
+		<label class="required">
+			{{dictionary.lastnameinarabic}}:
+		</label>
+		<br>
+		<input required type="text" ng-model="nominee.lastnameinarabic">
+		<br>
+	</div>
+
+	<label class="required">
+		{{dictionary.lastname}}:
+	</label>
+	<br>
+	<input required type="text" ng-model="nominee.lastname">
+	<br>
+
+	<label class="required">{{dictionary.gender}}: </label>
+	<br>
+	<select required ng-model="nominee.genderid">
+		<option value=""> </option>
+		<option ng-repeat="gender in genders" ng-value="gender.genderid">{{isArabic?gender.nameinarabic:gender.name}}</option>
+	</select>
+	<br>
+
+	<!--<label class="required">{{dictionary.email}}: </label>
+	<br>
+	<input type="email" ng-model="nominee.email">
+	<br>-->
+
+	<label class="required">{{dictionary.phonenumber}}:</label>
+	<br>
+	<input required type="text" pattern="[0-9.\-]+" ng-model="nominee.phone">
+	<br>
+	
+	<label class="required">{{dictionary.parentsphonenumber}}: </label>
+	<br>
+	<input required type="text" pattern="[0-9.\-]+" ng-model="nominee.parentsphone">
+	<br>
+
+	<!--<label class="required">{{dictionary.birthday}}: </label>
+	<br>
+	<div style="max-width: 17em;">
+		<date-input-boxes required="true" min="1940" max="2018" date-model="nominee.birthday" placeholder-year="dictionary.year" placeholder-month="dictionary.month" placeholder-day="dictionary.day"></date-input-boxes>
+	</div>
+	<br>
+	
+	<label class="required">{{dictionary.city}}: </label>
+	<br>
+	<select required ng-model="nominee.cityid">
+		<option ng-repeat="city in cities" ng-value="city.cityid">{{isArabic?city.ArabicCityName:city.name}}</option>
+		<option value="999">{{dictionary.else}}</option>
+	</select>
+	<br>
+	
+	<div class="secondary-field" ng-if="nominee.cityid==999">
+		<label class="required">{{dictionary.else}}: </label>
+		<br>
+		<input required type="text" ng-model="nominee.cityother">
+		<br>
+	</div>-->
+
+	<label class="required">{{dictionary.netacity}}: </label>
+	<br>
+	<select required ng-model="nominee.netacityid" ng-change="GetSchoolsByNetaCityId()">
+		<option value=""> </option>
+		<option ng-repeat="NetaCity in Netacities" ng-value="NetaCity.CityId">{{isArabic?NetaCity.ArabicCityName:NetaCity.CityName}}</option>
+	</select>
+	<br>
+
+	<label class="required">{{dictionary.school}}: </label>
+	<br>
+	<select required ng-model="nominee.schoolid">
+		<option value=""> </option>
+		<option ng-repeat="school in schools" ng-value="school.schoolid">{{isArabic?school.ArabicSchoolName:school.schoolname}}</option>
+		<option value="999">{{dictionary.else}}</option>
+	</select>
+	<br>
+	
+	<div class="secondary-field" ng-if="nominee.schoolid==999">
+		<label class="required">{{dictionary.else}}: </label>
+		<br>
+		<input required type="text" ng-model="nominee.schoolother">
+		<br>
+	</div>
+	
+	<!--<label>{{dictionary.neighborhood}}: </label>
+	<br>
+	<input type="text" ng-model="nominee.neighborhood">
+	<br>-->
+	
+	<label class="required">{{dictionary.grade}}: </label>
+	<br>
+	<select required ng-model="nominee.classid">
+		<option value=""> </option>
+		<option ng-repeat="class in Classes" ng-value="class.classid">{{isArabic?class.ArabicClassName:class.classname}}</option>
+	</select>
+	<br>
+
+	<label class="required">{{dictionary.learnaboutus}}: </label>
+	<br>
+	<select required ng-model="nominee.hearaboutid">
+		<option value=""> </option>
+		<option ng-repeat="HearAbout in HearAboutUs" ng-value="HearAbout.hearaboutid">{{isArabic?HearAbout.ArabicHearAbout:HearAbout.hearaboutoption}}</option>
+		<option value="999">{{dictionary.else}}</option>
+	</select>
+	<br>
+	
+	<div class="secondary-field" ng-if="nominee.hearaboutid==999">
+		<label class="required">{{dictionary.else}}: </label>
+		<br>
+		<input required type="text" ng-model="nominee.hearaboutother">
+		<br>
+	</div>
+	
+	<button type="submit" class="submit-registration-button"> {{dictionary.submit}}  </button>
+	
+</Form>
+</div>

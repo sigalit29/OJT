@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
+    <defs>
+        <style>
+            .cls-1{fill:#fff}.cls-2{fill:#15457d}
+        </style>
+    </defs>
+    <g id="clock-02" transform="translate(-81 -101)">
+        <path id="Path_300" d="M8.9 9.3H9a.645.645 0 0 0 .6-.6V2.5a.645.645 0 0 0-.6-.6h-.1a.645.645 0 0 0-.6.6v6.2a.645.645 0 0 0 .6.6z" class="cls-1" data-name="Path 300" transform="translate(81 101)"/>
+        <g id="Group_85" data-name="Group 85" transform="translate(81 101)">
+            <path id="Path_301" d="M9 0a9 9 0 1 0 9 9 8.963 8.963 0 0 0-9-9zm4.8 13.5l-.1.1a.746.746 0 0 1-.9 0L8.5 9.2a.764.764 0 0 1-.2-.5V2.5a.645.645 0 0 1 .6-.6H9a.645.645 0 0 1 .6.6v5.9l4.1 4.1a.769.769 0 0 1 .1 1z" class="cls-2" data-name="Path 301"/>
+        </g>
+    </g>
+</svg>

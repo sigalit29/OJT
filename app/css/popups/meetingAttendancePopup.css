@@ -1,0 +1,27 @@
+
+.meeting-attendance-popup .close-popup-x
+{
+	background-image:url(../../img/btn_non_arrival_normal.png);
+	background-size:contain;
+	background-repeat: no-repeat;
+	width:8vw;
+	height:8vw;
+	float:left;
+}
+.meeting-attendance-popup .presence-item
+{
+	border-style:none;
+}
+.meeting-attendance-popup .pupil-image
+{
+	margin-right:0px;
+}
+.meeting-attendance-popup .student-name-wrap
+{
+	max-width: calc(100% - 24vw);
+}
+.meeting-attendance-popup .text-pupil-name
+{
+	line-height: 11vw;
+	color:#15457d;
+}

@@ -1,0 +1,181 @@
+<div id="wrapper">
+	<header></header>
+	<div id="page-wrapper">
+		<h2 class="page-title">{{studentid?"עריכת חניך":"יצירת חניך"}}</h2>
+		<form ng-submit="SaveStudent()">
+			<div>
+				<p ng-if="student.studentid">נרשם ב: {{student.registerdate}}</p>
+				<p ng-if="student.lastactivedate">פעילות אחרונה ב: {{student.lastactivedate}}</p>
+			</div>
+			<div ng-if="isAdmin">
+				<toggle class="active-toggle" ng-model="student.status" ng-change="changed()" on="פעיל" off="לא פעיל"></toggle>
+			</div>
+			<br>
+			<h4 ng-if="student.studentid">הפרופיל של {{student.firstname+" "+student.lastname}}</h4>
+			<div class="button clickable" ng-if="student.needacceptregister" ng-click="approveUserRegistration()">אישור הרשמה</div>
+			<div class="form-row">
+				<div class="input-col">
+					<div class="input-col">
+						<div class="input-wrapper">
+							<label>שם פרטי בעברית</label>
+							<input required tabindex="1"  class="form-input input-content" ng-model="student.firstname">
+						</div>
+					</div>
+
+					<div class="input-col">
+						<div class="input-wrapper">
+							<label>שם משפחה בעברית</label>
+							<input required tabindex="2"  class="form-input input-content" ng-model="student.lastname">
+						</div>
+					</div>
+				</div>
+				
+				<div class="input-col">
+					<div class="input-col">
+						<div class="input-wrapper">
+							<label>שם פרטי בערבית</label>
+							<input tabindex="3" class="form-input input-content" ng-model="student.firstnameinarabic">
+						</div>
+					</div>
+					
+					<div class="input-col">
+						<div class="input-wrapper">
+							<label>שם משפחה בערבית</label>
+							<input tabindex="4" class="form-input input-content" ng-model="student.lastnameinarabic">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="input-col">
+					<div class="input-wrapper">
+						<label>מס' טלפון</label>
+						<input required tabindex="5" type="text" pattern="[0-9,-]*" class="form-input input-content" ng-model="student.phone">
+					</div>
+				</div>
+
+				<div class="input-col">
+					<div class="input-col">
+						<div class="input-wrapper">
+							<label>מס' טלפון נוסף</label>
+							<input tabindex="6" type="text" pattern="[0-9,-]*" class="form-input input-content" ng-model="student.phone2">
+						</div>
+					</div>
+					<div class="input-col">
+						<div class="input-wrapper">
+							<label>שייך ל-</label>
+							<input tabindex="7" class="form-input input-content" ng-model="student.phone2owner">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="input-col">
+					<div class="input-col">
+						<div class="input-wrapper">
+							<label>עיר</label>
+							<select required tabindex="8" class="form-input input-content" ng-model="student.cityid" ng-options="city.cityid as city.name for city in cities">
+								<option></option>
+							</select>
+						</div>
+					</div>
+
+					<div class="input-col">
+						<div class="input-wrapper">
+							<label>כתובת</label>
+							<input tabindex="9" class="form-input input-content" ng-model="student.adress">
+						</div>
+					</div>
+				</div>
+				<div class="input-col">
+					<div class="input-wrapper">
+						<label>מס' תעודת זהות</label>
+						<input required tabindex="10" pattern="[0-9]*" class="form-input input-content" ng-model="student.tznumber">
+					</div>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="input-col">
+					<div class="input-wrapper">
+						<label>מגזר</label>
+						<select tabindex="11" class="form-input input-content" ng-model="student.religionid" ng-options="religion.religionid as religion.name for religion in religions">
+							<option></option>
+						</select>
+					</div>
+				</div>
+				<div class="input-col">
+					<div class="input-wrapper">
+						<label>מגדר</label>
+						<select tabindex="12" class="form-input input-content" ng-model="student.genderid" ng-options="gender.genderid as gender.name for gender in genders">
+							<option></option>
+						</select>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="input-col">
+					<div class="input-wrapper" ng-init="student.birthday = student.birthday.includes('0000-00-00')?student.birthday='':student.birthday">
+						<label>תאריך לידה</label>
+						<input required datepicker format="j/n/Y" tabindex="13" type="text" class="form-input input-content" ng-model="student.birthday">
+					</div>
+				</div>
+				
+				<div class="input-col">
+					<div class="input-wrapper">
+						<label>אימייל</label>
+						<input required type="email" tabindex="14" class="form-input input-content" ng-model="student.email">
+					</div>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="input-col">
+					<div class="input-wrapper">
+						<div ng-if="student.studentid">
+							<input type="checkbox" ng-model="password.update">
+							שינוי סיסמה	
+						</div>
+						<div ng-if="password.update">
+							<label>סיסמה</label>
+							<input required tabindex="15" type="password" onfocus="(this.type='text')" class="form-input input-content" ng-model="student.password">
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div>
+				<b>הערות</b>
+				<br>
+				<textarea rows="6" style=" width:100%;" tabindex="16" ng-model="student.notes"></textarea>
+			</div>
+			<br>
+			<div class="form-group">
+				<div class="clickable button file-upload-button">
+					<label for="student-image-upload">בחר תמונה <i class="fa fa-upload"></i></label>
+					<input id="student-image-upload" type="file" tabindex="17" accept="application/msword, application/pdf, image/*" ngf-select="onImageSelect($files)">
+				</div>
+				<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" ng-if="fileUpload"></span>
+				<img ng-if="student.image" ng-src="{{imgsDomain+student.image}}"  class="ng-scope card-profile-img">
+			</div>
+			<hr>
+			<div ng-if="courses.length>0">
+				<label>רשימת קורסים:</label>
+				<div ng-repeat="course in courses">
+					<input ng-click="goToCoursePage(course)" readonly class="clickable form-input" value="{{course.name}}">
+				</div>
+				<hr>
+			</div>
+			<hr>
+			<div class="card-controls">
+				<button tabindex="18" type="submit" class="button card-control commit-card-edit">שמור</button>
+				<button tabindex="19" type="button" class="button card-control cancel-card-edit" ng-click="goBack();">בטל</button>
+			</div>
+			</br>
+		</form>
+	</div>
+</div>
+

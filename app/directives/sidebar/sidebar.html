@@ -1,0 +1,50 @@
+<div ng-class="{'sidebar-open' : isOpen}">
+	<div class="sidebar-background" ng-click="closeSidebar()"></div>
+	<div class="sidebar-wrap">
+		<div class="sidebar">
+			<div class="sidebar-header">
+				<img class="appleseeds-logo" src="img/bg_logo.png"></img>
+			</div>
+			<div class="profile-preview">
+				<img class="profile-image" ng-click="profileClick()" ng-src="{{me.image&&me.image!='' ? imgsDomain + me.image : 'img/profile.svg'}}"></img>
+				<div class="name-wrap">
+					<span class="user-name">
+						{{me.firstname + ' ' +me.lastname}}
+					</span>
+				</div>
+			</div>
+			<div class="sidebar-options">
+				<div class="menu-information" ng-click="goToCoursesPage()">
+					{{dictionary.courses}}
+				</div>
+				<div class="menu-information"  ng-click="goToSettingPage()">
+					{{dictionary.preferences}}
+				</div>
+				<div class="menu-information" ng-click="logout()">
+					{{dictionary.logoutText}}
+				</div>
+				<!--<div class="menu-information" ng-click="showHelpDetails=!showHelpDetails">
+					{{dictionary.contactUs}}
+				</div>-->
+			</div>
+		</div>
+	</div>
+	<div ng-show="showHelpDetails" class="" style="right: 0;width: 100%; position: fixed;top: 0px;bottom: 0px;height: 100%;">
+		<div class="popupBackground" ng-click="showHelpDetails=!showHelpDetails"></div>
+		<div class="popup" style="z-index: 10000;">
+			<div style="padding: 10%;text-align: center;">
+				<p style="font-weight: bold; color: #2E598B;">
+					פנו אל מנהלת מערכות המידע
+				</p>
+				<p>
+					analyst@appleseeds.org.il
+				</p>
+				<br>
+				<p>
+					יש לך רעיון לפיצ'ר חדש, או באג לדווח עליו? תנו לנו פידבאק:
+				</p>
+				<a ng-href="{{isArabic?'https://goo.gl/forms/nVPDKzaYwozxZvGM2':'https://goo.gl/forms/a3NENUGdcJqfxRP22'}}">לחצו לפתיחת טופס משוב</a>
+			</div>
+		</div>
+	</div>
+</div>

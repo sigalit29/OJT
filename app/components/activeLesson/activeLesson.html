@@ -1,0 +1,149 @@
+<div class="popupBackground" ng-if="confirmCheckout">
+	<div class="popup">
+		<div class="popup-content-wrap">
+			<div class=    "title-popup editPopup">
+				{{dictionary.alredyFinishMeetingText}}
+			</div>
+			<div class="sentence-popup">
+				{{dictionary.mustFinishMeetingText}}
+			</div>
+		</div>
+		<div class="yes-no-btn">
+			<div class="cancel" ng-click="closePopup()">
+				{{dictionary.notYetText}}
+			</div>
+			<div class="confirm" ng-click="madrichConfirmCheckout()">
+				{{dictionary.finishText}}
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--TODO - fix hardcoding of enrollmentroleid-->
+<div class="tabs-wrap" ng-if="role==2">
+	<div class="tab-header" ng-class="{'activeTab':rightActive}" ng-click="rightTab()">
+		<div class="tab-text">
+			{{dictionary.messageText}}
+		</div>
+	</div>
+	<div class="tab-header" ng-class="{'activeTab':!rightActive}" ng-click="leftTab()">
+		<div class="tab-text">
+			{{dictionary.presenceText}}
+		</div>
+	</div>
+</div>
+
+<div class="tab-contents" ng-show="!rightActive">
+	<div class="box box-expanded" ng-repeat="status in studentStatuses">
+		<div class="box-title attendance-status-box">
+			<span>{{dictionary[status.title]}}</span>
+			<div class="num-of-students-per-status"><span>{{getStudentCountByStatusId(status.statusid)}}</span></div><!--  was {{status.length}} -->
+		</div>
+		<div class="box-content box-expanded">
+			<div ng-repeat="student in students | orderBy:'firstname'" ng-if="student.attendanceStatus == status.statusid" class="presence-item">
+				<div class="pupil-image" ng-click="goToStudentProfile(student.userid)" style="{{student.image !=''? 'background-image:url('+imgsDomain+ student.image+')':'background-image:url(./img/profile.svg)'}}"></div>
+				<span class="text-pupil-name">{{student.firstname + ' '+ student.lastname}}</span>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--TODO - fix hardcoding of enrollmentroleid-->
+<div ng-class="{'tab-contents':role==2}" ng-show="rightActive">
+	<div class="vetical-padding-wrap-narrow">
+		<div class="close-meeting-label">
+			{{dictionary.finishMeetingQuestionText}}
+		</div>
+		<div ng-if="role==2">
+			<div ng-click="madrichCheckout()" class="main-btn close-meeting"></div>
+		</div>
+		<div ng-if="role==1">
+			<div ng-click="studentCheckout()" class="main-btn close-meeting" ng-class="{'disable':!meetingClosed}"></div>
+		</div>
+	</div>
+	<div class="box box-expanded">
+		<div class="box-title" ng-click="toggleBoxSlide($event)">
+			<div class="dropdown-arrow"/>
+			{{dictionary.studyMaterialText}}
+		</div>
+
+		<div class="box-content box-content-large">
+			<div class="padded-content padding-start-content">
+				<div ng-repeat="subject in lesson.syllabus" class="subject-name">
+					{{(!isArabic || !subject.subjectinarabic)? subject.subject : subject.subjectinarabic}}
+				</div>
+				<div ng-repeat="sub in lesson.customSubjects" class="subject-name">
+					{{sub.subject}}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div  ng-if="celebrationEvents.length!=0" class="box box-expanded">
+
+		<div class="box-title" ng-click="toggleBoxSlide($event)">
+			<div class="dropdown-arrow"/>
+			{{dictionary.goodKnowText}}
+			</div>
+
+		<div class="padded-content">
+			<div ng-repeat="event in celebrationEvents" class="box-content">
+				{{event[getLangCode()]}}
+			</div>
+		</div>
+
+	</div>
+
+	
+	<div ng-if="lesson.resourceLinks.length!=0" class="box box-expanded" >
+		<div class="box-title" ng-click="toggleBoxSlide($event)">
+			<div class="dropdown-arrow"/>
+				{{dictionary.meetingResources}}
+			</div>
+		<div class="box-content">
+			<div class="padded-content">
+				<div ng-repeat="link in lesson.resourceLinks" class="resourceLink" ng-if="link.link.indexOf('youtube')==-1">
+					<a ng-href="{{link.link}}" target="_blank">{{link.title}}</a>
+				</div>
+				<div ng-repeat="video in trustedVideoUrls">
+					<iframe  id="resource-frame" class="youtube-iframe" ng-src="{{video}}"
+						allowfullscreen="allowfullscreen"
+						mozallowfullscreen="mozallowfullscreen"
+						msallowfullscreen="msallowfullscreen"
+						oallowfullscreen="oallowfullscreen"
+						webkitallowfullscreen="webkitallowfullscreen"
+					/>
+				</div>
+			</div>
+			<meeting-comment profile-pic="lesson.creatorImage" profile-name="lesson.creatorName" editable="false" placeholder="" comment-model-index="'linkComments'" comment-model-wrap="lesson" comment-changed="commentChanged(comment)"/>
+		</div>
+		</div>
+	</div>
+
+	<div class="box box-expanded" ng-if="lesson.highlightedStats.length>0">
+		<div class="box-title" ng-click="toggleBoxSlide($event)">
+			<div class="dropdown-arrow"/>
+				{{dictionary.meetingStats}}
+			</div>
+		<div class="box-content">
+			<div class="padded-content padding-start-content">
+				<div ng-repeat="stat in lesson.highlightedStats" class="shared-stat">
+					{{stat}}
+				</div>
+			</div>
+			<meeting-comment profile-pic="lesson.creatorImage" profile-name="lesson.creatorName" editable="false" placeholder="" comment-model-index="'statsComments'" comment-model-wrap="lesson" comment-changed="commentChanged(comment)"/>
+		</div>
+	</div>
+
+</div>
+	
+	<div class="box box-expanded" ng-if="lesson.comments.length>0">
+		<div class="box-title" ng-click="toggleBoxSlide($event)">
+			<div class="dropdown-arrow"/>
+				{{role==2 ? dictionary.yourNotesText : dictionary.teacherNotesText}}
+			</div>
+			<div class="box-content">
+				<meeting-comment profile-pic="lesson.creatorImage" profile-name="lesson.creatorName" editable="false" placeholder="" comment-model-index="'comments'" comment-model-wrap="lesson" comment-changed="commentChanged(comment)"/>
+			</div>
+		</div>
+		<br/>
+	</div>

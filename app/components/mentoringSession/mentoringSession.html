@@ -1,0 +1,115 @@
+<div class="create-lesson-wrap">
+	<!--popup to confirm session creation-->
+	<div ng-show="showPopupSaveSession">
+		<div class="popupBackground" ng-click="showPopupSaveSession=false"></div>
+		<div class="popup">
+			<div class="confirm-session-creation">
+				{{dictionary.confirmSessionCreation}}
+			</div>
+			<div class="yes-no-btn editLesson">
+				<div class="cancel" ng-click="showPopupSaveSession=false">
+					{{dictionary.backToChangeText}}
+				</div>
+				<div class="confirm" ng-click="confirmSessionCreation()">
+					{{dictionary.confirmCourseText}}
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--beginning of main form-->
+	<!--session type field-->
+	<div class="box box-expanded">
+		<div class="box-title" ng-click="toggleBoxSlide($event)">
+			<div class="dropdown-arrow"/>
+			{{dictionary.planForSession}}
+		</div>
+		<div class="box-content box-content-large">
+			<div class="padded-content padding-start-content">
+				<div class = "session-popup session-type-popup">
+					<div class="options-wrap">
+						<div ng-repeat="type in sessionTypes " class="session-type-option">
+							<input id="{{'type-'+type.id}}" type="radio" ng-model="$parent.sessionType" name="sessionType" value="{{type.id}}"/>
+							<label for="{{'type-'+type.id}}">
+								<div class="vi-img selectable">
+								</div>
+								{{type.he}}
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="box box-expanded">
+		<div class="box-title" ng-click="toggleBoxSlide($event)">
+			<div class="dropdown-arrow"/>
+			{{dictionary.whoWillParticipate}}
+		</div>
+		<div class="box-content box-content-large">
+			<div class="padded-content padding-start-content">
+				<div class = "session-popup session-type-popup">
+					<div class="options-wrap">
+						<div class="blue-title">
+						{{dictionary.invitedStudents}}
+						</div>
+						<div ng-repeat="student in students" ng-if="student.checked" class="student-option">
+							<input id="{{'student - '+student.userid}}" type="checkbox" ng-model="student.checked" name="{{'student - '+student.userid}" ng-true-value="true" ng-false-value="false"/>
+							<label for="{{'student - '+student.userid}}">
+								<div class="pupil-image" style="{{student.image != '' ? 'background-image:url('+imgsDomain+ student.image+')':'background-image:url(./img/profile.svg)'}}"></div>
+								<div class="student-name">
+									{{student.fullname}}
+								</div>
+							</label>
+						</div>
+						<div class="blue-title">
+							{{dictionary.uninvitedStudents}}
+						</div>
+						<div ng-repeat="student in students" ng-if="!student.checked" class="student-option">
+							<input id="{{'student - '+student.userid}}" type="checkbox" ng-model="student.checked" name="{{'student - '+student.userid}" ng-true-value="true" ng-false-value="false"/>
+							<label for="{{'student - '+student.userid}}">
+								<div class="pupil-image" style="{{student.image != '' ? 'background-image:url('+imgsDomain+ student.image+')':'background-image:url(./img/profile.svg)'}}"></div>
+								<div class="student-name">
+									{{student.fullname}}
+								</div>
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--session time fields-->
+	<div class="timeCreateLesson">
+		<div class="box two-column-box">
+			<div class="box-title">
+				<img src="./img/calendar.svg" title="{{dictionary.dayText}}" alt="{{dictionary.dayText}}"/><br/>
+				<input id="lesson-date-picker" class="schedule-picker" type="text" ng-model="date" placeholder="{{dictionary.dayText}}"/>
+			</div>
+		</div>
+		<div class="box two-column-box">
+			<div class="box-title">
+				<img src="./img/clock.svg" title="{{dictionary.TimeText}}" alt="{{dictionary.TimeText}}"/><br/>
+				<input id="lesson-hour-picker" class="schedule-picker" type="text" ng-model="timepicker" data-format="hh:mm:ss" placeholder="{{dictionary.TimeText}}"/>
+			</div>
+		</div>
+	</div>
+	<!--session comments field-->
+	<div class="box box-expanded">
+		<div class="box-title" ng-click="toggleBoxSlide($event)">
+			<div class="dropdown-arrow"/>
+			{{dictionary.notesPlaceText}}
+		</div>
+		<div class="box-content">
+			<div class="comment">
+				<meeting-comment profilePic="lesson.creatorImage" editable="true" placeholder="dictionary.moreToKnowText" comment-model-index="'comments'" comment-model-wrap="lesson" comment-changed="commentChanged(comment)"/>
+			</div>
+		</div>
+	</div>
+
+	<div class="blue-btn" ng-class="{'disable': !sessionValidation()}" ng-click="sessionValidation()?showPopupSaveSession=true:''">
+		<span class="text">{{dictionary.saveMeetingText}}<span>
+	</div>
+	<div class="preload-images">
+		<img src="./img/btn_check_on_normal.png" />
+	</div>
+</div>

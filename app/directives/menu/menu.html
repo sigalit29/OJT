@@ -1,0 +1,8 @@
+<div class="menu-icon-wrap">
+<div>
+	<div ng-class="isIos? 'menu-icon ios' : 'menu-icon'" ng-if="!($state.is('login')||$state.is('syllabusDashboard')||$state.is('changePassword')||$state.is('resetPassword') || $state.is('mentoringSession') || $state.is('studentSignup') || $state.is('userProfile') || $state.is('myClassroom') || $state.is('nextLesson') || $state.is('grade') || $state.is('createLesson')|| $state.is('syllabus')|| $state.is('subjectFeedback') || $state.is('attendanceApproval') || $state.is('teacherDashboard') || $state.is('lessonHistory'))" ng-click="toggleMenu()"></div>
+	<div ng-click="backClick()" ng-if="$state.is('syllabusDashboard')||$state.is('resetPassword') || $state.is('mentoringSession') || $state.is('studentSignup') || $state.is('userProfile') || $state.is('myClassroom') || $state.is('nextLesson') || $state.is('grade') || $state.is('subjectFeedback') || $state.is('createLesson') || $state.is('attendanceApproval') || $state.is('syllabus') || $state.is('teacherDashboard') || $state.is('lessonHistory')" class="menu-icon dartIcon"></div>
+</div>
+
+<sidebar></sidebar>
+</div>

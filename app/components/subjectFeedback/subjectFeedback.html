@@ -1,0 +1,28 @@
+<div class="content-by-mask">
+	<br/>
+	<div>
+		<div>{{dictionary.tellUsText}}</div>
+		<div>{{dictionary.lastLessonStudyText}}</div>
+	</div>
+	<br>
+	<div class="slider-wrap" ng-repeat="s in subjects" ng-class="{'first': $first}" ng-init="s.questiontype ='close'">
+		<feedback-slider grading="s.grading" question="isArabic ? s.subjectinarabic : s.subject" answers="dictionary.understandingGrading" answer-text-index="'name'" answer-value-index="'value'" min-grading="0" max-grading="4" increment="1" display-answer="true"></feedback-slider>
+	</div>
+	<div ng-repeat="s in customSubjects" class="slider-wrap">
+		<feedback-slider grading="s.rading" question="s.subject" answers="dictionary.understandingGrading" answer-text-index="'name'" answer-value-index="'value'" min-grading="0" max-grading="4" increment="1" display-answer="true"></feedback-slider>
+	</div>
+	<div class="comment-wrapper">
+		<comment placeholder="{{dictionary.addSomethingText}}" bgname="blue" comment-changed="commentChanged(comment)"></comment>
+	</div>
+	<br>
+	<div class="main-btn open" ng-click="sendFeedback()">
+		<span class="text">{{dictionary.finishNameText}}</span>
+	</div>
+</div>
+<div class="preload-images">
+    <img class="load-img" src="./img/01_ic_face.png" width="1" height="1">
+    <img class="load-img" src="./img/02_ic_face.png" width="1" height="1">
+    <img class="load-img" src="./img/03_ic_face.png" width="1" height="1">
+    <img class="load-img" src="./img/04_ic_face.png" width="1" height="1">
+    <img class="load-img" src="./img/05_ic_face.png" width="1" height="1">
+</div>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44">
+    <defs>
+        <style>
+            .cls-1,.cls-4{fill:none}.cls-1,.cls-2{stroke:#15457d}.cls-1{stroke-width:2px}.cls-2{fill:#15457d;stroke-width:.5px}.cls-3{stroke:none}
+        </style>
+    </defs>
+    <g id="סילבוס" transform="translate(-310 -372)">
+        <g id="Ellipse_329" class="cls-1" data-name="Ellipse 329" transform="translate(310 372)">
+            <circle cx="22" cy="22" r="22" class="cls-3"/>
+            <circle cx="22" cy="22" r="21" class="cls-4"/>
+        </g>
+        <g id="Group_171" data-name="Group 171" transform="translate(-72.186 168.565)">
+            <path id="Path_677" d="M21.9 28.8a2.627 2.627 0 1 1 2.627-2.613A2.627 2.627 0 0 1 21.9 28.8zm0-4.285a1.658 1.658 0 1 0 1.177.491 1.658 1.658 0 0 0-1.177-.491z" class="cls-2" data-name="Path 677" transform="translate(372.06 191.17)"/>
+            <path id="Path_678" d="M50.963 28.969H33.635a.485.485 0 1 1 0-.969h17.328a.485.485 0 1 1 0 .969z" class="cls-2" data-name="Path 678" transform="translate(364.907 188.877)"/>
+            <path id="Path_679" d="M21.9 44.9a2.627 2.627 0 1 1 2.627-2.627A2.627 2.627 0 0 1 21.9 44.9zm0-4.28a1.658 1.658 0 1 0 1.658 1.653 1.658 1.658 0 0 0-1.658-1.649z" class="cls-2" data-name="Path 679" transform="translate(372.06 182.873)"/>
+            <path id="Path_680" d="M50.963 45.039H33.635a.485.485 0 1 1 0-.969h17.328a.485.485 0 1 1 0 .969z" class="cls-2" data-name="Path 680" transform="translate(364.907 180.596)"/>
+            <path id="Path_681" d="M21.9 61.014a2.627 2.627 0 1 1 2.627-2.627 2.627 2.627 0 0 1-2.627 2.627zm0-4.285a1.658 1.658 0 1 0 1.658 1.658 1.658 1.658 0 0 0-1.658-1.658z" class="cls-2" data-name="Path 681" transform="translate(372.06 174.572)"/>
+            <path id="Path_682" d="M50.963 61.149H33.635a.485.485 0 0 1 0-.969h17.328a.485.485 0 1 1 0 .969z" class="cls-2" data-name="Path 682" transform="translate(364.907 172.294)"/>
+        </g>
+    </g>
+</svg>

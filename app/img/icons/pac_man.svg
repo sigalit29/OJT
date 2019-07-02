@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 75.914 68.996">
+    <defs>
+        <style>
+            .cls-1{fill-rule:evenodd;fill:url(#linear-gradient)}
+        </style>
+        <linearGradient id="linear-gradient" x1=".5" x2=".5" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#b5d7ff"/>
+            <stop offset=".42" stop-color="#7ebffe"/>
+            <stop offset="1" stop-color="#4a90e2"/>
+        </linearGradient>
+    </defs>
+    <path id="Pac_Man" d="M92.784 50.549a34.5 34.5 0 1 0 3.461 37.926l-30.38-16.349zm8.257 11.986a6.243 6.243 0 1 1-6.241 6.243 6.246 6.246 0 0 1 6.241-6.244z" class="cls-1" data-name="Pac Man" transform="translate(-31.37 -37.625)"/>
+</svg>

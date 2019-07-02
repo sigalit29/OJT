@@ -1,0 +1,238 @@
+
+<span 	modal-confirm2
+         control="alertcontrol"
+         text="למחוק את מדריך משני {{user.firstname}} {{user.lastname}}?"
+         on-confirm="deleteSecondTeacher()"
+>
+</span>
+<div id="wrapper">
+	<header></header>
+	<div id="page-wrapper">
+		<h2 class="page-title">{{courseid?"עריכת קורס":"יצירת קורס"}}</h2>
+		<form ng-submit="SaveCourse()">
+			<div>
+				<p>שם קורס: {{course.name}}</p>
+				<p>קוד קורס: {{course.code}}</p>
+			</div>
+			<div ng-if="isAdmin">
+				<toggle toggle-disabled="true" ng-init="course.status=='1'?true:false" ng-model="course.status" ng-change="changed()" on="פעיל" off="לא פעיל"></toggle>
+			</div>
+			<br>
+			<div class="form-row">
+				<div class="input-col">
+					<div class="input-wrapper">
+						<label>שם קורס מלא</label>
+						<input required tabindex="1" class="input-content form-input ng-invalid" ng-model="course.name">
+					</div>
+				</div>
+				<div class="input-col">
+					<div class="input-col">
+						<div class="input-wrapper">
+							<label>שם קורס מקוצר בעברית</label>
+							<input required tabindex="2" class="input-content form-input" ng-model="course.subname">
+						</div>
+					</div>
+					<div class="input-col">
+						<div class="input-wrapper">
+							<label>שם קורס מקוצר בערבית</label>
+							<input required tabindex="3" class="input-content form-input" ng-model="course.subnameinarabic">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="input-col">
+					<div class="input-wrapper">
+						<label>פרוייקט</label>
+						<select required tabindex="4" class="input-content form-input" ng-model="course.projectid" ng-change="changeProject(course.projectid)" ng-options="project.projectid as project.projectname for project in projects"></select>
+					</div>
+				</div>
+				<div class="input-col">
+					<div class="input-wrapper">
+						<label>תגיות</label>
+						<multi-selector tabindex="5" options="(projects | filter:filterCurrProjectTags:true)[0].projecttags" value-index="'projecttagid'" text-index="'projecttagname'" values="course.tags" class="form-input"></multi-selector>
+					</div>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="input-col">
+					<div class="input-wrapper">
+						<label>עיר</label>
+						<select required tabindex="6" class="input-content form-input" ng-model="course.cityid" ng-options="city.cityid as city.name for city in cities"></select>
+					</div>
+				</div>
+				<div class="input-col">
+					<div class="input-wrapper">
+						<label>שנת תקציב</label>
+						<select required tabindex="7" class="input-content form-input" ng-model="course.yearbudgetid" ng-options="budgetyear.yearbudgetid as budgetyear.year for budgetyear in budgetyears"></select>
+					</div>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="input-col">
+					<div class="input-wrapper">
+						<label>מדריך</label>
+						<input ng-model="course.primaryTeacherName" required tabindex="8" class="input-content form-input" ng-click="isAdmin?chooseTeacher=true:''">
+						</input>
+					</div>
+					<popup visibility="chooseTeacher">
+						<div class="popup-header">בחירת מדריך</div>
+						<div class="popup-content-wrap">
+							<search-selector on-search="searchUsersToEnroll" on-select="assignPrimaryTeacher" value-index="'userid'" text-index="'userinfo'" search-placeholder="'חיפוש מדריך'" results-arr-index="'users'"></search-selector>
+						</div>
+					</popup>
+				</div>
+			</div>
+			<hr>
+			<h5>סילבוס:</h5>
+			<div class="clickable button file-upload-button">
+				<label for="syllabus-import">העלה סילבוס <i class="fa fa-upload"></i></label>
+				<input id="syllabus-import" type="file" accept=".csv,.xlsx" ngf-select="uploadSyllabus($files)">
+			</div>
+			עברית
+			<br>
+			<div ng-repeat="(sIndex, subject) in course.subjects">
+				<hierarchy
+						depth="1"
+						functions="{'addSubject':addSubject, 'deleteSubject':deleteSubject, 'switchSubjects':switchSubjects}"
+						roots="course.subjects" path="[sIndex]" node="subject" children="'subsubjects'" template="'
+					<div ng-if=\'!disable&&path.length>1\' ng-click=\'openSelector()\' class=\'clickable subject-action\'><span class=\'fa fa-arrow-right\'></span></div>
+					<input ng-model=\'node.subject\'>
+					<div ng-if=\'!disable\' ng-click=\'functions.addSubject(node[children])\' class=\'clickable subject-action\'><span class=\'fa fa-plus\'></span></div>
+					<div ng-if=\'!disable\' ng-show=\'roots.indexOf(node)>0\' ng-click=\'functions.switchSubjects(node, roots, -1)\' class=\'clickable subject-action\'><span class=\'fa fa-arrow-up\'></span></div>
+					<div ng-if=\'!disable\' ng-show=\'roots.indexOf(node)<roots.length-1\' ng-click=\'functions.switchSubjects(node, roots, 1)\' class=\'clickable subject-action\'><span class=\'fa fa-arrow-down\'></span></div>
+					<div ng-if=\'!disable\' ng-click=\'functions.deleteSubject(node, roots)\' class=\'clickable subject-action\'><span class=\'fa fa-close\'></span></div>
+				'">
+				</hierarchy>
+			</div>
+			<br>
+			<button ng-click="addSubject(course.subjects)" type="button" class="button add-subject">+ נושא</button>
+			<button ng-click="emptySyllabus(course.subjects)" type="button" class="button">ריקון סילבוס</button>
+			<hr>
+			<div ng-if="courseid">
+				<button ng-click="openEnrollmentForm()" type="button" class="button add-subject">+ משתמש</button>
+				<popup visibility="enroll">
+					<div class="popup-header">שיוך משתמשים לתפקיד בקורס</div>
+
+					<div class="popup-content-wrap">
+						<div id="yul">
+							<select style="height: 3vh;" ng-model="toAssign.roleid" ng-options="role.enrollmentroleid as role.enrollmentrole for role in roles">
+							</select>
+						</div>
+						<search-selector on-search="searchUsersToEnroll" on-select="addUserToEnrollmentList" value-index="'userid'" text-index="'userinfo'" search-placeholder="'חיפוש משתמש'" results-arr-index="'users'" selected="toEnrollUsers"></search-selector>
+					</div>
+
+					<div class="popup-controls">
+						<div class="popup-control popup-approve" ng-click="commitNewEnrollments(toAssign.roleid)">אישור</div>
+						<div class="popup-control popup-cancel" ng-click="closeEnrollmentForm()">ביטול</div>
+					</div>
+				</popup>
+				<br>
+				<br>
+				<div ng-if="isAdmin" style="font-size: 15px; color:red ;font-weight: bold;">
+					<p>מנהל מערכת שים לב - לפני שינוי סטטוס בטבלת החניכים יש לזכור:</p>
+					<p>סטטוס הרשמה: 1= פעיל, 0= בוגר\נשר\סיים </p>
+				</div>
+				<div ng-repeat="role in roles">
+					<p>{{role.enrollmentrole}}</p>
+					<div>
+						<input type="text" class="form-input search-bar" placeholder="חיפוש חניך" ng-model="displayedEnrollments[role.enrollmentroleid].search" ng-keypress="preventSubmit($event)" ng-keyup="$event.keyCode == 13?displayedEnrollments[role.enrollmentroleid].page=0:''; $event.keyCode == 13?getEnrolledUsersInRole(role.enrollmentroleid):'';">
+						<div   class="clickable search-button"><i class="fa fa-search" aria-hidden="true" ng-click="displayedEnrollments[role.enrollmentroleid].page=0; getEnrolledUsersInRole(role.enrollmentroleid);"></i></div>
+					</div>
+					<page-navigator data="{'roleid':role.enrollmentroleid}" page-count="displayedEnrollments[role.enrollmentroleid].pageCount" page-index="displayedEnrollments[role.enrollmentroleid].page" go-to-page="goToEnrolledUsersOfRolePage" loading="displayedEnrollments[role.enrollmentroleid].loading"></page-navigator>
+					<div class="scrolling-table-wrapper">
+						<div class="scrolling-table">
+							<table class="table-striped table-bordered table-hover midrows">
+								<thead class="fixed-tbl">
+								<tr>
+									<th class="small-cell fixed-col1">שם</th>
+									<th class="small-cell fixed-col2">שם משפחה</th>
+
+									<th ng-if="isAdmin" class="small-cell">תפקיד</th>
+									<th class="small-cell">מגדר</th>
+									<th class="small-cell">מגזר</th>
+									<th class="small-cell">סטטוס</th>
+									<th class="large-cell">אימייל</th>
+									<th class="small-cell">ת"ז</th>
+									<th class="small-cell">טלפון</th>
+									<th class="large-cell">כתובת</th>
+									<th class="small-cell">תאריך לידה</th>
+									<th class="large-cell" ng-repeat="field in customFields">
+										{{field.field}}
+									</th>
+								</tr>
+								</thead>
+								<tbody class="fixed-tbl">
+								<tr ng-repeat="user in displayedEnrollments[role.enrollmentroleid].users">
+									<td ng-if="role.enrollmentroleid==2 && user.userid!=course.primaryTeacherId && isAdmin"
+										class="row-action fixed-col0"
+										ng-click="showModalDeleteSecondTeacher(user,courseid,role.enrollmentroleid)"
+									>
+										<img src="./img/Xicon.png"/>
+									</td>
+									<td class="small-cell fixed-col1" ng-click="goToUserPage(user)">{{user.firstname}}</td>
+									<td class="small-cell fixed-col2" ng-click="goToUserPage(user)">{{user.lastname}} 	</td>
+									<td ng-if="isAdmin" class="small-cell" ng-class="{'warning':(user.enrollmentroleid=='')}">
+										<select ng-model="user.enrollmentroleid" ng-change="UpdateUserEnrollmentRole(user)" ng-options="role.enrollmentroleid as role.enrollmentrole for role in roles">
+										</select>
+									</td>
+									<td class="small-cell" ng-class="{'warning':(user.genderid=='')}">
+										<select ng-model="user.genderid" ng-change="UpdateUserGender(user)" ng-options="gender.genderid as gender.name for gender in genders">
+										</select>
+									</td>
+									<td class="small-cell" ng-class="{'warning':(user.religionid=='')}">
+										<select ng-model="user.religionid" ng-change="UpdateUserReligion(user)" ng-options="religion.religionid as religion.name for religion in religions">
+										</select>
+									</td>
+									<td  ng-if= "role.enrollmentroleid==1" class="small-cell" ng-class="{'warning':(user.enrollmenttagid=='')}">
+										<select ng-model="user.enrollmenttagid" ng-change="UpdateEnrollmentTag(user)" ng-options="enrollmenttag.enrollmenttagid as enrollmenttag.name for enrollmenttag in StudentsEnrollmentTags">
+										</select>
+									</td>
+									<td  ng-if= "role.enrollmentroleid==2" class="small-cell" >
+										<select ng-model="user.status" ng-change="UpdateUserStatus(user)">
+											<option value="0">לא פעיל</option>
+											<option value="1">פעיל</option>
+										</select>
+									</td>
+									<td class="large-cell">{{user.email}}</td>
+									<td class="small-cell">{{user.tznumber}}</td>
+									<td class="small-cell">{{user.phone}}</td>
+									<td class="large-cell">{{user.cityname}} {{user.address}}</td>
+									<td class="small-cell">{{!user.birthday.includes('0000-00-00')?user.birthday:''}}</td>
+									<td class="large-cell" ng-repeat="field in customFields">
+										<custom-field
+												value="user.enrollmentFields[field.enrollment_field_id].enrollmentFieldValue"
+												field-type="field.fieldtype"
+												params="field.params"
+												on-change="UpdateUserEnrollmentField"
+												field-id="field.enrollment_field_id"
+												enrollment-id="user.enrollmentid"
+												user-id="user.userid"
+										/>
+									</td>
+								</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<page-navigator data="{'roleid':role.enrollmentroleid}" page-count="displayedEnrollments[role.enrollmentroleid].pageCount" page-index="displayedEnrollments[role.enrollmentroleid].page" go-to-page="goToEnrolledUsersOfRolePage" loading="displayedEnrollments[role.enrollmentroleid].loading"></page-navigator>
+					<div excel-export file-name = "{{course.name}}_{{role.enrollmentrole}}" get-data = "getEnrolledUsersInRoleFull" param-obj = "{'param1':  role}" make-header="false" ng-show="displayedEnrollments[role.enrollmentroleid].users.length>0"></div>
+					<hr>
+				</div>
+
+
+			</div>
+			<div ng-if="!courseid">
+				<h4>יש לשמור את הקורס לפני שניתן לצרף משתמשים</h4>
+				<br/>
+			</div>
+			<div class="card-controls">
+					<button type="submit" class="button card-control commit-card-edit">שמור</button>
+				<button type="button" class="button card-control cancel-card-edit" ng-click="goBack()">בטל</button>
+				<button type="button" class="button card-control duplicate-card"   ng-click="duplicateCourse()">שכפל</button>
+			</div>
+			<br>
+		</form>
+	</div>
+</div>
+
