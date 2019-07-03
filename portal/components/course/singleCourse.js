@@ -90,23 +90,7 @@ function($rootScope, $scope, $state, $stateParams, $http, $q, userService, Uploa
         server.requestPhp(data,'UpdateUserEnrollmentField').then(function (data) {});
     };
 
-
-    var ConvertUnixTimeStemp = function(timestamp){
-        var date = new Date(timestamp*1000);
-		// Hours part from the timestamp
-        var hours = date.getHours();
-		// Minutes part from the timestamp
-        var minutes = "0" + date.getMinutes();
-		// Seconds part from the timestamp
-       // var seconds = "0" + date.getSeconds();
-
-        var year = date.getFullYear();
-        var month = date.getMonth();
-        var day = date.getDate();
-		// Will display time in 10:30 format
-        var timestamp =day+'/'+month+'/'+year+' '+ hours + ':' + minutes.substr(-2) ;
-        return timestamp;
-	};
+    
 
     var getCourse=function() {
 		var data ={};
