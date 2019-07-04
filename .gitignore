@@ -5,6 +5,5 @@ data/images/*
 Digital-Classroom.iml
 .idea/**
 app/config.js
-server/config.php
 
 
