@@ -1,0 +1,256 @@
+.reminder {
+    position: relative;
+    width: 100%;
+    height: 5.5vh;
+    margin-top: 4%;
+}
+
+.right-toggle {
+    position: absolute;
+    font-size: 5vw;
+    color: #15457d;
+    width: 38%;
+    height: 9vw;
+    bottom: 0;
+    margin: auto;
+}
+
+.left-toggle {
+    left: 0;
+}
+
+div[id="val1"]::after{
+     color: red;
+     content: "*";
+ }
+meeting-comment[id="val2"]{
+    color: red;
+}
+.create-lesson-wrap .blue-btn {
+	height: 10vw;
+	width: 40%;
+	line-height: 10vw;
+	border: 2px solid;
+	color: #4a90e2;
+	margin:  auto;
+	margin-top: 10%;
+	margin-bottom: 10%;
+}
+
+.schedule-picker {
+    width: 80%;
+	margin: 0 auto;
+	border: none;
+	outline: none;
+	color: #4a90e2;
+    font-size: 20px;
+    font-family: Assistant-SemiBold;
+	text-align: center;
+}
+
+#lesson-hour-picker {
+    right: initial;
+    left: 0;
+    z-index: 2;
+}
+
+.pickers-wrap{
+	height: 0;
+	overflow: hidden;
+    visibility: hidden;
+	position: relative;
+}
+.pickers-wrap input{
+	border: none;
+	color: transparent;
+	background-color: transparent;
+}
+.pickers-wrap.visible-pickers{
+	height: 300px;
+	visibility: visible;
+}
+.bootstrap-datetimepicker-widget{
+	right: 0 !important;
+	left: 0!important;
+	margin: 0 auto;
+	top: 40vw !important;
+}
+.syllabus-wrap .hierarchy-level
+{
+	background-color: rgba(25, 55, 90, 0.05);
+	width: 90%;
+	margin-right: auto;
+}
+.syllabus-wrap .hierarchy-level
+{
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+.subj-header {
+    position: relative;
+    width: 100%;
+    text-align: right;
+}
+
+.open .subj-header {
+    background-color: #EEF4FB;
+}
+
+.general-img, .close-img {
+    background: transparent;
+    width: 8vw;
+    height: 8vw;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow: auto;
+    z-index: 1000;
+    display: inline-block;
+    padding-top: 0;
+    vertical-align: middle;
+    position: absolute;
+    top: 0;
+    left :0;
+}
+.general-img.selectable {
+    background-image: url(../img/edit_picture.svg);
+    filter: brightness(0.1) sepia(1) hue-rotate(180deg) saturate(5);
+    width: 4vw;
+    height: 4vw;
+    top: 3vw;
+}
+.close-img.selectable {
+    background-image: url(../img/close_x.svg);
+    filter: brightness(0.1) sepia(1) hue-rotate(180deg) saturate(5);
+    left :8vw;
+    width: 5vw;
+    top: 1vw;
+}
+.node-content {
+    position: relative;
+}
+
+.vi-img {
+    background: transparent;
+    width: 10vw;
+    height: 10vw;
+    background-repeat: no-repeat;
+    background-size: 5vw;
+	background-position: center;
+    overflow: auto;
+    z-index: 1000;
+    display: inline-block;
+    padding-top: 0;
+    vertical-align: middle;
+}
+.vi-img.selectable {
+    background-image: url(../img/vi_unchecked.svg);
+}
+.vi-img.selected {
+    background-image: url(../img/vi_checked.svg);
+}
+.vi-img.semiSelected {
+    background-image: url(../img/vi_semi.svg);
+}
+.syllabus-wrap .subject-name {
+	width: calc(100% - 10% - 11vh);
+    /*white-space: nowrap;*/
+}
+.subject-name {
+    width: 90%;
+    padding-right: 2%;
+    display: inline-block;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    overflow: hidden;
+	font-size: 16px;
+}
+.stat-to-share{
+	width: 80%;
+    padding-right: 2%;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 16px;
+    /*white-space: pre-line;*/
+
+}
+.shared-stat {
+    padding-right: 2%;
+    display: inline-block;
+    vertical-align: middle;
+	font-size: 16px;
+    white-space: pre-line;
+}
+.custom-subject input{
+	border: none;
+	border-bottom: 1px solid;
+	width: 100%;
+	outline: none;
+}
+.custom-subject .plus-img{
+	width: 10vw;
+    height: 10vw;
+	background-image: url(../img/plus_unchecked.svg);
+    background-repeat: no-repeat;
+    background-size: 5vw;
+	background-position: center;
+    display: inline-block;
+    padding-top: 0;
+    vertical-align: middle;
+	transition: background 0.25s;
+}
+.custom-subject .plus-img.selected{
+	background-image: url(../img/plus_checked.svg);
+}
+.link-source{
+	width: 1.75em;
+	margin: 0.25em 0;
+	margin-left: 0.25em;
+	display: inline-block;
+}
+.youtube-iframe{
+	width: 100%;
+    padding: 0;
+    border: none;
+    margin-top: 5%;
+}
+.meeting-link-input{
+	border: none;
+	width: 100%;
+	text-align: left;
+	margin: 0 auto;
+	display: block;
+	border-bottom: 1px solid;
+	outline: none;
+}
+.general-img {
+    background: transparent;
+    width: 10vw;
+    height: 10vw;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow: auto;
+    z-index: 1000;
+    display: inline-block;
+    padding-top: 0;
+    vertical-align: middle;
+}
+.spacertop {
+    margin-top: 5%;
+}
+.cancel-img{
+    background-image: url(../img/close_x.svg);
+    padding: 6px 0px 2px 0px;
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow: auto;
+    z-index: 1000;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+} 
+.edit-pic {
+    width: 30px;
+    height: 30px;
+}

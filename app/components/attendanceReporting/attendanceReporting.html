@@ -1,0 +1,46 @@
+<div class="course-wrap page-padding-top">
+	<div class="checkin-section">
+		<div class="welcome-text">
+			<br>
+			<div>{{dictionary.hellowWordText}} {{userName}}!</div>
+			<div>
+				{{dictionary.SoonMeetingText}}
+			</div>
+			<div class="bold">{{dictionary.SeeYouText}}</div>
+		</div>
+		<div class="welcome-text" ng-class="{'hidden-welcome-text': !collapseCircles}">
+			<div>{{responseTextForUserCheckin}}</div>
+		</div>
+
+		<div class="circles-wrap" ng-class="{'collapse-circles' : collapseCircles}">
+			<div id="expandingCircles" ng-show="(!collapseCircles)">
+				<div class="animated-circle"></div>
+				<div class="animated-circle"></div>
+				<div class="animated-circle"></div>
+				<div class="animated-circle"></div>
+			</div>
+			<div id="collapsingCircles" ng-show="(collapseCircles)">
+				<div class="animated-circle"></div>
+				<div class="animated-circle"></div>
+				<div class="animated-circle"></div>
+				<div class="animated-circle"></div>
+			</div>
+			<div class="late" ng-click="actionClick(1)"></div>
+			<div class="not-arrive" ng-click="actionClick(2)"></div>
+			<div class="checkin" ng-click="reportAttendance(0)"></div>
+		</div>
+		<div class="dark-mask" ng-show="showConfirmBubble">
+			<div class="checkinBubble">
+				<div class="bubble-header"><div>{{bubbleText}}</div>
+					<div>{{bubbleSubText}}</div>
+				</div>
+				<div class="bubble-footer">
+					<span class="cancel" ng-click="cancel()">{{dictionary.cancelText}}</span>
+					<span class="action" ng-click="reportAttendance(actionType)">{{bubblefooterBtn}}</span>
+				</div>
+				<div class="triangle" ng-class="{'not-arrive-pos' : trianglePos == 'not attendance' ,'late-pos' : trianglePos == 'late'   }"></div>
+			</div>
+		</div>
+		
+	</div>
+</div>

@@ -1,0 +1,370 @@
+.dashboard {
+	overflow: auto;
+	height: calc(100% - 10vh);
+}
+.meeting-dashboard {
+	
+}
+.swiper-container {
+	height: 100%;
+	overflow: scroll;
+}
+.meeting-wrap {
+	height: calc(100% - 9.5vw);
+	overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch;
+	transition: opacity 0.75s, filter 0.75s;
+	-webkit-transition: opacity 0.75s, filter 0.75s;
+	-moz-transition: opacity 0.75s, filter 0.75s;
+}
+.meeting-wrap.ignore-meeting {
+	opacity: 0.5;
+	filter: brightness(75%);
+}
+#logoPicWelcome {
+	width: 95% !Important;
+}
+.navigator-wrap {
+	height: 8vw;
+	margin-bottom: 1%;
+	background-color: #fff;
+	width: 100%;
+	-webkit-box-shadow: 0px 0px 5px 1px rgba(219,219,219,1);
+	-moz-box-shadow: 0px 0px 5px 1px rgba(219,219,219,1);
+	box-shadow: 0px 0px 5px 1px rgba(219,219,219,1);
+	color: white;
+}
+.real-swiper-button-disabled {
+	opacity: 0.5;
+	cursor: not-allowed !important;
+}
+.curr-meeting-properties {
+	padding: 1.25vw;
+	background-color: #15457d;
+}
+.nav-button {
+	width: 1em;
+	height: 1em;
+	margin: 0 5%;
+	background-image: url(../img/arrow_light.svg);
+	background-size: contain;
+	background-repeat:  no-repeat;
+	color: white;
+	cursor: pointer;
+}
+.prev-meeting-button {
+	float: right;
+	transform: rotate(270deg);
+}
+.next-meeting-button {
+	float: left;
+	transform: rotate(90deg);
+}
+.curr-meeting-date {
+	line-height: 9.5vw;
+}
+.report-block {
+	width: 92.8%;
+	border-radius: 10px;
+	background-color: #f8f7f7;
+	margin: 2.5% auto;
+	padding-bottom: 5%;
+	color: #15457d;
+}
+.report-block:last-child {
+	margin-bottom: 2.5%;
+}
+.report-block-header {
+	font-size: 1.25em;
+	font-weight: bold;
+	text-align: right;
+	padding: 3% 5%;
+	width: 100%;
+	box-sizing: border-box;
+	background-color: #f1efef;
+	-webkit-border-top-left-radius: 10px;
+	-webkit-border-top-right-radius: 10px;
+	-moz-border-radius-topleft: 10px;
+	-moz-border-radius-topright: 10px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+.report-first-view-indicator {
+	display: inline-block;
+    width: 1.5em;
+    float: left;
+}
+.report-block-content {
+	text-align: right;
+}
+.report-segment {
+	border: 2px #e2e2e2 solid;
+	padding-bottom: 2.55%;
+	margin: 2.5% 5%;
+	/* margin-top: 0%; */
+	width: 90%;
+}
+.report-segment.sub-segment {
+	width: 48%;
+}
+.report-segment-title {
+	font-weight: bold;
+	margin-bottom: 0px;
+}
+.sub-segment .report-segment-title {
+	margin: 5% 0px;
+	font-size: 90%;
+}
+/*numerical values styling*/
+.report-values-wrap {
+	/*float: right;*/
+	display: inline-block;
+	vertical-align: middle;
+	width: 65%;
+	/*margin-top: 3vw;*/
+}
+.sub-segment .report-values-wrap {
+	width: 45%;
+}
+.report-values-wrap p {
+	margin-bottom: 5px;
+}
+.report-value {
+	font-size: 220%;
+	display:inline-block;
+}
+/*i button to get more information*/
+.more-info
+{
+    font-size: 1em;
+    height: 7vw;
+    width: 7vw;
+    text-align: center;
+    line-height: 7vw;
+    border: 0.2vw solid #15457d;
+    border-radius: 50%;
+    font-family: cursive;
+    display: inline-block;
+    margin-right: 5%;
+    bottom: calc(1.1em - 3.5vw);
+    position: relative;
+}
+.report-value-details {
+	font-size: 80%;
+	padding-right: 2vw;
+}
+/*text size in regular segment*/
+.report-segment .report-value {
+	font-size: 220%;
+}
+/*text size in sub segment*/
+.report-segment.sub-segment .report-value {
+	font-size: 150%;
+}
+/*chart wrap*/
+.report-chart-wrap {
+	display: inline-block;
+	vertical-align: middle;
+	width: 30%;
+	/*float: left;*/
+	/*margin-left: 5%;*/
+}
+.sub-segment .report-chart-wrap{
+	width: 42.5%;
+}
+.placeholder
+{
+	width:100%;
+	text-align: center;
+	vertical-align:middle;
+	margin-top:7.5%;
+	font-size:110%;
+	color:#8b8b8b;
+}
+.placeholder_img
+{
+	width:22vw;
+}
+.missing-feedback-student-wrap{
+	text-align: right;
+	margin: 0.5em 1em;
+}
+/*smiley chart styling*/
+.smiley-chart {
+	width: 22vw;
+	height: 22vw;
+	/*border-radius: 21vw;*/
+	/*border: 2px #15457d solid;*/
+	top: 0px;
+	left: 0px;
+	position: relative;
+}
+/*smiley chart inside a subsegment*/
+.report-segment.sub-segment .smiley-chart {
+	width: 17vw;
+	height: 17vw;
+	/*border-radius: 16vw;*/
+}
+.smiley-chart canvas {
+	width: 100%;
+	height: 100%;
+}
+/*attendance segment*/
+.report-segment:not(.sub-segment) {
+border-left: none;
+border-right: none;
+border-top: none;
+}
+/*feedback segment*/
+.feedback-questions-wrap {
+	white-space: nowrap;
+	margin: 0 3%;
+}
+/*report sub segment, e.g. the statistics regarding a single feedback question*/
+.sub-segment {
+	border-right: none;
+	border-top: none;
+	border-bottom: none;
+	margin: 0;
+	/* padding: 0 2%; */
+}
+.sub-segment:nth-of-type(odd) {
+	float: right;
+}
+.sub-segment:nth-of-type(even) {
+	float: left;
+	border-left: none;
+}
+.sub-segment:nth-of-type(1n+3) {
+	margin-top: 5%;
+}
+.sub-segment:nth-of-type(odd) .report-chart-wrap {
+	margin-left: 7.5%;
+}
+/*dropdown menu*/
+.dropdown-content {
+	width: 90%;
+	border: none;
+	padding-bottom: 0%;
+	margin-bottom: 0%;
+	margin-top: 2.5%;
+}
+/*trick to style only first element of class*/
+.dropdown-content~
+.dropdown-content {
+	border-top: 2px #e2e2e2 solid;
+	padding-top: 5%;
+}
+/*dropdown header styling*/
+.dropdown-content-header {
+	width: 100%;
+	height: 10vw;
+}
+.dropdown-content-header .dropdown-content-title {
+	width: 80%;
+	float: right;
+	margin-top: 2.5%;
+}
+.dropdown-content-title .content-type
+{
+	font-weight: bold;
+	display: inline-block;
+}
+.dropdown-content-title .num-of-items
+{
+	display: inline-block;
+    min-width: 1em;
+    height: 1em;
+    margin-right: 5%;
+    border-radius: 100%;
+    padding: 2%;
+    text-align: center;
+    line-height: 1em;
+    border: #d9eaff solid 1px;
+    background-color: #aacef8;
+}
+.dropdown-content-header .dropdown-arrow {
+	float: left;
+	margin-top: 5%;
+	height: 25%;
+	-webkit-transition: -webkit-transform 0.5s ease-in-out;
+  -moz-transition: transform 0.5s ease-in-out;
+  -o-transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out, -ms-transform 0.5s ease-in-out;
+}
+
+.opened .dropdown-arrow {
+	-ms-transform: rotate(180deg); /* IE 9 */
+	-webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+	transform: rotate(180deg);
+}
+/*if closed, height of the list wrap is 0*/
+.dropdown-list-wrap {
+	width: 100%;
+	height: 0px;
+	overflow-y: hidden;
+}
+/*if opened, change height of list wrap to auto*/
+.opened .dropdown-list-wrap {
+	height: auto;
+}
+.dropdown-list-wrap {
+	margin: 0px;
+}
+.dropdown-list {
+	margin: 0 auto;
+}
+/*unordered list styling - don't show bullets and counter the indentation*/
+ul.dropdown-list {
+	list-style-type: none;
+	padding-right: calc(40px - 1em);
+}
+/*styling of a single item in a dropdown list*/
+.dropdown-item {
+	margin: 2.5% 0%;
+	line-height: 1em;
+	min-height: 1em;
+}
+.subjectUnderstandingName {
+	float: right;
+	width: 75%;
+}
+.subjectUnderstandingValue {
+	float: left;
+	font-weight: bold;
+	/*font-size: 125%;*/
+}
+.placeholder-comment
+{
+	list-style-type: none;
+}
+.ignore-meeting-toggle-wrap{
+	margin-bottom: 0.5em;
+}
+.ignore-meeting-toggle-wrap .toggle-label{
+	font-size: 0.9em;
+	width: 30%;
+	margin-left: 5%;
+	margin-right: 5%;
+	margin-top:  0;
+	margin-bottom: 2.5%;
+}
+/*course dashboard*/
+.course-dashboard .report-segment:not(.sub-segment) {
+border: none;
+margin-bottom: 0px;
+padding-bottom: 0px;
+}
+.bar_chart {
+	height: 30vh;
+	margin-top: 2.5%;
+	margin-bottom: 5%;
+	overflow-x: scroll;
+	overflow-y: hidden;
+}
+.bar_chart canvas {
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}

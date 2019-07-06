@@ -1,0 +1,27 @@
+<div class="blue-back-color precence">
+	<div class="presence-lis">
+		<div class="blue-title">
+			<div>{{dictionary.absentText}}</div>
+			<div class="num-of-students-per-status">{{(studentsStatuses | filter:unattendedStatus:true).length}}</div>
+		</div>
+		<div  ng-repeat="student in studentsStatuses | orderBy:'firstname'"  ng-if="student.status == 'not checkin' || student.status == 'not attendance'"  class="presence-item" ng-click="changeDontAttendanceStatus(student)"> 
+			<img src="./img/btn_check_off_normal.png" class="check-image" />
+			<div class="pupil-image" ng-click="changeAttendanceStatus(student)" style="{{student.image != '' ? 'background-image:url('+imgsDomain+ student.image+')':'background-image:url(./img/profile.png)'}}"></div>
+			<div class="name-wrap"><span class="text-pupil-name"> {{student.firstname}} {{student.lastname}} </span><!--<div class="description">55%</div>--></div>
+		</div>
+	</div>
+	<div class="presence-lis checked">
+		<div class="blue-title">
+			<div>{{dictionary.reachedText}}</div>
+			<div class="num-of-students-per-status">{{(studentsStatuses | filter:attendedStatus:true).length}}</div>
+		</div>
+		<div  ng-repeat="student in studentsStatuses | orderBy:'firstname'" ng-if="student.status == 'attendance' || student.status == 'late' "class ="presence-item" >
+			<img src="./img/btn_v_normal.png" class="check-image" ng-click="changeAttendanceStatus(student)"/>
+			<div class="pupil-image" ng-click="changeAttendanceStatus(student)" style="{{student.image != '' ? 'background-image:url('+imgsDomain+ student.image+')':'background-image:url(./img/profile.png)'}}"></div>
+			<div class="name-wrap" ng-click="changeAttendanceStatus(student)"><span class="text-pupil-name"> {{student.firstname}} {{student.lastname}}</span><!--<div class="description">55%</div>--></div>
+			<div class="left-image" ng-class="{'late-picture':student.status == 'late'}" ng-click="changeLateStatus(student)"></div>
+		</div>
+	</div>
+</div>
+
+

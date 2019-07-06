@@ -1,0 +1,25 @@
+@font-face {
+    font-family: Assistant;
+    src: url(fonts/Assistant/Assistant-Regular.ttf);
+}
+@font-face {
+    font-family: Assistant;
+	font-weight: bold;
+    src: url(fonts/Assistant/Assistant-Bold.ttf);
+}
+@font-face {
+    font-family: Assistant;
+	font-weight: light;
+    src: url(fonts/Assistant/Assistant-Light.ttf);
+}
+@font-face {
+    font-family: Assistant-SemiBold;
+    src: url(fonts/Assistant/Assistant-SemiBold.ttf);
+}
+
+body {
+	font-family: 'Assistant', sans-serif;
+}
+input, textarea, select, button, meter, progress {
+	font-family: 'Assistant', sans-serif !important;
+}

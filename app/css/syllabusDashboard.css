@@ -1,0 +1,55 @@
+.subj-header
+{
+	color:#15457d;
+}
+.subj-header.subject-taught
+{
+	/* background-color:#4a90e2;
+	color:white; */
+	color:#15457d;
+}
+.vi-img.selectable {
+    background-image: url(../img/vi_unchecked.svg);
+}
+.vi-img.selected {
+    background-image: url(../img/vi_checked.svg);
+}
+.vi-img.semiSelected {
+    background-image: url(../img/vi_semi.svg);
+}
+/* .syllabus-dashboard .subj-header .vi-img
+{
+	background-image: url(../img/vi_unchecked.svg);
+	opacity: 0;
+} */
+.syllabus-dashboard .subj-header.subject-taught .vi-img
+{
+	opacity: 1;
+}
+.page-wrap.active .subj-header .dropdown-arrow{
+	filter: brightness(0) invert(1);
+}
+.subj-header .dropdown-arrow {
+	float: left;
+	margin-left: 5%;
+	vertical-align: middle;
+	position: absolute;
+	bottom: 45%;
+	height: 20%;
+	left: 0;
+	-webkit-transition: -webkit-transform 0.5s ease-in-out;
+	-moz-transition: transform 0.5s ease-in-out;
+	-o-transition: transform 0.5s ease-in-out;
+	transition: transform 0.5s ease-in-out, -ms-transform 0.5s ease-in-out;
+}
+
+.subj-header.open .dropdown-arrow {
+	-ms-transform: rotate(180deg); /* IE 9 */
+	-webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+	transform: rotate(180deg);
+}
+
+.subj-header.open .line-subject{
+	background-color:black;
+	height:2px;
+}

@@ -1,0 +1,22 @@
+.progress-bar-wrap{
+	height: 10px;
+	width: 100%;
+	position: relative;
+}
+.progress-bar{
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	display: block;
+	background: #cfe5ff;
+	border-radius: 10px;
+}
+.progress-fill{
+	height: 100%;
+	position: absolute;
+	display: block;
+	background: #4a90e2;
+	left:  0;
+	border-radius: 10px;
+	transition: width 1s;
+}

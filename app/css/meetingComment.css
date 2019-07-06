@@ -1,0 +1,30 @@
+.meeting-comment{
+	margin-top: 3%;
+}
+.meeting-comment-content::placeholder{
+    color:red;
+    font-weight: bold;
+}
+.meeting-comment .meeting-comment-content{
+	width: 75%;
+	display: inline-block;
+	resize: none;
+	border:none;
+	outline: none;
+	font-size: 16px;
+	font-family: Assistant;
+	vertical-align:  top;
+}
+.comment-profile-pic{
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 2.5%;
+	margin-right: 5%;
+	margin-bottom: 5%;
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	background-image: url(.././img/profile.svg);
+	background-size: cover;
+	background-repeat: no-repeat;
+}

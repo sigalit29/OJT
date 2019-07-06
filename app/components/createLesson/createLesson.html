@@ -1,0 +1,215 @@
+<div class="create-lesson-wrap">
+	<div  class="box two-column-box">
+		<div  class="box-title">
+			<div><img src="./img/calendar.svg" title="{{dictionary.dayText}}" alt="{{dictionary.dayText}}"/></div>
+			<div id="val1" ng-click="showDatePicker($event)">
+				{{lesson.date?(dictionary.day+" "+getMeetingDayLetter()+" "+lesson.date):dictionary.dayText}}
+			</div>
+		</div>
+	</div>
+	<div class="box two-column-box">
+		<div  class="box-title">
+			<div><img src="./img/clock.svg" title="{{dictionary.TimeText}}" alt="{{dictionary.TimeText}}"/></div>
+			<div id="val1" ng-click="showHoursPicker($event)">
+				{{lesson.hour?lesson.hour:dictionary.TimeText}}
+			</div>
+		</div>
+	</div>
+	<div class="pickers-wrap" ng-class="{'visible-pickers':displayDatePicker||displayHourPicker}">
+		<input class="date-picker-wrap form-control" id='lesson-date-picker'/>
+		<input id='lesson-hour-picker'/>
+	</div>
+	<div class="box collapse-default">
+		<div id="val1" class="box-title" ng-click="toggleBoxSlide($event)">
+			<div  class="dropdown-arrow"/>
+				{{dictionary.whatWillBeTaughtInTheMeeting}}
+		</div>
+		<div class="box-content box-content-large">
+			<div class="padded-content padding-start-content syllabus-wrap" >
+				<div ng-repeat="subject in syllabus">
+					<hierarchy node="subject" collapse-by="'open'" children="'subsubjects'" data="{'selectedSubjects':subjectsTaught}" functions="{'toggleSubjectSelection': toggleSubjectSelection, 'editCustomSubject': editCustomSubject, 'deleteCustomSubject': deleteCustomSubject}" template="'
+						<div class=\'subj-header\' ng-click=\'node[children].length>0?node.open=!node.open:functions.toggleSubjectSelection(node.subjectid);\' ng-class=\'{&quot;open&quot;:node.open}\'>
+							<div class=\'vi-img\' ng-class=\'showSelectIcon(data, node, children)\'></div>
+							<div class=\'subject-name\'>
+								{{(!isArabic || !node.subjectinarabic)? node.subject : node.subjectinarabic}}
+							</div>
+							<!--little arrow signifying whether the menu is currently open or not-->
+							<img class = \'dropdown-arrow\' src=\'img/arrow_dark.svg\' ng-show=\'node.subsubjects && node.subsubjects.length > 0\'>
+						</div>
+						<div ng-if=\'node.isCustomSubject==true\' class=\'general-img\' ng-class=\'{&quot;selectable&quot;:node.isCustomSubject}\' ng-click=\'functions.editCustomSubject(node)\'></div>
+						<div ng-if=\'node.isCustomSubject==true\' class=\'close-img\' ng-class=\'{&quot;selectable&quot;:node.isCustomSubject}\' ng-click=\'functions.deleteCustomSubject(node.subjectid)\'></div>
+						'">
+					</hierarchy>
+				</div>
+
+				<!--custom subject-->
+                <!--<div class="subj-header custom-subject">
+                      <div class="plus-img" ng-class="{'selected': lesson.customSubject.length>0}"></div>
+                      <div class="subject-name">
+                          <input type="text" ng-model="lesson.customSubject"/>
+                      </div>
+                  </div>-->
+
+                 <div class="subj-header custom-subject">
+                   <div class="plus-img"  ng-class="{'selected':customSubject.subject.length>0}" ng-click="addCustomSubjects()"></div>
+                       <div class="subject-name">
+                           <input type="text" ng-model="customSubject.subject"/>
+                       </div>
+                   </div>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="box collapse-default">
+		<div class="box-title" ng-click="toggleBoxSlide($event)">
+			<div class="dropdown-arrow"/>
+			{{dictionary.shareLink}}
+		</div>
+		<div class="box-content">
+			<div class="padded-content">
+				<img class="link-source" src="./img/attach.svg" ng-click="hyperlinkPopup=true;"/>
+				<img class="link-source" src="./img/youtube_icon.svg" ng-click="searchYoutubePopup=true;"/>
+				<div ng-repeat="link in lesson.resourceLinks" class="resourceLink deleteBox" ng-if="link.link.indexOf('youtube')==-1">
+					<div class="spacertop">
+						<!-- Remove -->
+						<a ng-click="removeLink(link)" class="cancel-img">
+						</a>
+					</div>
+						<a ng-href="{{link.link}}" target="_blank">{{link.title}}</a>
+				</div>
+				<div ng-repeat="video in trustedVideoUrls">
+					<div class="spacertop">
+						<!---- Remove  -->
+						<a ng-click="removeMovie(video)" class="cancel-img">	
+						</a>
+					</div>
+					<iframe  id="resource-frame" class="youtube-iframe" ng-src="{{video}}"
+						allowfullscreen="allowfullscreen"
+						mozallowfullscreen="mozallowfullscreen"
+						msallowfullscreen="msallowfullscreen"
+						oallowfullscreen="oallowfullscreen"
+						webkitallowfullscreen="webkitallowfullscreen"
+					/>
+				</div>
+			</div>
+			<meeting-comment profile-pic="$root.me.image" editable="true" placeholder="dictionary.linksCommentPlaceholder" comment-model-index="'linkComments'" comment-model-wrap="lesson" comment-changed="commentChanged(comment)"/>
+		</div>
+	</div>
+
+	<div class="box collapse-default" ng-if="lesson.num>1">
+		<div class="box-title" ng-click="toggleBoxSlide($event)">
+			<div class="dropdown-arrow"/>
+			{{dictionary.shareStats}}
+		</div>
+		<div class="box-content">
+			<div class="padded-content padding-start-content">
+				<!--general textual feedback (comments) from last lesson-->
+				<selectable-stat on-selection="updateBoxSizes" stat="comment.answer" selected="lesson.highlightedStats" ng-repeat="comment in prevLessonStats.generalOpenQuestions"></selectable-stat>
+				<!--subject specific textual feedback (comments) from last lesson-->
+				<selectable-stat on-selection="updateBoxSizes" stat="comment.answer" selected="lesson.highlightedStats" ng-repeat="comment in prevLessonStats.specificOpenQuestions"></selectable-stat>
+				<!--general rating feedback from last lesson-->
+				<selectable-stat on-selection="updateBoxSizes" stat="stat.question+' - '+stat.avg+'%'" selected="lesson.highlightedStats" ng-repeat="stat in prevLessonStats.generalCloseQuestions"></selectable-stat>
+				<!--subject specific rating feedback (understanding) from last lesson-->
+				<selectable-stat on-selection="updateBoxSizes" stat="stat.subject+' - '+stat.avg+'%'" selected="lesson.highlightedStats" ng-repeat="stat in prevLessonStats.specificCloseQuestions"></selectable-stat>
+				<!--attendance from last lesson-->
+				<selectable-stat on-selection="updateBoxSizes" stat="dictionary.attendance+': '+prevLessonStats.attendance*100+'%'" selected="lesson.highlightedStats"></selectable-stat>
+			</div>
+			<div ng-show="lesson.highlightedStats.length>0">
+				<meeting-comment profile-pic="$root.me.image!= '' ? 'background-image:url('+imgsDomain+ $root.me.image+')':'background-image:url(./img/profile.png)'" editable="true" placeholder="dictionary.statsCommentPlaceholder" comment-model-index="'statsComments'" comment-model-wrap="lesson" comment-changed="commentChanged(comment)"/>
+			</div>
+		</div>
+	</div>
+
+	<div class="box collapse-default">
+		<div class="box-title" ng-click="toggleBoxSlide($event)">
+			<div class="dropdown-arrow"/>
+			{{dictionary.notesPlaceText}}
+		</div>
+		<div class="box-content">
+			<meeting-comment profile-pic="$root.me.image" editable="true" placeholder="dictionary.moreToKnowText" comment-model-index="'comments'" comment-model-wrap="lesson" comment-changed="commentChanged(comment)"/>
+		</div>
+	</div>
+	<div>
+		<toggle-switch unchecked-label="dictionary.dontSendReminderText" checked-label="dictionary.sendReminderText" model="lesson.notifyStudents" on-change="">
+	</div>
+	<div class="blue-btn" ng-class="{'disable': !validateLesson()}" ng-click="reviewMeeting()">
+		<span class="text">{{isUpdate ? dictionary.updateMeetingText : dictionary.saveMeetingText}}</span>
+	</div>
+</div>
+<div ng-if="displaySaveApprovalPopup">
+	<div class="popupBackground" ng-click="cancelMeetingCreation()"></div>
+	<div class="popup">
+		<div class="popup-content-wrap">
+			<img src="./img/icons/airplane.svg" class="popup-icon"/>
+			<div class="title-popup editPopup">
+				{{dictionary.confirmSaveMeetingText}}
+			</div>
+			<div class="sentence-popup title">
+				{{dictionary.openMeetingText + " " + lesson.num}}
+			</div>
+			<div class="sentence-popup">
+				{{dictionary.willTakePlaceAt+" "+getMeetingDayLetter()+", "+dictionary.theText+(lesson.beginningdate | date:'dd')}}
+			</div>
+			<div class="sentence-popup">
+				{{dictionary.inText+getMeetingMonthName()+", "+dictionary.inLineText+lesson.hour}}
+			</div>
+		</div>
+		<div class="yes-no-btn editLesson">
+			<div class="cancel" ng-click="cancelMeetingCreation()">
+				{{dictionary.backToChangeText}}
+			</div>
+			<div class="confirm" ng-click="saveMeeting()">
+				{{dictionary.confirmCourseText}}
+			</div>
+		</div>
+	</div>
+</div>
+<div ng-if="searchYoutubePopup==true">
+	<div class="popupBackground" ng-click="closeYoutubePopup()"></div>
+	<div class="popup">
+		<div class="popup-content-wrap">
+			<div class="searchBar">
+				<search-bar  placeholder="dictionary.searchVideo" on-search="searchYoutube" ></search-bar>
+			</div>
+			<br/>
+			<div class="youtube-results-wrap">
+				<div class="loading" ng-if="loadingVideos">
+				</div>
+				<div ng-if="!loadingVideos" class="youtube-result" ng-repeat="res in youtubeResults" ng-click="selectVideo(res)">
+					<div class="youtube-result-thumbnail">
+						<img ng-src="{{res.image}}"/>
+					</div>
+					<div class="youtube-result-title">
+						{{res.title}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div ng-if="hyperlinkPopup==true">
+	<div class="popupBackground" ng-click="closeHyperlinkPopup()"></div>
+	<div class="popup">
+		<div class="popup-content-wrap">
+			<div class="searchBar">
+				<div><input type="text" ng-model="newLink.link" placeholder="{{dictionary.inputLink}}" autofocus></div>
+				<div><input type="text" ng-model="newLink.title" placeholder="{{dictionary.inputLinkTitle}}"></div>
+				<button ng-click="saveLink()">{{dictionary.approve}}</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div ng-if="editCustomSubjectPopup==true">
+	<div class="popupBackground" ng-click="closeEditCustomSubjectPopup(undefined)"></div>
+	<div class="popup">
+		<div class="popup-content-wrap">
+			<div class="searchBar">
+				<input type="text" class="form-control search-bar" placeholder="נושא הלימוד" autofocus ng-model="CustomSubject_subject">
+				<div class="vi-img selectable selected" ng-click="closeEditCustomSubjectPopup(CustomSubject_subjectId,CustomSubject_subject)"></div>
+			</div>
+		</div>
+	</div>
+</div>

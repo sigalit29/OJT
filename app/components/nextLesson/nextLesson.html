@@ -1,0 +1,121 @@
+<div class="lesson-wrap">
+<!--TODO - fix hardcoding of enrollmentroleid-->
+	<div ng-if="role==2" class="inverse-wrap vetical-padding-wrap-wide">
+		<div class="lesson-title">
+			{{dictionary.aboutToActivateMeeting}}
+		</div>
+		<toggle-switch unchecked-label="dictionary.suspendedMeeting" checked-label="dictionary.activeMeeting" model="activationPopup" on-change="toggleMeetingStatus">
+	</div>
+	
+	<div class="box two-column-box">
+		<div class="box-title">
+			<img src="./img/calendar.svg" title="{{dictionary.dayText}}" alt="{{dictionary.dayText}}"/><br/>
+			<div>{{dictionary.day+" "+getMeetingDayLetter()+" "+lesson.date}}</div>
+		</div>
+	</div>
+	<div class="box two-column-box">
+		<div class="box-title">
+			<img src="./img/clock.svg" title="{{dictionary.TimeText}}" alt="{{dictionary.TimeText}}"/><br/>
+			<div>{{lesson.hour}}</div>
+		</div>
+	</div>
+	
+	<div class="box box-expanded">
+		<div class="box-title" ng-click="toggleBoxSlide($event)">
+			<div class="dropdown-arrow"/>
+			{{dictionary.studyMaterialText}}
+		</div>
+		<div class="box-content box-content-large">
+			<div class="padded-content padding-start-content">
+				<div ng-repeat="subject in lesson.syllabus" class="subject-name">
+					{{(!isArabic || !subject.subjectinarabic)? subject.subject : subject.subjectinarabic}}
+				</div>
+				<div ng-repeat="sub in lesson.customSubjects" class="subject-name">
+					{{sub.subject}}
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="box box-expanded" ng-if="lesson.resourceLinks.length">
+		<div class="box-title" ng-click="toggleBoxSlide($event)">
+			<div class="dropdown-arrow"/>
+			{{dictionary.meetingResources}}
+		</div>
+		<div class="box-content">
+			<div class="padded-content">
+				<div ng-repeat="link in lesson.resourceLinks" class="resourceLink" ng-if="link.link.indexOf('youtube')==-1">
+					<a ng-href="{{link.link}}" target="_blank">{{link.title}}</a>
+				</div>
+				<div ng-repeat="video in trustedVideoUrls">
+					<iframe  id="resource-frame" class="youtube-iframe" ng-src="{{video}}"
+						allowfullscreen="allowfullscreen"
+						mozallowfullscreen="mozallowfullscreen"
+						msallowfullscreen="msallowfullscreen"
+						oallowfullscreen="oallowfullscreen"
+						webkitallowfullscreen="webkitallowfullscreen"
+					/>
+				</div>
+			</div>
+			<meeting-comment profile-pic="lesson.creatorImage" profile-name="lesson.creatorName" editable="false" placeholder="" comment-model-index="'linkComments'" comment-model-wrap="lesson" comment-changed="commentChanged(comment)"/>
+		</div>
+	</div>
+	
+	<div class="box box-expanded" ng-if="lesson.highlightedStats.length>0">
+		<div class="box-title" ng-click="toggleBoxSlide($event)">
+			<div class="dropdown-arrow"/>
+			{{dictionary.meetingStats}}
+		</div>
+		<div class="box-content">
+			<div class="padded-content padding-start-content">
+				<div  ng-repeat="stat in lesson.highlightedStats" class="shared-stat">
+					{{$index + 1}} ) {{stat}}
+
+				</div>
+			</div>
+			<meeting-comment profile-pic="lesson.creatorImage" profile-name="lesson.creatorName" editable="false" placeholder="" comment-model-index="'statsComments'" comment-model-wrap="lesson" comment-changed="commentChanged(comment)"/>
+		</div>
+	</div>
+	
+	<div class="box box-expanded" ng-if="lesson.comments.length>0">
+		<div class="box-title" ng-click="toggleBoxSlide($event)">
+			<div class="dropdown-arrow"/>
+			{{role==2 ? dictionary.yourNotesText : dictionary.teacherNotesText}}
+		</div>
+		<div class="box-content">
+			<meeting-comment profile-pic="lesson.creatorImage" profile-name="lesson.creatorName" editable="false" placeholder="" comment-model-index="'comments'" comment-model-wrap="lesson" comment-changed="commentChanged(comment)"/>
+		</div>
+	</div>
+</div>
+<div ng-if="activationPopup">
+	<div class="popupBackground" ng-click="toggleMeetingStatus()"></div>
+	<div class="popup">
+		<div class="popup-content-wrap">
+			<img src="./img/icons/ya_man.svg" class="popup-icon"/>
+			<div class="title-popup editPopup">
+				{{dictionary.youAreAboutToActivateAMeeting}}
+			</div>
+			<div>
+				{{lesson.name}}
+			</div>
+			<div>
+				{{dictionary.willTakePlaceAt}} <span ng-if="lesson && lesson.beginningdate">{{getMeetingDayOfTheWeek()}}</span> {{dictionary.theText}}<span ng-if="lesson && lesson.beginningdate">{{lesson.beginningdate | date:'dd'}}</span>
+			</div>
+			<div>
+				<div>{{dictionary.inText+getMeetingMonthName()}}</div>
+				<div>{{dictionary.inLineText+getTimeByTimestamp()}}</div>
+			</div>
+			<div>
+				{{dictionary.activeMeetingQuestionText}}
+			</div>
+		</div>
+		<div class="yes-no-btn editLesson">
+			<div class="cancel" ng-click="toggleMeetingStatus()">
+				{{dictionary.noThanks}}
+			</div>
+			<div class="confirm" ng-click="activateMeeting()">
+				{{dictionary.confirmCourseText}}
+			</div>
+		</div>
+	</div>
+</div>

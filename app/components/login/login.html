@@ -1,0 +1,52 @@
+<div class = "login-wrap">
+	<div class="input-wrap">
+		<div class="input-icon email"></div>
+		<input type="email" ng-model="email" placeholder="{{dictionary.mailText}}" ng-keyup="($event.keyCode == 13&&(!email || !pass))?login() : ''"/>
+	</div>
+
+	<div class="input-wrap">
+		<div class="input-icon password"></div>
+		<input ng-show="!unmask" type="password" ng-model="pass" placeholder="{{dictionary.passwordText}}" ng-keyup="($event.keyCode == 13&&(email && pass))?login() : ''"/>
+		<input ng-show="unmask" type="text" ng-model="pass" placeholder="{{dictionary.passwordText}}" ng-keyup="($event.keyCode == 13&&(email && pass))?login() : ''"/>
+		<img class="unmask-pass" src="./img/watched_icon.png" ng-click="unmask=!unmask"/>
+		<div ng-class="{'unmask-deactivate':unmask}"></div>
+	</div>
+	<div class="forgot-pass" ng-click="goToRestorePassword()">
+		{{dictionary.forgetText}}
+	</div>
+	<div class="btn" ng-class="{'disable': !email || !pass}" ng-click="(email && pass) ? login() : ''">
+		<div class="btn-text">
+			{{dictionary.enterText}}
+		</div>
+	</div>
+	<br/>
+	<!--div class="login-with-gp-wrap">
+		<div id="my-signin2"></div>
+	</div-->
+	<div class="new-user" ng-click="openRegCodeForm()">
+		<div class="text">
+			{{dictionary.newUserText}}
+		</div>
+		<div class="arrow-down"></div>
+	</div>
+	<div ng-show="showRegCodeForm" class="regcode-popup">
+		<div class="popupBackground" ng-click="closeRegCodeForm()"></div>
+		<div class="popup">
+			<div class="regcode-popup-content" dir="rtl">
+				<h2 class="options-popup-title">{{dictionary.enterRegCode}}</h2>
+				<input autofocus class="rounded-text-input" id="regCode-input" type="text"
+					   ng-model="regCode"
+					   ng-keyup="$event.keyCode == 13 && confirmRegCode()"
+				>
+				<br>
+				<h2 class="options-popup-title error" ng-show="wrongCode">
+					{{dictionary.wrongRegCode}}
+				</h2>
+
+				<div class="popup-confirm" ng-click="confirmRegCode()">
+					<h2>{{dictionary.approve}}</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

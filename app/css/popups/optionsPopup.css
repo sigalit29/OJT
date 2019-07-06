@@ -1,0 +1,39 @@
+.options-popup-content
+{
+	padding: 10%;
+	text-align: right;
+	height: 100%;
+	max-height: 100%;
+	box-sizing: border-box;
+}
+.options-popup-title
+{
+	font-size: 4vh;
+	line-height: 1em;
+    margin: 0px;
+    margin-bottom:4vw;
+    text-align: center;
+    color:#0E3B6F;
+}
+.options-popup-content .options-wrap
+{
+	max-height: calc(60vh - (4em));
+	overflow: scroll;
+}
+.popup-option-content
+{
+	font-size: 3.5vh;
+    color: #15457d;
+    padding: 5% 5%;
+}
+.popup-option:nth-child(even)
+{
+    background-color: #f2f3ff;
+    box-shadow: 0 0 20vw 1vw #F8F7F6 inset;
+}
+.popup-option
+{
+	border-bottom: 1px solid #15457d;
+	border-image: linear-gradient(to left, rgba(21, 69, 125, 0) 0%, rgba(21, 69, 125, 0.5) 50%, rgba(21, 69, 125, 0) 100%) 
+                100% 0 100%  stretch;
+}

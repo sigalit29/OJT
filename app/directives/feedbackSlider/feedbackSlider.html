@@ -1,0 +1,33 @@
+<div class="question-title" ng-show="!displayAns">{{question}}</div>
+<div ng-show="displayAns">{{getAnswerByGrade()[answerTextIndex]}}</div>
+<br>
+<br>
+<div class="slider-wrap">
+	<div class="slider-control-button plus" ng-click="incrementGrading()"></div>
+	<div class="slider">
+		<div class="face" style="
+		background-image:url({{getGradingIcon()}});
+		left:calc(-5vw + ({{grading/(maxGrading-minGrading)}} * (58.5vw - 10vw)));
+		transition:
+			background-image {{transitionTime/3}}s ease-in-out,
+			left {{transitionTime}}s ease-out,
+			transform {{transitionTime/2}}s ease-out;
+		-webkit-transition:
+			background-image {{transitionTime/3}}s ease-in-out,
+			left {{transitionTime}}s ease-out,
+			transform {{transitionTime/2}}s ease-out;
+		-ms-transition:
+			background-image {{transitionTime/3}}s ease-in-out,
+			left {{transitionTime}}s ease-out,
+			transform {{transitionTime/2}}s ease-out;
+		-o-transition:
+			background-image {{transitionTime/3}}s ease-in-out,
+			left {{transitionTime}}s ease-out,
+			transform {{transitionTime/2}}s ease-out;		
+		"
+		ng-class="{'moving-right':movingRight, 'moving-left':movingLeft}"></div>
+		<input dir="ltr" class="bar" ng-model="grading" ng-change="dragPointer();" min="{{minGrading}}" max="{{maxGrading}}" step="{{increment}}" type="range"></input>
+	</div>
+	<div class="slider-control-button minus" ng-click="reduceGrading()"></div>
+</div>
+</br>

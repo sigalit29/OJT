@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="appleApp">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1, minimum-scale=1,maximum-scale=1, user-scalable=0, height=device-height, width=device-width" />
+		<title>עמותת תפוח</title>
+		<link rel="stylesheet" href="./css/webMobileFrame.css?v=5" type="text/css" />
+		<script>
+		window.onload = function() {
+			//the suffix is used to point to some state inside the iframe
+			var suffix = "";
+			if(window.location.href.indexOf("suffix=")!=-1)
+				suffix=window.location.href.substring(window.location.href.indexOf("suffix=")+7)
+			if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+				window.location.href = "main.html"+suffix;
+			}
+			document.getElementById("mobile-frame").src = "main.html"+suffix;
+		}
+		</script>
+	</head>
+	<body>
+	<iframe id="mobile-frame" class="app-frame-web-view" src="main.html">
+	</body>
+</html>

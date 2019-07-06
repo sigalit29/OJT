@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 101 113.748">
+    <defs>
+        <style>
+            .cls-1{fill:url(#linear-gradient)}.cls-2{fill:none}.cls-3{fill:#cfe5ff}.cls-4{fill:#eef6ff}.cls-5{fill:#d4e8ff}.cls-6{fill:#eff6ff}.cls-7,.cls-8{stroke:none}.cls-8{fill:#4a90e2}
+        </style>
+        <linearGradient id="linear-gradient" x1=".5" x2=".5" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#b5d7ff"/>
+            <stop offset=".42" stop-color="#7ebffe"/>
+            <stop offset="1" stop-color="#4a90e2"/>
+        </linearGradient>
+    </defs>
+    <g id="ThumbUp" transform="translate(-391 -13)">
+        <g id="noun_thumbs_up_243819" data-name="noun_thumbs up_243819" transform="translate(415.291 55.157)">
+            <g id="Group_131" data-name="Group 131">
+                <path id="Path_414" d="M21.935 78.75l-4.181-19.96a2.8 2.8 0 0 0-2.562-2.09H-2.815L.314 70.179 7.583 80.84h12.6a1.7 1.7 0 0 0 1.752-2.09z" class="cls-1" data-name="Path 414" transform="translate(-7.1 -22.783)"/>
+                <path id="Path_413" d="M45.478 6.4c-2.7 0-1.821 5.8-1.821 5.8s-5.8 15.981-11.328 20.3a12.206 12.206 0 0 0-2.429 3.772 3.8 3.8 0 0 0-.27.809 6.964 6.964 0 0 1-2.83 2.967l5.529 24.072a126.008 126.008 0 0 0 17.195.944 37.894 37.894 0 0 0 10.047-.337c9.845-2.09 7.417-8.968 7.417-8.968 5.327-3.978 2.293-9.036 2.293-9.036 4.72-4.922.067-9.1.067-9.1s2.562-3.978-.742-7.013C64.494 26.831 53.3 29.326 53.3 29.326c-.809.135-1.618.337-2.495.539 0 0-3.844 1.821 0-9.912S48.175 6.4 45.478 6.4z" class="cls-1" data-name="Path 413" transform="translate(-13.516 -6.4)"/>
+            </g>
+        </g>
+        <g id="Path_289" class="cls-2" data-name="Path 289">
+            <path d="M42.165 0h3.922a42.165 42.165 0 0 1 0 84.33h-3.922a42.165 42.165 0 0 1 0-84.33z" class="cls-7" transform="translate(403.748 42.417)"/>
+            <path d="M42.165 2a40.034 40.034 0 0 0-28.401 11.764A40.034 40.034 0 0 0 2 42.165a40.034 40.034 0 0 0 11.764 28.401A40.034 40.034 0 0 0 42.165 82.33h3.922a40.034 40.034 0 0 0 28.401-11.764 40.034 40.034 0 0 0 11.764-28.4 40.034 40.034 0 0 0-11.764-28.401A40.034 40.034 0 0 0 46.088 2h-3.923m0-2h3.922c23.287 0 42.165 18.878 42.165 42.165S69.374 84.33 46.087 84.33h-3.922C18.878 84.33 0 65.452 0 42.165S18.878 0 42.165 0z" class="cls-8" transform="translate(403.748 42.417)"/>
+        </g>
+        <circle id="Ellipse_284" cx="3.922" cy="3.922" r="3.922" class="cls-3" data-name="Ellipse 284" transform="translate(409.631 35.553)"/>
+        <circle id="Ellipse_288" cx="1.961" cy="1.961" r="1.961" class="cls-4" data-name="Ellipse 288" transform="translate(413.554 24.767)"/>
+        <circle id="Ellipse_285" cx="5.393" cy="5.393" r="5.393" class="cls-5" data-name="Ellipse 285" transform="translate(391 45.359)"/>
+        <circle id="Ellipse_287" cx="3.922" cy="3.922" r="3.922" class="cls-6" data-name="Ellipse 287" transform="translate(391 31.631)"/>
+        <circle id="Ellipse_286" cx="6.864" cy="6.864" r="6.864" class="cls-3" data-name="Ellipse 286" transform="translate(394.922 13)"/>
+    </g>
+</svg>

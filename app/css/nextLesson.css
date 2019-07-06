@@ -1,0 +1,19 @@
+.lesson-title {
+	font-weight: bold;
+	font-size: 3.5vh;
+	margin-bottom: 10vw;
+}
+
+.lesson-details {
+	color: #15457d;
+	font-size: 3vh;
+	margin-top: 1vh;
+}
+
+.resourceLink{
+	font-size: 0.75em;
+}
+.attendance-icon, .attendance-icon img{
+	width: 2em;
+	display: block;
+}

@@ -1,0 +1,91 @@
+.box {
+	width: 91.6%;
+	margin: 8% auto;
+	height: auto;
+	border-radius: 6px;
+	background-color: white;
+	color: #69A4E7;
+	-webkit-box-shadow: 2.5px 2.5px 5px 0px rgba(0,0,0,0.25);
+	-moz-box-shadow: 2.5px 2.5px 5px 0px rgba(0,0,0,0.25);
+	box-shadow: 2.5px 2.5px 5px 0px rgba(0,0,0,0.25);
+	text-align: right;
+}
+.two-column-box{
+	display:inline-block;
+	box-sizing: border-box;
+	width: 40%;
+	margin: 3.8% 4.2%;
+	text-align: center;
+}
+.box-title {
+	color: #15457d;
+	font-size: 20px;
+	font-family: Assistant-SemiBold;
+	padding: 3vw;
+	border-radius: 6px 6px 0 0;
+}
+.box-title.attendance-status-box {
+	background-color: #f1efef;
+}
+.box-title img{
+	height: 1em;
+}
+.box-title .dropdown-arrow{
+	width: 5vw;
+	height: 3.5vw;
+	background-image: url(../img/arrow_dark.svg);
+	background-size: contain;
+	background-repeat: no-repeat;
+	display: inline-block;
+	margin: 0 5.75%;
+	transform-origin: 50% 50%;
+	transform: translateZ(0) scale(1.0, 1.0);
+	transition: transform 0.5s;
+	pointer-events: none;
+}
+.box-title ::-webkit-input-placeholder {
+	color: rgba(74, 144, 226,0.8);
+}
+
+.box-title :-moz-placeholder, .box-title ::-moz-placeholder, .box-title :-ms-input-placeholder {
+	color: rgba(74, 144, 226,0.8);
+}
+.box-expanded .box-title>.dropdown-arrow{
+	transform: translateZ(0) scale(1.0, 1.0) rotate(180deg);
+}
+.box-content {
+	font-size: 1.25em;
+	transition: height 0.5s;
+	-o-transition: height 0.5s;
+	-moz-transition: height 0.5s;
+	-webkit-transition: height 0.5s;
+	overflow: auto;
+}
+.box-content * {
+	color: #15457d;
+}
+.box-content-large {
+	max-height: 45vh;
+	overflow-y: auto;
+}
+.collapse-default .box-content {
+	height: 0;
+	box-sizing: border-box;
+}
+.padded-content {
+	padding: 5%;
+}
+.padding-start-content{
+	padding-right: 15%;
+}
+.nobtn.box {
+	box-shadow: none ;
+	-webkit-box-shadow: none;
+	margin: 0;
+}
+
+.nobtn.box-title {
+	box-shadow: none ;
+	padding: 3vw 0;
+	-webkit-box-shadow: none;
+}

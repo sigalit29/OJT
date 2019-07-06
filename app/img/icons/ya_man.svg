@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 101 117.046">
+    <defs>
+        <style>
+            .cls-1{fill-rule:evenodd;fill:url(#linear-gradient)}.cls-2{fill:none}.cls-3{fill:#cfe5ff}.cls-4{fill:#eef6ff}.cls-5{fill:#d4e8ff}.cls-6{fill:#eff6ff}.cls-7,.cls-8{stroke:none}.cls-8{fill:#4a90e2}
+        </style>
+        <linearGradient id="linear-gradient" x1=".5" x2=".5" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#b5d7ff"/>
+            <stop offset=".42" stop-color="#7ebffe"/>
+            <stop offset="1" stop-color="#4a90e2"/>
+        </linearGradient>
+    </defs>
+    <g id="ya_man" data-name="ya man" transform="translate(-130 -172)">
+        <g id="noun_Hang_Loose_17348" data-name="noun_Hang Loose_17348" transform="rotate(-9 1490.381 -823.443)">
+            <path id="Path_392" d="M68.257 40.462h-9.22a4.046 4.046 0 1 0 0-8.091h-1.253a4.046 4.046 0 1 0 0-8.091h-1.253a4.046 4.046 0 1 0 0-8.091H44.379a9.8 9.8 0 0 1-.135-3.371c.278-3.125.22-6.151-.757-7.948S40.744-.192 37.131.026a3.718 3.718 0 0 0-2.605 2.346l.715 6.9-2.748 11.052-4.108 6.115c-5.077 6.68-5.889 11.316-7.952 16.55 4.686 3.717 11 8.208 17.241 13.233 1.719-3.492 5.275-4.707 7.363-5.129l23.22-2.552a4.043 4.043 0 0 0 0-8.079z" class="cls-1" data-name="Path 392" transform="translate(-5.705)"/>
+            <path id="Path_393" d="M2.291 75.854l10.672 7.5 14.109 5.321 5.347-5.321L9.215 65.875z" class="cls-1" data-name="Path 393" transform="translate(0 -21.452)"/>
+        </g>
+        <g id="Path_289" class="cls-2" data-name="Path 289">
+            <path d="M42.165 0h3.922a42.165 42.165 0 0 1 0 84.33h-3.922a42.165 42.165 0 0 1 0-84.33z" class="cls-7" transform="translate(142.748 201.417)"/>
+            <path d="M42.165 2a40.034 40.034 0 0 0-28.401 11.764A40.034 40.034 0 0 0 2 42.165a40.034 40.034 0 0 0 11.764 28.401A40.034 40.034 0 0 0 42.165 82.33h3.922a40.034 40.034 0 0 0 28.401-11.764 40.034 40.034 0 0 0 11.764-28.4 40.034 40.034 0 0 0-11.764-28.401A40.034 40.034 0 0 0 46.088 2h-3.923m0-2h3.922c23.287 0 42.165 18.878 42.165 42.165S69.374 84.33 46.087 84.33h-3.922C18.878 84.33 0 65.452 0 42.165S18.878 0 42.165 0z" class="cls-8" transform="translate(142.748 201.417)"/>
+        </g>
+        <circle id="Ellipse_284" cx="3.922" cy="3.922" r="3.922" class="cls-3" data-name="Ellipse 284" transform="translate(148.631 194.553)"/>
+        <circle id="Ellipse_288" cx="1.961" cy="1.961" r="1.961" class="cls-4" data-name="Ellipse 288" transform="translate(152.554 183.767)"/>
+        <circle id="Ellipse_285" cx="5.393" cy="5.393" r="5.393" class="cls-5" data-name="Ellipse 285" transform="translate(130 204.359)"/>
+        <circle id="Ellipse_287" cx="3.922" cy="3.922" r="3.922" class="cls-6" data-name="Ellipse 287" transform="translate(130 190.631)"/>
+        <circle id="Ellipse_286" cx="6.864" cy="6.864" r="6.864" class="cls-3" data-name="Ellipse 286" transform="translate(133.922 172)"/>
+    </g>
+</svg>

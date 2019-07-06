@@ -1,0 +1,8 @@
+.pushPopup
+{
+	visibility: hidden;
+}
+.pushPopup.visiblePushPopup
+{
+	visibility:visible;
+}

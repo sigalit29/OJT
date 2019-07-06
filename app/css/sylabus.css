@@ -1,0 +1,121 @@
+body {
+}
+
+.subj-header.sylabus .subjectName {
+    padding-right: 6%;
+}
+
+.blue-title.move-right {
+    padding-right: 4vh;
+}
+
+.subj-header.sylabus .list-sign-image {
+    width: 36%;
+}
+
+.subj-header.sylabus {
+    border-bottom-style: ridge;
+    border-bottom-width: 0.6vw;
+    border-bottom-color: #FDFDFD;
+}
+
+.blue-title.move-right.second-title {
+    padding-top: 6vh;
+}
+
+.subject-item.sylabus .subjectName {
+    color: #FFFFFF;
+}
+
+.subject-item.sylabus .line-subject {
+    background: #419BF9;
+}
+
+.subject-item.sylabus .list-sign-image {
+    background-image: url(../img/ic_scroll_down_normal1.png);
+}
+
+.subject-item.sylabus .vi-img {
+    background-image: url(../img/check1.png);
+    border-radius: 50%;
+    width: 2.9vw;
+    margin-right: 3vh;
+    height: 5.5vh;
+}
+
+.sub-subject-list-wrap-sylabus {
+    display: none;
+    position: relative;
+    width: 100%;
+    margin-top: -2vh;
+    padding-bottom: 1vh;
+}
+
+.subject-item.sylabus .sub-subject-list-wrap-sylabus .sub-subject-name {
+    color: #FFFFFF;
+}
+
+/*.subject-item.sylabus .sub-subject-list-wrap-sylabus .vi-img {
+       background-image: url(../img/btn_check_off_normal.png);
+    border: 2px solid #FFFFFF;
+    border-radius: 50%;
+    /* height: 5.4vh; */
+/* width: 4.7vw; */
+/*margin-right: -8vh;
+}*/
+
+.open .sub-subject-list-wrap-sylabus {
+    display: block;
+    background-color: #5D9BE3;
+}
+
+
+.subject-item.sylabus.open .subj-header {
+    background-color: #5D9BE3;
+}
+
+.change-picture {
+    background-image: url(../img/btn_check_on_normal.png);
+}
+
+.subject-item.sylabus .change-picture {
+    background-image: url(../img/btn_v_normal.png);
+    /*border: 0px solid #FFFFFF;
+    height: 5.4vh;
+    width: 4.7vw;
+    margin-right: 2vh;*/
+}
+
+
+/*.subject-item.sylabus .change-picture {
+       background-image: url(../img/btn_v_normal.png);
+    border: 0px solid #FFFFFF;
+    height: 5.4vh;
+    width: 4.7vw;
+    margin-right: 2vh;
+}*/
+
+
+.subject-item.sylabus.open .list-sign-image {
+    background-image: url(../img/Untitled-5.png);
+}
+
+.subject-item.sylabus .sub-subject-list-wrap-sylabus .vi-img {
+/*    margin-right: -7vh;*/
+}
+
+
+
+
+
+
+/*.subject-item.sylabus .sub-subject-list-wrap .vi-img{
+   background-image: url(../img/btn_v_normal.png); 
+   border: 0px solid #FFFFFF;
+}*/
+/*.subject-item.sylabus .sub-subject-name{
+     color: #FFFFFF;
+}*/
+/*.subject-item.sylabu.sub-subject-name{
+     color: #FFFFFF;
+}*/

@@ -1,0 +1,42 @@
+body {
+}
+
+.language .page-sub-title {
+    padding-top: 3vh;
+    font-size: 3.5vh;
+}
+
+.language .check-button {
+    width: 19%;
+}
+
+.language .right-toggle {
+    font-size: 3.5vh;
+    margin-left: 5vh;
+    margin-right: 5vh;
+}
+
+.language .right-toggle.left-toggle{
+    font-size: 4vh;
+}
+
+.page-sub-title.logout {
+         height: 12vh;
+    padding-top: 0;
+    line-height: 12vh;
+    border-bottom: 1px solid #D8D8D8;
+    margin-right: 0;
+    padding-right: 6vw;
+    border-top: 1px solid #D8D8D8;
+        margin-top: 5vh;
+}
+
+.line.top {
+    margin-top: 6vh;
+    background: #D8D8D8;
+}
+
+.line.botton {
+    margin-top: -1vh;
+    background: #D8D8D8;
+}

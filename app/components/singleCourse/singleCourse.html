@@ -1,0 +1,76 @@
+<div class="course-wrap single-course">
+	<div class="course-scroll-wrap"  ng-class="{'label-visible': showGradeLabel}">
+		<!-- loading message to avoid jittering wen the user status is determined -->
+		<div class="title-single-course" ng-if="!flowState">
+				<span class="textSingleCourse">Loading</span>
+		</div>
+		<div ng-if="flowState" class="curr-meeting-link">
+			<div class="title-single-course" ng-click="goToCreateLesson()" ng-if="role == 2 && !flowState.nextlesson && (!flowState.lastlesson||flowState.lastlesson.closed)">
+				<img src="./img/courseMenu/new_meeting.svg" class="singleCourse-image" />
+				<span class="textSingleCourse"> {{dictionary.addMeetingText}}</span>
+			</div>
+			<div class="title-single-course" ng-click="goToNextLesson()" ng-if="flowState.nextlesson">
+				<img src="./img/courseMenu/next_meeting.svg" class="singleCourse-image" />
+				<span class="textSingleCourse"> {{dictionary.nextMeetingText}}</span>
+			</div>
+			<div class="title-single-course" ng-if="(flowState.lastlesson&&!flowState.lastlesson.closed) || (showGradeLabel && !flowState.nextlesson)" ng-click="goToCurrMeetingFlow()">
+				<img src="./img/courseMenu/active_meeting.svg" class="singleCourse-image" />
+				<span class="textSingleCourse">{{dictionary.activeMeeting}}</span>
+				<span class="active-lesson-circle"></span>
+			</div>
+		</div>
+		<div class="title-single-course" ng-click="goToCreateMentoringSession()" ng-if="role == 2">
+			<img src="./img/courseMenu/mentoring_sessions.svg" class="singleCourse-image" /><span class="textSingleCourse">{{dictionary.mentoringSessionsText}}</span>
+		</div>
+		<div class="page-sub-title">
+			{{dictionary.GeneralInformationText}}
+		</div>
+		<div class="title-single-course" ng-click="goToMadrichDashboard()" ng-if="role == 2">
+			<img src="./img/courseMenu/statistics.svg" class="singleCourse-image" /><span class="textSingleCourse">{{dictionary.statisticText}}</span>
+		</div>
+		<div class="title-single-course" ng-click="goToMyClassroom()" ng-if="role == 2">
+			<img src="./img/courseMenu/my_classroom.svg" class="singleCourse-image" />
+			<span class="textSingleCourse">
+				{{dictionary.myClassText}}
+				<div class="num-of-items" ng-if="courseData&&courseData.nStudentAlerts>0">
+					{{courseData.nStudentAlerts}}
+				</div>
+			</span>
+		</div>
+		<div class="title-single-course" ng-click="goToLessonHistory()">
+			<img src="./img/courseMenu/meeting_history.svg" class="singleCourse-image" /><span class="textSingleCourse">{{dictionary.lessonHistory}}</span>
+		</div>
+		<div class="title-single-course" ng-click="goToSyllabusDashboard()">
+			<img src="./img/courseMenu/syllabus.svg" class="singleCourse-image" /><span class="textSingleCourse">{{dictionary.SyllabusText}}</span>
+		</div>
+		<div class="title-single-course" ng-if="role == 2">
+			<img src="./img/courseMenu/registration_key.svg" class="singleCourse-image" /><span class="textSingleCourse">{{dictionary.courseKeyText+": "+courseData.code}}</span>
+		</div>
+		<div class="page-sub-title" ng-if="role == 1&&statBlocks.length">
+			{{dictionary.myActivity}}
+		</div>
+	</div>
+</div>
+<div class="stat-blocks-wrap" ng-if="role == 1">
+	<div ng-repeat="block in statBlocks">
+		<stat-block
+			title="block.title[statLangCode]"
+			val1="block.val1"
+			label1="block.label1[statLangCode]"
+			val2="block.val2"
+			label2="block.label2[statLangCode]"
+			preposition="block.preposition[statLangCode]"
+			icon="'icons/'+block.icon"
+			commentary="block.commentary[statLangCode]"/>
+	</div>
+</div>
+<div class="reminder-banner-wrap" ng-show="showGradeLabel">
+	<div class="reminder-banner" ng-click="goToCurrMeetingFlow()">
+		<div class="banner-text">
+			{{dictionary.gradeLabelText}}
+		</div>
+		<div class="banner-btn" >
+			<span>{{dictionary.gradeLabelBtnText}}</span>
+		</div>
+	</div>
+</div>

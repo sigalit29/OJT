@@ -1,0 +1,20 @@
+.app-frame-web-view {
+	height: 90vh;
+	width: 55vh;
+	display: block;
+	margin: 4vh auto;
+}
+
+@media only screen and (max-width: 500px) {
+	.app-frame-web-view {
+		height: 100vh;
+		width: 100vw;
+		border: none;
+		margin: 0px;
+	}
+}
+
+body {
+	margin: 0px;
+	padding: 0px;
+}

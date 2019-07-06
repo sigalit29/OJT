@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44">
+  <defs>
+    <style>
+      .cls-1, .cls-3, .cls-5 {
+        fill: none;
+      }
+
+      .cls-1, .cls-3 {
+        stroke: #15457d;
+      }
+
+      .cls-1 {
+        stroke-width: 2px;
+      }
+
+      .cls-2 {
+        fill: #15457d;
+      }
+
+      .cls-3 {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 1.5px;
+      }
+
+      .cls-4 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <g id="מפגש_קרוב" data-name="מפגש קרוב" transform="translate(-422 -77)">
+    <g id="Ellipse_277" data-name="Ellipse 277" class="cls-1" transform="translate(422 77)">
+      <circle class="cls-4" cx="22" cy="22" r="22"/>
+      <circle class="cls-5" cx="22" cy="22" r="21"/>
+    </g>
+    <path id="Path_657" data-name="Path 657" class="cls-2" d="M29.733,18.384V9.738a2.3,2.3,0,0,0-2.3-2.3H24.894V-.439a.768.768,0,0,0-.768-.768.768.768,0,0,0-.768.768V7.433H11.225V-.17a.768.768,0,0,0-.768-.768.768.768,0,0,0-.768.768v7.6H7.3A2.3,2.3,0,0,0,5,9.738V27.429a2.3,2.3,0,0,0,2.3,2.3H18.384a8.062,8.062,0,1,0,11.35-11.35ZM7.3,8.97H9.689v1.662a.768.768,0,1,0,1.536,0V8.97H23.358v1.662a.768.768,0,0,0,1.536,0V8.97h2.535a.768.768,0,0,1,.768.768v3.712H6.536V9.738A.768.768,0,0,1,7.3,8.97ZM7.3,28.2a.768.768,0,0,1-.768-.768V14.985H28.2v2.393A8.059,8.059,0,0,0,17.379,28.2Zm17.282,2.919a6.529,6.529,0,1,1,6.529-6.529,6.529,6.529,0,0,1-6.529,6.529Z" transform="translate(425.88 79.88)"/>
+    <path id="Path_691" data-name="Path 691" class="cls-3" d="M-12284.492-5227.041v5.36s2.047,1.512,2.641,1.98" transform="translate(12734.749 5326.826)"/>
+  </g>
+</svg>

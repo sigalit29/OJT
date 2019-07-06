@@ -1,0 +1,178 @@
+.blue-gradient-background {
+	height: 100%;
+	width: 100%;
+    overflow: scroll;
+}
+
+.user-profile .add-profile-pic {
+    margin-bottom: 0;
+}
+
+.student-profile-fullname {
+    color: #fff;
+    font-size: 125%;
+    font-weight: bold;
+    width: 90%;
+    text-align: center;
+    margin: 0 auto;
+    padding-bottom: 2.5%;
+    border-bottom: 1px solid rgb(142, 177, 216);
+    border-bottom: 1px solid rgba(255, 255, 255, .5);
+}
+
+.contact-options {
+    margin: 5% 0 5% 0;
+}
+
+.contact-option {
+    width: 12vw;
+    height: 12vw;
+    display: inline-block;
+    margin: 0 10%;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.contact-option.contact-whatsapp {
+    background-image: url(../img/ic_whatsapp_normal.png);
+}
+
+.contact-option.contact-sms {
+    background-image: url(../img/ic_message_normal.png);
+}
+
+.contact-option.contact-tel {
+    background-image: url(../img/ic_phone_normal.png);
+}
+
+.profile-field-wrap {
+    width: 90%;
+    margin: 2.5% auto;
+}
+
+.profile-field-wrap:first-child
+{
+	margin-top: 5%;
+}
+.profile-field-icon {
+    width: 8.9vw;
+    height: 8.9vw;
+    vertical-align: top;
+    background-size: contain;
+    display: inline-block;
+    margin-left: 2.5%;
+}
+
+.profile-field-wrap input, .profile-field-wrap input:disabled, .profile-field-value {
+    background-color: transparent;
+    color: #fff;
+    font-size: 100%;
+    text-align: right;
+    border: none;
+    width: 100%;
+    vertical-align: top;
+    border-bottom: 1px solid rgb(142, 177, 216);
+    border-bottom: 1px solid rgba(255, 255, 255, .5);
+}
+
+.profile-field-wrap input.radio {
+    width: 10%;
+}
+
+.profile-field {
+    width: calc(100% - 12.15vw);
+    display: inline-block;
+}
+
+.profile-field.ltr {
+    direction: ltr;
+}
+
+.profile-field-error {
+    color: #f13e3e;
+    text-align: right;
+}
+
+.user-notes
+{
+    resize: none;
+    border: none;
+    width: 90%;
+    height: 90%;
+    font-size: 1em;
+    padding: 5%;
+}
+
+.edit-control-wrap {
+    width: 100%;
+    height: 12vw;
+    margin-bottom: 10%;
+}
+
+.edit-control {
+    height: 10vw;
+    width: 10vw;
+    display: inline-block;
+    margin: 0 2%;
+    border: 2px solid #DBE9F9;
+    border-radius: 50%;
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.edit-control.edit {
+    background-image: url(../img/pencil.svg);
+}
+
+.edit-control.cancel-edit {
+    background-image: url(../img/ic_close_normal.png);
+}
+
+.edit-control.save-edit {
+    background-image: url(../img/ic_done_normal.png);
+}
+
+.edit-control.save-edit.disable {
+    opacity: 0.65;
+}
+
+.edit-control.change-password-btn, .edit-control.edit-notes-btn{
+    width: 40vw;
+    height: 10vw;
+    border: 2px solid white;
+    border-radius: 94px;
+    vertical-align: 4vw;
+}
+
+.changePass-btn {
+    line-height: 0vw;
+}
+
+.page-footer {
+    position: absolute;
+    bottom: 0vw;
+    right: 0;
+    left: 0;
+    background-color: white;
+     z-index: 9999;
+}
+
+.page-footer-button {
+    right: 0;
+    left: 0;
+    height: 6vh;
+    padding-top: 2vh;
+   
+}
+
+.wrap-page-footer-button {
+    position: relative;
+}
+
+.page-footer-button.input-uploade-image {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    opacity: 0;
+}

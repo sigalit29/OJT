@@ -1,0 +1,214 @@
+.course-wrap {
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+.course-scroll-wrap
+{
+	overflow-y: auto;
+	height: 100%;
+}
+
+.blue-back-gradient-wrap {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	left: 0;
+	height: 0%;
+	display: none;
+	z-index: 10;
+}
+
+.showBlueBack.blue-back-gradient-wrap {
+	display: block;
+	-webkit-animation: blueBackDisplay 2s;
+	-moz-animation: blueBackDisplay 2s infinite;
+	-o-animation: blueBackDisplay 2s infinite;
+	animation: blueBackDisplay 2s;
+	-webkit-animation-fill-mode: forwards;
+	-moz-animation-fill-mode: forwards;
+	-o-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+}
+
+.static.blue-back-gradient-wrap {
+	display: block;
+	height: calc(100% + 66px);
+}
+
+.hide.blue-back-gradient-wrap {
+	-webkit-animation: blueBackHide 2s;
+	-moz-animation: blueBackHide 2s infinite;
+	-o-animation: blueBackHide 2s infinite;
+	animation: blueBackHide 2s;
+}
+
+.blue-back-gradient {
+	background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 5%, rgba(74,144,226,1) 96%, rgba(74,144,226,1) 100%);
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(5%, rgba(255,255,255,1)), color-stop(96%, rgba(74,144,226,1)), color-stop(100%, rgba(74,144,226,1)));
+	background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 5%, rgba(74,144,226,1) 96%, rgba(74,144,226,1) 100%);
+	background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 5%, rgba(74,144,226,1) 96%, rgba(74,144,226,1) 100%);
+	height: 66px;
+	background-image: url(../img/bg_gradient_small.png);
+	background-repeat: repeat-x;
+	background-size: auto 100%;
+	margin-bottom: -2px;
+}
+
+.blue-back-color {
+	background-color: #4a90e2;
+	height: calc(100% );
+	margin-top: -1px;
+}
+
+.blue-back-color.white {
+	background-color: #FFFFFF;
+}
+
+.checkout-first-section {
+	height: 100%;
+	position: relative;
+	z-index: 10;
+}
+
+.reminder-banner-wrap{
+	width: 100%;
+	height: 15vw;
+}
+
+.reminder-banner{
+	background-color: #15457D;
+	width: 100%;
+	padding: 3vw 4vw;
+	position: fixed;
+	bottom: 0;
+	box-sizing: border-box;
+	text-align: right;
+}
+.banner-text{
+	color: white;
+	width: 50%;
+	font-size: 3.2vw;
+	display: inline-block;
+	vertical-align: middle;
+	text-align: right;
+}
+.banner-btn{
+	color: #FFDA00;
+	border: 2px solid #FFDA00;
+	display: inline-block;
+	vertical-align: middle;
+	width: auto;
+	border-radius: 4vw;
+	padding: 1vw 3vw;
+	font-size: 4vw;
+	font-weight: bold;
+	float: left;
+}
+
+.page-sub-title {
+	font-weight: bold;
+	font-size: 3.7vh;
+	text-align: right;
+	color: #15457d;
+	margin-right: 4vh;
+	margin-top: 25px;
+	line-height: 5vh;
+	height: 5.5vh;
+	padding-top: 1vh;
+}
+
+.title-single-course{
+	line-height: 12vh;
+	text-align: right;
+	padding-right: 3vh;
+	box-sizing: border-box;
+	color: #4a90e2;
+	border-bottom: 1px solid #15457d55;
+	font-size: 5vw;
+	position: relative;
+	transition: transform 0.25s;
+	transform: translateZ(0) scale(1.0, 1.0);
+}
+.title-single-course:hover{
+	transform: translate(0, 0.25em);
+}
+.title-single-course:hover:after{
+	opacity:0.5;
+}
+.title-single-course:last-child:after{
+	height: 0;
+}
+.curr-meeting-link .title-single-course:after{
+	height: 25px;
+}
+.title-single-course:last-child:hover{
+	transform: translateY(0em);
+}
+.curr-meeting-link .title-single-course:hover{
+	transform: translateY(0.25em);
+}
+.title-single-course.off {
+	color: #B1B1B1;
+}
+.title-single-course .num-of-items
+{
+	display: inline-block;
+    min-width: 0.8em;
+    height: 0.8em;
+    line-height: 0.8em;
+    margin-right: 7.5%;
+    margin-top: 6vw;
+    margin-left: 7.5%;
+    border-radius: 100%;
+    padding: 2%;
+    float: left;
+    text-align: center;
+    background-color: #4a90e2;
+    color: rgb(254, 181, 0);
+}
+.active-lesson-circle {
+	width: 5vw;
+	height: 5vw;
+	border-radius: 50%;
+	background-color: #ffda00;
+	display: inline-block;
+	margin-top: calc(6vh - 2.5vw);
+	float: left;
+	position: relative;
+	margin-left: 7.5%;
+}
+
+.textSingleCourse {
+	font-size: 6vw;
+	padding-right: 2vh;
+}
+
+.singleCourse-image {
+	height: 9vw;
+	background-repeat: no-repeat;
+	background-size: contain;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.stat-blocks-wrap{
+	width: 100%;
+	position: 0;
+}
+.stat-blocks-wrap:before{
+	content:'';
+	width: 100%;
+	height: 40%;
+	position:  absolute;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,e8f2ff+100 */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e8f2ff',GradientType=0 ); /* IE6-9 */
+	background: rgb(255,255,255); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(232,242,255,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(232,242,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(232,242,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	bottom: 0;
+	left: 0;
+	z-index: -1;
+
+}

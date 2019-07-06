@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 83.316 89.063">
+    <defs>
+        <style>
+            .cls-1,.cls-2{fill:url(#linear-gradient)}.cls-2{fill-rule:evenodd}
+        </style>
+        <linearGradient id="linear-gradient" x1=".5" x2=".5" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#b5d7ff"/>
+            <stop offset=".42" stop-color="#7ebffe"/>
+            <stop offset="1" stop-color="#4a90e2"/>
+        </linearGradient>
+    </defs>
+    <g id="noun_snorkeling_1005886_000000" transform="translate(-1.5 -1020.86)">
+        <path id="Path_601" d="M12.992 1029.106a5.746 5.746 0 1 1-5.746-5.746 5.746 5.746 0 0 1 5.746 5.746z" class="cls-1" data-name="Path 601" transform="translate(0 4.682)"/>
+        <path id="Path_602" d="M12.246 1030.983a2.873 2.873 0 1 1-2.873-2.873 2.873 2.873 0 0 1 2.873 2.873z" class="cls-1" data-name="Path 602" transform="translate(9.365 13.579)"/>
+        <path id="Path_603" d="M15.369 1025.17a4.309 4.309 0 1 1-4.309-4.31 4.309 4.309 0 0 1 4.309 4.31z" class="cls-1" data-name="Path 603" transform="translate(9.833)"/>
+        <path id="Path_604" d="M13.119 1032.36a8.619 8.619 0 0 0-8.619 8.619v8.619a8.619 8.619 0 0 0 8.619 8.619h7.53a8.619 8.619 0 0 0 6.543-3.008l6.037-7.047 6.038 7.048a8.619 8.619 0 0 0 6.543 3.008h7.53a8.619 8.619 0 0 0 8.619-8.619v-8.619a8.619 8.619 0 0 0-8.619-8.619zm.078 4.3a1.437 1.437 0 0 1 1.044 2.463l-2.845 2.845a1.437 1.437 0 0 1-2.031-2.032l2.845-2.839a1.435 1.435 0 0 1 .99-.439zm4.321.707a1.437 1.437 0 0 1 1.044 2.464l-1.4 1.408a1.436 1.436 0 1 1-2.031-2.031l1.4-1.408a1.439 1.439 0 0 1 .988-.432z" class="cls-2" data-name="Path 604" transform="translate(5.619 21.539)"/>
+        <path id="Path_605" d="M13.5 1085.32a11.536 11.536 0 0 0 11.492 11.492H45.1a14.37 14.37 0 0 0 14.365-14.365v-54.587h-5.743v54.587a8.576 8.576 0 0 1-8.619 8.619H24.992a5.7 5.7 0 0 1-5.746-5.746z" class="cls-2" data-name="Path 605" transform="translate(22.476 13.111)"/>
+        <path id="Path_606" d="M26.365 1044.36a7.182 7.182 0 1 1-14.365 0z" class="cls-1" data-name="Path 606" transform="translate(19.666 44.015)"/>
+        <path id="Path_607" d="M26.5 1024.86h11.492v2.873a2.873 2.873 0 0 1-2.873 2.873h-5.746a2.873 2.873 0 0 1-2.873-2.873z" class="cls-2" data-name="Path 607" transform="translate(46.824 7.492)"/>
+        <path id="Path_608" d="M12.5 1042.69v2.873h11.492v-2.873z" class="cls-2" data-name="Path 608" transform="translate(20.603 40.887)"/>
+    </g>
+</svg>

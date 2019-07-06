@@ -1,0 +1,74 @@
+.login-wrap {
+    height: 100%;
+    padding-top: 20%;
+    box-sizing: border-box;
+}
+
+.login-wrap .input-wrap:nth-child(2) {
+    margin-bottom: 0;
+}
+
+.new-user {
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 5em;
+    color: white;
+}
+.new-user .arrow-down {
+    background-image: url(../img/ic_scroll_down_normal.png);
+    width: 4vw;
+    height: 4vw;
+    background-repeat: no-repeat;
+    margin: auto;
+    background-size: contain;
+    margin-top: 2vw;
+}
+.regcode-popup
+{
+    text-align: center;
+    color: #15457D;
+}
+.regcode-popup-content
+{
+    margin-top: 15%;
+}
+.regcode-popup .options-popup-title.error
+{
+    color: red;
+}
+.login-with-gp-wrap
+{
+    display: inline-block;
+}
+.unmask-pass
+{
+    display: inline-block;
+    width: 1.5em;
+    position:  absolute;
+    left: 1em;
+    top: 3.5vw;
+    cursor:  pointer;
+    filter: brightness(0%) invert(100%);
+    -webkit-filter: brightness(0%) invert(100%);
+}
+.unmask-deactivate
+{
+    background: red;
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+    width: 1.5em;
+    height: 3px;
+    border-radius: 3px;
+    position: absolute;
+    top: 5.5vw;
+    left: 4.5vw;
+    display: inline-block;
+    transform: rotateZ(-45deg);
+    pointer-events: none;
+}
+.forgot-pass{
+    color:white;
+    cursor: pointer;
+    text-align: right;
+    padding: 0 27.5%;
+    margin-bottom: 10%;
+}

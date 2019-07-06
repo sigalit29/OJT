@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.568 17.568">
+    <defs>
+        <style>
+            .cls-1,.cls-2{fill:none}.cls-1{stroke:#15457d}.cls-3{fill:#15457d}
+        </style>
+    </defs>
+    <g id="PLUS_01" data-name="PLUS 01" transform="translate(-281 -535)">
+        <path id="Path_112" d="M8.018 0A8.019 8.019 0 1 1 0 8.019 8.018 8.018 0 0 1 8.018 0z" class="cls-1" data-name="Path 112" transform="translate(282.032 536.031)"/>
+        <g id="PLUS">
+            <path id="Path_283" d="M7.167 0A7.167 7.167 0 1 1 0 7.167 7.167 7.167 0 0 1 7.167 0z" class="cls-2" data-name="Path 283" transform="translate(281 535)"/>
+        </g>
+        <path id="_" d="M3.238 7.4V4.163H0v-.925h3.238V0h.925v3.238H7.4v.925H4.163V7.4z" class="cls-3" data-name="+" transform="translate(286.251 540.252)"/>
+    </g>
+</svg>

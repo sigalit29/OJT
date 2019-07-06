@@ -1,0 +1,17 @@
+<div class="syllabus-dashboard syllabus-wrap">
+	<div ng-repeat="subject in syllabus">
+				<hierarchy node="subject" collapse-by="'open'" children="'subsubjects'"  data="{'selectedSubjects':subjectsTaught}" template="'
+					<div class=\'subj-header\' ng-click=\'node.open=!node.open;\' ng-class=\'{&quot;open&quot;:node.open}\'>
+						<div class=\'vi-img\' ng-class=\'showSelectIcon(data, node, children)\'></div>
+							<div class=\'subject-name\'>
+								{{(!isArabic || !node.subjectinarabic)? node.subject : node.subjectinarabic}}
+							</div>
+						<!--little arrow signifying whether the menu is currently open or not-->
+						<img class = \'dropdown-arrow\' src=\'img/arrow_dark.svg\' ng-show=\'node.subsubjects && node.subsubjects.length > 0\'>
+					</div>
+					<div class=\'line-subject\'></div>
+				'">
+		</hierarchy>
+	</div>
+</div>
+

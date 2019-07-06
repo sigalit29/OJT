@@ -1,0 +1,31 @@
+<div class="grade-wrap">
+    <dynamicmask></dynamicmask>
+    <div class="content-by-mask" ng-hide="hideGardeSection">
+        <div class="slider-wrap" ng-repeat="qa in question" ng-class="{'first': $first}" ng-init="qa.questiontype ='close'">
+            <div class="question-title">{{ !arabicLnguage ? qa.question : qa.questioninarabic}}</div>
+            <div id="question-{{qa.questionid}}" ng-model="qa.answer" ng-ishebrew="{{!arabicLnguage}}"  data-range-slider data-floor="0" data-ceiling="4" data-step="1" data-precision="4" data-grade="qa.answers" data-dragstop="false"></div><!-- ng-model="qa.answer"-->
+         </div>
+
+                    <!--<div class="comment">
+                        <textarea id="comment" placeholder="יש לך משהו להוסיף?" rows="1" style="height:1em;" ng-init="initTextAreaInit()"></textarea>
+                    </div>-->
+        <div class="plcaeHolderParent">
+            <comment placeholder="{{dictionary.addSomethingText}}" bgname="blue"  comment-changed="commentChanged(comment)"></comment>
+        </div>
+        <div class="main-btn open" ng-if="(userType == 'madrich')" ng-click="sendFeedback()"><span class="text">{{dictionary.finishNameText}}</span></div>
+    </div>
+   
+
+
+    <div class="apple-logo"></div>
+
+
+    <div class="preload-images">
+        <img class="load-img" src="./img/01_ic_face.png" width="1" height="1">
+        <img class="load-img" src="./img/02_ic_face.png" width="1" height="1">
+        <img class="load-img" src="./img/03_ic_face.png" width="1" height="1">
+        <img class="load-img" src="./img/04_ic_face.png" width="1" height="1">
+        <img class="load-img" src="./img/05_ic_face.png" width="1" height="1">
+    </div>
+
+</div>

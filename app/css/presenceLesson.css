@@ -1,0 +1,93 @@
+.blue-back-color.precence {
+    background-image: url(../img/shadow.png);
+    background-repeat: no-repeat;
+    background-position: top;
+    overflow: auto;
+    background-size: 100% 5px}
+
+.presence-item {
+    border-bottom-style: ridge;
+    border-bottom-width: 0.3vw;
+    border-bottom-color: #419BF9;
+    text-align: right;
+    font-weight: bold;
+    padding-right: 1vh;
+    box-sizing: border-box;
+    color: #4a90e2;
+    font-size: 5vw;
+    padding: 4vw;
+    padding-right: 4vw;
+    /*height: 14vh;*/
+}
+
+.presence-item .name-wrap {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.blue-title {
+    color: #15457D;
+    font-size: 4vh;
+    padding-top: 2.5vh;
+    text-align: right;
+    padding-right: 3vh;
+    font-weight: bold;
+}
+.presence-lis .blue-title div{
+    display: inline-block;
+    margin-left: 5%;
+}
+.presence-lis.checked .blue-title {
+    padding-top: 6vh;
+}
+.check-image {
+	border: 2px solid #FFFFFF;
+	border-radius: 50%;
+	height: 4.5vh;
+	margin-right: 1vw;
+	vertical-align: middle;
+	display: inline-block;
+}
+
+.presence-item .pupil-image {
+	margin-right: 4vw;
+	height: 10vw;
+	width: 10vw;
+	border: 5px solid #6AA4E7;
+}
+
+.presence-item .text-pupil-name {
+	color: #FFFFFF;
+	padding-right: 4vw;
+	line-height: 1em;
+}
+
+.presence-item .description {
+	color: #FFFFFF;
+	font-weight: normal;
+	font-size: 2.3vh;
+	padding-right: 2.5vh;
+}
+
+.presence-lis.checked .presence-item .check-image {
+	border: 0px solid #FFFFFF;
+	height: 5.2vh;
+}
+
+.presence-item .blue-title {
+	padding-top: 6vh;
+}
+.left-image {
+	background-image: url(../img/blue-clock.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	margin-top: 1em;
+	width: 3.5vh;
+	height: 3.5vh;
+	vertical-align: middle;
+	float: left;
+	position: relative;
+}
+.late-picture {
+	background-image: url(../img/orange-clock.png);
+}

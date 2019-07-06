@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44">
+    <defs>
+        <style>
+            .cls-1,.cls-4{fill:none}.cls-1{stroke:#15457d;stroke-width:2px}.cls-2{fill:#15457d}.cls-3{stroke:none}
+        </style>
+    </defs>
+    <g id="תכנון_מפגש" data-name="תכנון מפגש" transform="translate(-307 -77)">
+        <g id="Ellipse_277" class="cls-1" data-name="Ellipse 277" transform="translate(307 77)">
+            <circle cx="22" cy="22" r="22" class="cls-3"/>
+            <circle cx="22" cy="22" r="21" class="cls-4"/>
+        </g>
+        <g id="תכנון_מפגש-2" data-name="תכנון מפגש" transform="translate(310.88 79.88)">
+            <path id="Path_657" d="M29.733 18.384V9.738a2.3 2.3 0 0 0-2.3-2.3h-2.539V-.439a.768.768 0 0 0-.768-.768.768.768 0 0 0-.768.768v7.872H11.225V-.17a.768.768 0 0 0-.768-.768.768.768 0 0 0-.768.768v7.6H7.3A2.3 2.3 0 0 0 5 9.738v17.691a2.3 2.3 0 0 0 2.3 2.3h11.084a8.062 8.062 0 1 0 11.35-11.35zM7.3 8.97h2.389v1.662a.768.768 0 1 0 1.536 0V8.97h12.133v1.662a.768.768 0 0 0 1.536 0V8.97h2.535a.768.768 0 0 1 .768.768v3.712H6.536V9.738A.768.768 0 0 1 7.3 8.97zm0 19.23a.768.768 0 0 1-.768-.768V14.985H28.2v2.393A8.059 8.059 0 0 0 17.379 28.2zm17.282 2.919a6.529 6.529 0 1 1 6.529-6.529 6.529 6.529 0 0 1-6.529 6.529z" class="cls-2" data-name="Path 657"/>
+            <path id="Path_658" d="M-1.041-5.086h-2.827v-1.549h2.826V-9.6H.571v2.97H3.4v1.549H.571v2.97h-1.612z" class="cls-2" data-name="Path 658" transform="translate(24.871 30.36)"/>
+        </g>
+    </g>
+</svg>

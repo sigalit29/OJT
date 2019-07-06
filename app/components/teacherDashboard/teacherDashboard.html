@@ -1,0 +1,378 @@
+<div class="fullBlueBack">
+	<!--tabs under header-->
+	<div class="tabs-wrap">
+		<div class="tab-header" ng-class="{'activeTab':rightActive}" ng-click="rightTab()">
+			<div class="tab-text">
+				{{dictionary.lesson}}
+			</div>
+		</div>
+		<div class="tab-header" ng-class="{'activeTab':!rightActive}" ng-click="leftTab()">
+			<div class="tab-text">
+			{{dictionary.computerCourseText}}
+			</div>
+		</div>
+	</div>
+</div>
+<!--statistics on a single meeting-->
+<div class="dashboard meeting-dashboard" ng-show="rightActive" >
+	<!-- Slider main container -->
+	<div class="swiper-container">
+		<!--navigation buttons -->
+		<div class="navigator-wrap">
+			<div class="curr-meeting-properties">
+				<div ng-hide="!loading && meetings.length == 0">
+					{{dictionary.lesson+" "+meetingIds[mySwiper.activeIndex].num+", "+getShortDate(meetings[mySwiper.activeIndex].date)}}
+					<div class="nav-button next-meeting-button" ng-class="{'real-swiper-button-disabled':mySwiper.activeIndex==mySwiper.slides.length-1}"></div>
+				<div class="nav-button prev-meeting-button" ng-class="{'real-swiper-button-disabled':mySwiper.activeIndex==0}"></div>
+				</div>
+				<div ng-show="!loading && meetings.length == 0">Welcome</div>
+			</div>
+
+		</div>
+			<div class="no-lessons" ng-show="!loading && meetings.length == 0">
+					<img id="logoPicWelcome" src="./img/logo-Lesson0.png"/>
+			</div>
+
+		<!-- popup showing attendance per student -->
+				<div ng-show="studentAttendanceVisible">
+					<div class="popupBackground" ng-click="hideStudentAttendance()"></div>
+					<div class="popup meeting-attendance-popup">
+					<div class="popup-header"><div class="close-popup-x" ng-click="hideStudentAttendance()"></div></div>
+					<div class="popup-scroll-area large">
+						<div class="presence-lis">
+							<div class="blue-title">
+								<div>{{dictionary.absentText}}</div>
+								<div class="num-of-students-per-status">{{(meetings[mySwiper.activeIndex]['students'] | filter:filterAbsentStudents).length}}</div>
+							</div>
+							<div  ng-repeat="student in meetings[mySwiper.activeIndex]['students'] |filter:filterAbsentStudents| orderBy:'firstname'"  class="presence-item">
+								<div class="pupil-image" ng-click="setAttendanceStatus(student, 0)" style="{{student.image != '' ? 'background-image:url('+imgsDomain+ student.image+')':'background-image:url(./img/profile.svg)'}}"></div>
+								<div class="student-name-wrap"><span class="text-pupil-name"> {{student.firstname}} {{student.lastname}} </span></div>
+							</div>
+						</div>
+						<div class="presence-lis">
+							<div class="blue-title">
+								<div>{{dictionary.reachedText}}</div>
+								<div class="num-of-students-per-status">{{(meetings[mySwiper.activeIndex]['students'] | filter:filterAttendingStudents).length}}</div>
+							</div>
+							<div  ng-repeat="student in meetings[mySwiper.activeIndex]['students'] | filter:filterAttendingStudents | orderBy:'firstname'" class ="presence-item">
+								<div class="pupil-image" ng-click="setAttendanceStatus(student, 2)" style="{{student.image != '' ? 'background-image:url('+imgsDomain+ student.image+')':'background-image:url(./img/profile.svg)'}}"></div>
+								<div class="student-name-wrap" ng-click="setAttendanceStatus(student, 2)"><span class="text-pupil-name"> {{student.firstname}} {{student.lastname}}</span></div>
+								<div class="left-image" ng-class="{'late-picture':filterLateStudents(student)}" ng-click="setAttendanceStatus(student, student.attendanceStatus == 1?0:1)"></div>
+							</div>
+						</div>
+					</div>
+					</div>
+				</div>
+		<!-- Additional required wrapper -->
+		<div class="swiper-wrapper">
+			<!-- Slides -->
+			<div class="swiper-slide" id="slide_{{$index}}" ng-repeat = "meeting in meetingIds track by $index">
+				<div class= "meeting-wrap" ng-if="meetings[$index]" ng-class="{'ignore-meeting':meetingIds[$index].ignoreMe}">
+					<!--in the meeting (attendance+feedback)-->
+					<div class="report-block in-class-report-block" ng-if="!meetings[$index]['cooking']">
+						<!--title of the report block-->
+						<div class="report-block-header">
+							{{dictionary.duringMeeting}}
+						</div>
+						<div class="report-block-content">
+							<!--attendance segment of the report-->
+							<div class="report-segment attendance-segment">
+								<!--title of the report segment-->
+								<p class="report-segment-title">
+									{{dictionary.presenceText}}
+								</p>
+								<!--wrap for the numerical values displayed in this segment-->
+								<div class = "report-values-wrap">
+									<!--the value presented as a percentage-->
+									<p class="report-value meeting-attendance-percentage" style={{"color:"+getColorByVal(getMeetingAttendanceSummary(meetings[$index]["students"])*100)}}>
+										{{getMeetingAttendanceSummary(meetings[$index]["students"])*100 | number:0}}%
+									</p>
+									<div class="more-info" ng-click="showStudentAttendance()">i</div>
+									<!--the value presented as a out of b-->
+									<p class="report-value-details">
+										{{(meetings[$index]["students"]|filter:filterAttendingStudents).length}} {{dictionary.outOf}} {{meetings[$index]["students"].length}}
+									</p>
+									<p class="report-value-details">
+										{{(meetings[$index]["students"]|filter:filterLateStudents).length}} {{dictionary.wereLate}}
+									</p>
+									<p class="report-value-details">
+										{{(meetings[$index]["students"]|filter:filterFeedbackStudents).length}} {{dictionary.gaveFeedback}}
+									</p>
+								</div>
+								<!--wrap for smiley chart chart-->
+								<div class="report-chart-wrap" ng-click="showStudentAttendance()">
+									<div class="smiley-chart" id={{"slide_"+$index+"_averageAttendanceChart"}}>
+										{{createChart("slide_"+$index+"_averageAttendanceChart", getMeetingAttendanceSummary(meetings[$index]["students"])*100)}}
+									</div>
+								</div>
+								<br style="clear:both;"/>
+							</div>
+							<!--feedback segment of the report-->
+							<div class="feedback-segment report-segment">
+								<div class="no-placeholder" ng-if="meetings[$index]['generalCloseQuestions'].length>0">
+									<!-- a sub segment for a specific question that was asked as part of the meeting-->
+									<div class="report-segment sub-segment" ng-repeat="question in meetings[$index]['generalCloseQuestions']">
+										<p class="report-segment-title">
+											{{question["question"]}}
+										</p>
+										<div class = "report-values-wrap">
+											<p class="report-value" style={{"color:"+getColorByVal(question["avg"])}}>
+												{{question["avg"]}}%
+											</p>
+										</div>
+										<div class="report-chart-wrap">
+											<div class="smiley-chart" id={{"slide_"+$parent.$index+"_averageQuestion_"+$index}}></div>
+											{{createChart("slide_"+$parent.$index+"_averageQuestion_"+$index, question['avg'])}}
+										</div>
+										<br style="clear:both;"/>
+									</div>
+								</div>
+								<div class="placeholder" ng-show="meetings[$index]['generalCloseQuestions'].length==0">
+									<img class="placeholder_img" src="img/placeholder_report_face.png">
+									<p>
+										{{dictionary.missingData}}
+									</p>
+								</div>
+								<br style="clear:both;"/>
+							</div>
+							<!--text comments dropdown menu-->
+							<div class = "dropdown-content report-segment student-meeting-comments" ng-class="{'opened': openedMenu[0]}" ng-click="openedMenu[0] =  !openedMenu[0]; meetings[$index].usage.dashboardmeetingcommentsdisplay=true">
+								<!--title of the dropdown menu - visible also when it's closed-->
+								<div class = "dropdown-content-header">
+									<div class="dropdown-content-title">
+										<p class="content-type">
+											{{dictionary.studentComments}}
+										</p>
+										<div class="num-of-items" ng-if="meetings[$index] ['generalOpenQuestions'].length>0">
+											{{meetings[$index] ['generalOpenQuestions'].length}}
+										</div>
+									</div>
+									<!--little arrow signifying whether the menu is currently open or not-->
+									<img class = "dropdown-arrow" src="img/ic_scroll_down_pressed.png">
+								</div>
+								<!--dropdown content - visible only when open-->
+								<div class="dropdown-list-wrap">
+									<ol class = "dropdown-list">
+										<li class="dropdown-item" ng-repeat="comment in meetings[$index]['generalOpenQuestions']">
+											{{$index+1}} ) {{comment["answer"]}}
+										</li>
+										<li class="placeholder-comment" ng-if="meetings[$index]['generalOpenQuestions'].length==0">{{dictionary.missingData}}</li>
+									</ol>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--after meeting (subject grading)-->
+					<div class="report-block in-class-report-block" ng-if="!meetings[$index]['cooking']">
+						<div class="report-block-header">
+							{{dictionary.subjectsUnderstanding}}
+						</div>
+						<div class="report-block-content">
+							<!--overall understanding-->
+							<div class="report-segment understanding-segment">
+								<div class="no-placeholder" ng-show="meetings[$index]['specificCloseQuestions'].length!=0">
+									<div class = "report-values-wrap">
+										<p class="report-value meeting-understanding-percentage" ng-style="{color:getAvgColor(meetings[$index]['specificCloseQuestions'],'avg')}">
+											{{avgOfArray(columnOfArray(meetings[$index]['specificCloseQuestions'], 'avg'))}}%
+										</p>
+									</div>
+									<div class="report-chart-wrap">
+										<div class="smiley-chart" id={{"slide_"+$index+"_averageUnderstandingChart"}}>
+											{{createChart("slide_"+$index+"_averageUnderstandingChart", avgOfArray(columnOfArray(meetings[$index]['specificCloseQuestions'], 'avg')))}}
+										</div>
+									</div>
+									<br style="clear:both;"/>
+								</div>
+								<div class="placeholder" ng-show="meetings[$index]['specificCloseQuestions'].length==0">
+									<img class="placeholder_img" src="img/placeholder_report_face.png">
+									<p>
+										{{dictionary.missingData}}
+									</p>
+								</div>
+							</div>
+							<!--understanding by subject-->
+							<div class = "dropdown-content report-segment understanding-by-subject" ng-class="{'opened': openedMenu[1]}" ng-click="openedMenu[1] =  !openedMenu[1]; meetings[$index].usage.dashboardsubjectsfeedbackdisplay=true">
+								<!--title of the dropdown menu - visible also when it's closed-->
+								<div class = "dropdown-content-header">
+									<div class="dropdown-content-title">
+										<p class="content-type">
+											{{dictionary.understandingBySubject}}
+										</p>
+										<div class="num-of-items" ng-if="meetings[$index]['specificCloseQuestions'].length>0">
+											{{meetings[$index]['specificCloseQuestions'].length}}
+										</div>
+									</div>
+									<!--little arrow signifying whether the menu is currently open or not-->
+									<img class = "dropdown-arrow" src="img/ic_scroll_down_pressed.png">
+								</div>
+								<!--dropdown content - visible only when open-->
+								<div class="dropdown-list-wrap">
+									<ul class = "dropdown-list">
+										<li class="dropdown-item" ng-repeat="subject in meetings[$index]['specificCloseQuestions']">
+											<div>
+												<div class="subjectUnderstandingName">
+													{{subject['subject']}}
+												</div>
+												<div class="subjectUnderstandingValue" style={{"color:"+getColorByVal(subject['avg'])}}>
+													{{subject['avg']}}%
+												</div>
+											</div>
+										</li>
+										<li class="placeholder-comment" ng-if="meetings[$index]['specificCloseQuestions'].length==0">{{dictionary.missingData}}</li>
+									</ul>
+								</div>
+							</div>
+							<!--comments on subjects taught-->
+							<div class = "dropdown-content report-segment student-subjects-comments" ng-class="{'opened': openedMenu[2]}" ng-click="mySwiper.updateContainerSize(); openedMenu[2] =  !openedMenu[2]; meetings[$index].usage.dashboardsubjectscommentsdisplay=true">
+								<!--title of the dropdown menu - visible also when it's closed-->
+								<div class = "dropdown-content-header">
+									<div class="dropdown-content-title">
+										<p class="content-type">
+											{{dictionary.studentComments}}
+										</p>
+										<div class="num-of-items" ng-if="meetings[$index]['specificOpenQuestions'].length>0">
+											{{meetings[$index]['specificOpenQuestions'].length}}
+										</div>
+									</div>
+									<!--little arrow signifying whether the menu is currently open or not-->
+									<img class = "dropdown-arrow" src="img/ic_scroll_down_pressed.png">
+								</div>
+								<!--dropdown content - visible only when open-->
+								<div class="dropdown-list-wrap">
+									<ol class = "dropdown-list">
+										<li class="dropdown-item" ng-repeat="comment in meetings[$index]['specificOpenQuestions']">
+											{{$index+1}} ) {{comment["answer"]}}
+										</li>
+										<li class="placeholder-comment" ng-if="meetings[$index]['specificOpenQuestions'].length==0">{{dictionary.missingData}}</li>
+									</ol>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- still cooking meeting placeholder -->
+					<div class="placeholder" ng-show="meetings[$index]['cooking']">
+						<img class="placeholder_img" src="img/cooking.png">
+						<br>
+						<p>
+							{{dictionary.cookingYourDashboard}}
+						</p>
+						<p>
+							{{dictionary.missingFeedbackFrom}}
+						</p>
+						<div class="missing-feedback-student-wrap" ng-repeat="student in meetings[$index]['students'] | filter:(awaitingFeedback) | orderBy:'firstname'">
+							<div class="pupil-image" ng-click="goToUserProfile(student.userid)" style="{{student.image != '' ? 'background-image:url('+imgsDomain+ student.image+')':'background-image:url(./img/profile.svg)'}}"></div>
+							<span class="text-pupil-name">{{student.firstname + ' '+ student.lastname}}</span>
+						</div>
+					</div>
+					<div class="ignore-meeting-toggle-wrap">
+						<toggle-switch unchecked-label="dictionary.includeMeeting" checked-label="dictionary.ignoreMeeting" model="meetingIds[$index].ignoreMe" on-change="toggleIgnore" on-change-params="$index">
+					</div>
+				</div>
+				<!--load swiper-->
+					<div ng-init="$last?initializeSwiper() :''"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--statistics on the entire course-->
+<div class="dashboard course-dashboard" ng-show="!rightActive">
+	<div class="report-block in-class-report-block">
+		<!--title of the report block-->
+		<div class="report-block-header">
+			<p>
+				{{dictionary.presenceText}}
+			</p>
+		</div>
+		<div class="report-block-content">
+			<!--attendance segment of the report-->
+			<div class="report-segment attendance-segment">
+				<div class="attendance_bar_chart bar_chart">
+					<div ng-if="courseData">
+						{{drawBarChart('attendance_bar_chart', getRealCourseAttendance(courseData['lessons']))}}
+					</div>
+					<canvas></canvas>
+				</div>
+				<!--wrap for the numerical values displayed in this segment-->
+				<div class = "report-values-wrap">
+					<!--the value presented as a percentage-->
+					<p class="report-value course-attendance-percentage" ng-style="{color:getColorByVal((sumOfArray(columnOfArray(courseData['lessons'],'exist'))-(sumOfArray(columnOfArray(courseData['lessons'],'late'))/2))/sumOfArray(columnOfArray(courseData['lessons'],'from'))*100)}">
+						{{(sumOfArray(columnOfArray(courseData['lessons'],'exist'))-(sumOfArray(columnOfArray(courseData['lessons'],'late'))/2))/sumOfArray(columnOfArray(courseData['lessons'],'from'))*100 | number:0}}%
+					</p>
+					<p class="report-value-details">
+						{{dictionary.attendanceRateOver}} {{courseData['lessons'].length}} {{dictionary.meetingsText}}
+					</p>
+					<p class="report-value-details">
+						{{dictionary.droppedOut+": "+courseData.dropouts}}
+					</p>
+				</div>
+				<!--wrap for smiley chart chart-->
+				<div class="report-chart-wrap">
+					<div class="smiley-chart" id="course_averageAttendanceChart">
+						{{createChart('course_averageAttendanceChart', (sumOfArray(columnOfArray(courseData['lessons'],'exist'))-(sumOfArray(columnOfArray(courseData['lessons'],'late'))/2))/sumOfArray(columnOfArray(courseData['lessons'],'from'))*100)}}
+					</div>
+				</div>
+				<br style="clear:both;"/>
+			</div>
+		</div>
+	</div>
+	<div class="report-block in-class-report-block">
+		<!--title of the report block-->
+		<div class="report-block-header">
+			<p>
+				{{dictionary.feedbacks}}
+			</p>
+		</div>
+		<div class="feedback-segment report-segment">
+			<!-- a sub segment for a specific question that was asked as part of the meeting-->
+			<div class="report-segment sub-segment" ng-repeat="question in courseData['GeneralCloseQuestions']">
+				<p class="report-segment-title">
+					{{question.question}}
+				</p>
+				<div class = "report-values-wrap">
+					<p class="report-value" style={{"color:"+getColorByVal(question.avg)}}>
+						{{question["avg"]}}%
+					</p>
+				</div>
+				<div class="report-chart-wrap">
+					<div class="smiley-chart" id={{"course_averageQuestion_"+$index}}></div>
+					{{createChart('course_averageQuestion_'+$index, question['avg'])}}
+				</div>
+				<br style="clear:both;"/>
+			</div>
+			<br style="clear:both;"/>
+		</div>
+	</div>
+	<div class="report-block in-class-report-block">
+		<!--title of the report block-->
+		<div class="report-block-header">
+			<p>
+				{{dictionary.subjectsUnderstanding}}
+			</p>
+		</div>
+		<div class="report-block-content">
+			<!--attendance segment of the report-->
+			<div class="report-segment understanding-segment">
+				<div class="understanding_bar_chart bar_chart">
+					<div ng-if="courseData">
+						{{drawBarChart('understanding_bar_chart',columnOfArray(courseData['lessons'], 'understanding'))}}
+					</div>
+					<canvas></canvas>
+				</div>
+				<!--wrap for the numerical values displayed in this segment-->
+				<div class = "report-values-wrap">
+					<!--the value presented as a percentage-->
+					<p class="report-value course-understanding-percentage" ng-style="{color:getColorByVal(courseData['AvgCourseUnderstanding'])}">
+						{{courseData['AvgCourseUnderstanding']}}%
+					</p>
+				</div>
+				<!--wrap for smiley chart chart-->
+				<div class="report-chart-wrap">
+					<div class="smiley-chart" id="course_averageUnderstandingChart">
+						{{createChart('course_averageUnderstandingChart', courseData['AvgCourseUnderstanding'])}}
+					</div>
+				</div>
+				<br style="clear:both;"/>
+			</div>
+		</div>
+	</div>
+</div>

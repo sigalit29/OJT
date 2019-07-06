@@ -1,0 +1,171 @@
+.my-classroom-wrap {
+	background-color: #f8f7f7;
+	width: 100%;
+	min-height: 100%
+}
+/*
+.sort-button {
+	display: inline-block;
+	text-align: center;
+	height: calc(1em + 2vh);
+}
+.sort-controls {
+	width: 100%;
+	margin: 0 auto;
+	padding: 1vh 0;
+	background-color: #DBE9F9;
+	color: #0E3B6F;
+}
+#sort-by-name {
+	margin-right: calc(8px + 10vw);
+	width: 57vw;
+	border-left: 2px solid #fff;
+}
+#sort-by-value {
+	width: calc(97% - (69vw + 8px ));
+}
+.sort-indicator {
+	margin: 0 auto;
+	width: 2vh;
+	height: 1vh;
+	background-image: url(../img/ic_scroll_down_pressed.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	-webkit-transition: -webkit-transform 0.5s ease-in-out;
+	-moz-transition: transform 0.5s ease-in-out;
+	-o-transition: transform 0.5s ease-in-out;
+	transition: transform 0.5s ease-in-out, -ms-transform 0.5s ease-in-out;
+}
+.sort-indicator.reverse {
+	-ms-transform: rotate(180deg);
+	-webkit-transform: rotate(180deg);
+	transform: rotate(180deg);
+}*/
+/*
+.student-wrap {
+	padding: 5% 0;
+	margin: 0 5%;
+	text-align: right;
+	width: 90%;
+	border-bottom: 2px solid #f1efef;
+}
+*/
+ .student-wrap {
+	padding: 3% 5%;
+	text-align: right;
+	width:90%;
+	border-bottom: 1px solid #e2e2e2;
+	white-space: nowrap;
+	position: relative;
+}
+.student-wrap.inactive{
+	opacity: 0.6;
+	font-style: italic;
+}
+.student-wrap .student-details, .student-wrap .student-profile-pic{
+	display: inline-block;
+	vertical-align: middle;
+}
+.student-wrap .student-details {
+	margin-right: 2.5vw;
+}
+.student-wrap .student-details .text-pupil-name {
+	padding-right: 0px;
+    width: 72vw;
+    line-height: 1em;
+}
+.student-wrap .student-details .student-values {
+	line-height: 5.15vw;
+}
+.student-values .last-two-meeting, .student-values .course-average{
+	display: inline-block;
+	vertical-align: middle;
+}
+.student-wrap .course-average {
+	color: #0E3B6F;
+}
+.student-wrap .course-average.unusual{
+	color: #ffb500;
+	font-weight: bold;
+}
+.student-wrap .last-two-meeting
+{
+	font-size: 80%;
+    font-weight: bold;
+    color: #ffb500;
+    margin-right: 2.5%;
+}
+.student-profile-pic-wrap
+{
+	height: 15vw;
+	width: 30%;
+	position: absolute;
+}
+.student-profile-pic {
+	height: 10.3vw;
+	width: 10.3vw;
+	/*background-repeat: no-repeat;*/
+	background-size: cover;
+	border-radius: 50%;
+	border: 1.5vw solid #fff;
+	background-position: center;
+	display: inline-block;
+}
+.more-student-details .dropdown-content-header {
+    width: 90%;
+    display: inline;
+    position: absolute;
+}
+
+.more-student-details .right-toggle {
+	/* margin: auto 2.5%; */
+}
+
+.more-student-details .dropdown-content-header .dropdown-arrow {
+    top: -15vw;
+    display: block;
+    position: relative;
+    width: 4%;
+    height: initial;
+    padding: 3.25% 5%;
+}
+.more-student-details .dropdown-list-wrap
+{
+    margin-right: 13vw;
+    width: calc(100% - 13vw);
+	padding-right: 5%;
+}
+.more-student-details .dropdown-list
+{
+	padding-right: 5%;
+}
+.more-student-details .dropdown-list .placeholder-comment
+{
+	margin-right: -5%;
+}
+.more-student-details .reminder
+{
+	width: 80%;
+    height: 10vw;
+	text-align: center;
+}
+.more-student-details .reminder .check-button
+{
+	border-radius: 10vw;
+	width: 40%;
+}
+.more-student-details .reminder .check-side
+{
+	height: 10vw;
+	width: 10vw;
+}
+.more-student-details .reminder .moveRight .check-side {
+    left: calc(100% - 10vw);
+}
+
+.more-student-details .details-section-title
+{
+	color: #15457D;
+    margin: 2.5% 0;
+    font-weight: bold;
+}

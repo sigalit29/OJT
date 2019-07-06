@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+    <defs>
+        <style>
+            .cls-1{fill:#fff;opacity:.85}
+        </style>
+    </defs>
+    <path id="edit_Picture" d="M8.154 3.077L2.462 8.923 0 16l7.077-2.308L12.769 8zm7.231-.462l-2-2a1.865 1.865 0 0 0-2.769 0L8.923 2.308l4.615 4.769 1.846-1.846A1.95 1.95 0 0 0 16 3.846a1.9 1.9 0 0 0-.615-1.231z" class="cls-1"/>
+</svg>

@@ -1,0 +1,22 @@
+.syllabus-approval-wrap{
+	padding-right: 2.5%;
+	padding-top: 3%;
+}
+/* .page-wrap.active .vi-img.selectable{
+    background-image: url(../img/vi_unchecked_white.svg);
+} */
+/* .page-wrap.active .vi-img.selectable.selected{
+    background-image: url(../img/vi_checked_white.svg);
+} */
+.page-wrap.active .subj-header {
+    color: #fff;
+}
+.vi-img.selectable {
+    background-image: url(../img/vi_unchecked.svg);
+}
+.vi-img.selected {
+    background-image: url(../img/vi_checked.svg);
+}
+.vi-img.semiSelected {
+    background-image: url(../img/vi_semi.svg);
+}

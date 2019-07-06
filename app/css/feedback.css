@@ -1,0 +1,43 @@
+/*.load-img {
+	opacity: 0;
+}
+
+.face-text {
+	color: #fff;
+	opacity: 1;
+	position: static!important;
+}
+
+.face-text.hide {
+	opacity: 0;
+}
+
+.content-by-mask {
+	height: 100%;
+	position: relative;
+	z-index: 10;
+	overflow-y: auto;
+	overflow-x: hidden;
+	-webkit-overflow-scrolling: touch;
+	padding-bottom: 10%;
+	box-sizing: border-box;
+}
+.thanks-wrap {
+	height: 100%;
+	position: relative;
+}
+
+.comment-wrapper {
+	width: 53%;
+	margin-top: 10%;
+	margin: auto;
+	margin-top: 10%;
+}
+
+.lesson-grading-wrap
+{
+	padding: 0 4vw;
+	box-sizing: border-box;
+	background-color: #4a90e2;
+}
+*/

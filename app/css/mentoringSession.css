@@ -1,0 +1,90 @@
+.session-type-option, .student-option
+{
+	font-size: 0.8em;
+	height: 100%;
+	width: 100%;
+	position: relative;
+	display: inline-block;
+	text-overflow: ellipsis;
+	vertical-align: middle;
+	overflow: hidden;
+	white-space: nowrap;
+	box-sizing:  border-box;
+}
+.student-option
+{
+	padding: 2% 5%;
+}
+.session-type-option:last-child, .student-option:last-child
+{
+	border-bottom:none;
+}
+
+.session-type-option input[type=radio], .student-option input[type=checkbox]{
+  width     : 0px;
+  margin    : 0;
+  padding   : 0;
+  font-size : 1em;
+  opacity   : 0;
+}
+.session-type-option label, .student-option label
+{
+	background-color: transparent;
+    box-shadow: none;
+	cursor: pointer;
+}
+.session-type-option input[type=radio]:checked + label .custom-radio-box-outer
+{
+	background-image: url(../img/btn_check_on_normal.png);
+}
+.session-type-option input[type=radio]:checked + label .vi-img.selectable {
+    background-image: url(../img/vi_checked.svg);
+}
+.student-name {
+    padding-right: 2vw;
+    white-space: nowrap;
+    width: 50vw;
+    text-overflow: ellipsis;
+    display: inline-block;
+}
+.selected-student
+{
+	color: #15457d;
+	text-align:center;
+}
+.popup-create-session
+{
+	background-color: #F8F7F7;
+	color:#15457d;
+    width: 83%;
+    height: 30%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 4%;
+    -webkit-box-shadow: 7px 15px 52px -13px rgba(0,0,0,0.75);
+    -moz-box-shadow: 7px 15px 52px -13px rgba(0,0,0,0.75);
+    box-shadow: 7px 15px 52px -13px rgba(0,0,0,0.75);
+    margin-top: 24vh;
+    padding: 1vw;
+    box-sizing: border-box;
+    z-index: 2000;
+}
+
+.popup-create-session .yes-no-btn
+{
+	padding-bottom: 0.5em;
+}
+.confirm-session-creation
+{
+	width: 80%;
+    margin: auto;
+    margin-top: 1em;
+}
+
+
+
+.popup-create-session 

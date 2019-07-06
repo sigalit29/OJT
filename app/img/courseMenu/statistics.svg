@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44">
+    <defs>
+        <style>
+            .cls-1,.cls-4{fill:none}.cls-1{stroke:#15457d;stroke-width:2px}.cls-2{fill:#fff}.cls-3,.cls-5{stroke:none}.cls-5{fill:#15457d}
+        </style>
+    </defs>
+    <g id="סטטיסטיקות" transform="translate(-307 -198)">
+        <g id="Ellipse_331" class="cls-1" data-name="Ellipse 331" transform="translate(307 198)">
+            <circle cx="22" cy="22" r="22" class="cls-3"/>
+            <circle cx="22" cy="22" r="21" class="cls-4"/>
+        </g>
+        <g id="Path_684" class="cls-2" data-name="Path 684">
+            <path d="M4.941 13.955L.75 12.539V.75h4.191v13.205z" class="cls-3" transform="translate(318 226)"/>
+            <path d="M1.5 1.5V12l2.691.91V1.5H1.5M0 0h5.691v15L0 13.077V0z" class="cls-5" transform="translate(318 226)"/>
+        </g>
+        <g id="Path_685" class="cls-2" data-name="Path 685">
+            <path d="M.9 22.626L.754.75h4.18l-.15 21.809-3.886.067z" class="cls-3" transform="translate(326.177 217.952)"/>
+            <path d="M1.51 1.5l.134 20.363 2.396-.042L4.18 1.5H1.51M0 0h5.691l-.162 23.296-5.375.094L0 0z" class="cls-5" transform="translate(326.177 217.952)"/>
+        </g>
+        <g id="Path_683" class="cls-2" data-name="Path 683">
+            <path d="M.75 29.82V.75h4.191v27.785L.75 29.82z" class="cls-3" transform="translate(333.934 210)"/>
+            <path d="M1.5 1.5v27.306l2.691-.826V1.5H1.5M0 0h5.691v29.089L0 30.835V0z" class="cls-5" transform="translate(333.934 210)"/>
+        </g>
+    </g>
+</svg>

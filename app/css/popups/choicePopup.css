@@ -1,0 +1,52 @@
+.yes-no-btn {
+	background-color: #FFFFFF;
+	color: #15457d;
+	margin-top: 2.5vw;
+	bottom: 0;
+	width: 100%;
+	height: 2em;
+	border-bottom-left-radius: 4vw;
+	border-bottom-right-radius: 4vw;
+	right: 0;
+	left: 0;
+	text-align:center;
+	overflow: hidden;
+    white-space: nowrap;
+}
+.confirm {
+	font-size: 23px;
+	font-weight: bold;
+	display: inline-block;
+	vertical-align: middle;
+	text-align: center;
+	width: calc(49% - 2px);
+}
+
+.cancel {
+	font-size: 23px;
+	display: inline;
+	vertical-align: middle;
+	width: calc(49% - 0.5vw);
+	display: inline-block;
+}
+
+.pipe {
+	height: 80%;
+	width: 2px;-
+	align: 17%;
+	display: inline-block;
+	background-color: #4a90e2;
+	vertical-align: middle;
+	margin-top: 1vw;
+}
+
+.confirm-cancel {
+	background-color: #F1EFEF;
+    height: 8vh;
+    line-height: 8vh;
+    bottom: 0;
+    width: 100%;
+    border-bottom-left-radius: 4vw;
+    border-bottom-right-radius: 4vw;
+    font-size: 125%;
+}
