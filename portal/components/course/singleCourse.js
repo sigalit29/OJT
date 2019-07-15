@@ -396,6 +396,15 @@ function($rootScope, $scope, $state, $stateParams, $http, $q, userService, Uploa
         }
     };
 
+	$scope.goToMeetingPage= function(lesson) {
+        if($rootScope.isAdmin) {
+            $state.transitionTo('singleLesson', {
+				lessonId: lesson.lessonid,
+				lessonNum: lesson.num,
+				courseId: $scope.courseid
+            });
+        }
+	};
 
     $scope.UpdateUserReligion = function(user) {
 		var data={};
@@ -680,6 +689,7 @@ function($rootScope, $scope, $state, $stateParams, $http, $q, userService, Uploa
 				var dateInDateFormat = new Date(parseInt($scope.meetings[index].beginningdate));
 				$scope.meetings[index].date = moment(dateInDateFormat).format('DD-MM-YYYY');
 				$scope.meetings[index].hour = moment(dateInDateFormat).format('HH:mm');
+				
 				if (index == $scope.meetingIds.length - 1) {
 					$scope.$applyAsync();
 				}

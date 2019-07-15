@@ -251,34 +251,34 @@
 						get-data="getEnrolledUsersInRoleFull" param-obj="{'param1':  role}" make-header="false"
 						ng-show="displayedEnrollments[role.enrollmentroleid].users.length>0"></div>
 					<hr>
-				</div>
-				<p>פרוט המפגשים לקורס: {{' ' + course.name}} </p>
-				<div ng-repeat="meeting in meetings">					
-					<div class="scrolling-table-wrapper">
-						<div class="scrolling-table">
-							<table class="table-striped table-bordered table-hover midrows">
-								<thead class="fixed-tbl">
-									<tr>
-										<th class="small-cell fixed-col1">שם המפגש</th>
-										<th class="small-cell fixed-col2">תאריך מפגש</th>
-										<th class="large-cell" ng-repeat="field in customFields">
-												{{field.field}}
-											</th>
-									</tr>
-								</thead>
-								<tbody class="fixed-tbl">
-									<td class="small-cell fixed-col1" ng-click="">
-										{{meeting.date}}</td>
-									<td class="small-cell fixed-col2" >
-										{{meeting.lessonid}}</td>
-										<td class="large-cell" ng-repeat="field in customFields"></td>
-								</tbody>
-							</table>
+					
+				</div><div ng-if="isAdmin">
+						<p>פרוט המפגשים לקורס: {{' ' + course.name}} </p>
+						<div class="scrolling-table-wrapper">
+							<div class="scrolling-table">
+								<table class="table-striped table-bordered table-hover midrows">
+									<thead>
+										<tr>
+											<th class="small-cell">שיעור#</th>
+											<th class="small-cell">תאריך</th>
+											<th class="small-cell">שעה</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="meeting in meetings">
+											<td class="small-cell" ng-click="goToMeetingPage(meeting)">{{meeting.num}}</td>
+											<td class="small-cell">{{meeting.date}}</td>
+											<td class="small-cell">{{meeting.hour}}</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 						</div>
-					</div>
-				</div>
+				   </div>
+				
 				<br>
 				<br>
+			</div>
 			</div>
 			<div ng-if="!courseid">
 				<h4>יש לשמור את הקורס לפני שניתן לצרף משתמשים</h4>
