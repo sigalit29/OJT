@@ -252,23 +252,26 @@
 						ng-show="displayedEnrollments[role.enrollmentroleid].users.length>0"></div>
 					<hr>
 				</div>
-		
-				<div class="form-row">
-					<p>פרוט המפגשים לקורס:      {{ course.name}} </p>
+				<p>פרוט המפגשים לקורס: {{' ' + course.name}} </p>
+				<div ng-repeat="meeting in meetings">					
 					<div class="scrolling-table-wrapper">
 						<div class="scrolling-table">
-							<table class="table-striped table-bordered table-hover ">
+							<table class="table-striped table-bordered table-hover midrows">
 								<thead class="fixed-tbl">
 									<tr>
 										<th class="small-cell fixed-col1">שם המפגש</th>
 										<th class="small-cell fixed-col2">תאריך מפגש</th>
+										<th class="large-cell" ng-repeat="field in customFields">
+												{{field.field}}
+											</th>
 									</tr>
 								</thead>
 								<tbody class="fixed-tbl">
 									<td class="small-cell fixed-col1" ng-click="">
-										שם המפגש</td>
+										{{meeting.date}}</td>
 									<td class="small-cell fixed-col2" >
-										תאריך המפגש </td>
+										{{meeting.lessonid}}</td>
+										<td class="large-cell" ng-repeat="field in customFields"></td>
 								</tbody>
 							</table>
 						</div>

@@ -624,4 +624,80 @@ function($rootScope, $scope, $state, $stateParams, $http, $q, userService, Uploa
     $scope.changed = function() {
         alert("שמירת פעולה זו תגרום לשינוי הסטטוסים של החניכים והמדריכים בקורס זה!");
    }
+
+   //Meetings object
+	$scope.meetingIds = [];
+	$scope.meetings = [];
+	//index of the meeting that's currently displayed
+	$scope.currMeeting = 0;
+	
+
+	/**check if meeting was opened, and not set to "ignore me"
+	* @param {object} meeting: the meeting to check
+	*/
+	wasMeetingActivated = function(m)
+	{
+		return (m.checkin!=undefined&&m.checkin!=null&&m.checkin!='');
+	};
+	/**
+	* gets meta data on every single meeting in the course (time of meeting, id, name), loads that into the $scope.meetingIds array
+	 * loads first batch of meetings automatically
+	 */
+	var loadAllMeetings = function () {	
+		var data = {};
+		data.courseid = $stateParams.courseId;
+		data.type = "post";
+		server.requestPhp(data, "GetLessonsOfCourse").then(function (data) {
+			if (data && !data.error) {
+			$scope.meetingIds = data.filter(wasMeetingActivated).sort(function (a, b) {
+					return b.checkin - a.checkin;
+				});
+				for (var i = 0; i < $scope.meetingIds.length; i++) {
+					$scope.meetingIds[i].ignoreMe = parseInt($scope.meetingIds[i].ignoreMe);
+					loadMeeting(i);
+				}
+				
+				if ($scope.meetingIds.length == 0) {
+					$scope.loading = false;
+				}
+			}
+		});
+	};
+/**
+	 * loads all relevant statistics for a particular meeting into the $scope.meetings array
+	 * @param {number} index: the index of the meeting to be loaded in the $scope.meetingIds array
+	 */
+	loadMeeting = function(index) {
+		console.log("index:");
+		console.log(index);
+		var data = {};
+		data.lessonid = $scope.meetingIds[index]["lessonid"];
+		data.courseid = $scope.courseId;
+		server.requestPhp(data, "GetLessonById").then(function(data) {
+			if (data && !data.error) {
+				$scope.meetings[index] = data.lesson;
+                console.log($scope.meetings[index]);
+				var dateInDateFormat = new Date(parseInt($scope.meetings[index].beginningdate));
+				$scope.meetings[index].date = moment(dateInDateFormat).format('DD-MM-YYYY');
+				$scope.meetings[index].hour = moment(dateInDateFormat).format('HH:mm');
+				if (index == $scope.meetingIds.length - 1) {
+					$scope.$applyAsync();
+				}
+				loadMeetingActivity(index);
+			}
+		});
+	};
+	/*loads up data specific to the user in the meeting, e.g. attendance, comments*/
+	loadMeetingActivity = function(index) {
+		var data = {};
+		data.lessonid = $scope.meetingIds[index]["lessonid"];
+		server.requestPhp(data, "GetMyActivity").then(function(data) {
+			if (data && !data.error) {
+				$scope.meetings[index].activity = data;
+			}
+		});
+	};
+	//load the data for each meeting
+	loadAllMeetings();
+
 }]);

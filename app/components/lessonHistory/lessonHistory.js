@@ -61,7 +61,7 @@ function($scope, $stateParams, $rootScope, $state, server, $timeout, $sce) {
 				{
 					$scope.meetingIds[i].ignoreMe=parseInt($scope.meetingIds[i].ignoreMe);
 				}
-				loadMeetingBatch(0);
+				loadMeeting(i);
 			}
 		});
 	};
