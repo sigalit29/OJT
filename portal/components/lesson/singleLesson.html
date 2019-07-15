@@ -1,7 +1,41 @@
-
 <div id="wrapper">
-        <header></header>
-        <div id="page-wrapper">
-            <h2 class="page-title">{{"עריכת שיעור"}}</h2>
+    <header></header>
+    <div id="page-wrapper">
+        <h2 class="page-title">עריכת סטטוס נוכחות בשיעור {{lessonNum}}</h2>
+        <form>
+            <div>
+                <div class="scrolling-table-wrapper">
+                    <div class="scrolling-table">
+                        <table class="table-striped table-bordered table-hover midrows">
+                            <thead>
+                                <tr>
+                                    <th class="small-cell">שם פרטי</th>
+                                    <th class="small-cell">שם משפחה</th>
+                                    <th class="large-cell">סטטוס נוכחות</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="student in stundentsAttandance">
+                                    <td class="small-cell">{{student.firstname}}</td>
+                                    <td class="small-cell">{{student.lastname}}</td>
+
+                                    <td class="large-cell">
+                                        <select ng-model="student.attendanceStatus"
+                                            ng-options="attendanceStatus.value as attendanceStatus.name for attendanceStatus in AttendanceStatusesTags"
+                                            ng-change="UpdateAttendeeStatus(student)">
+                                        </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="lesson-nav-options">
+            <button class="button" ng-click="backSingleCourse()" type="button">
+                <span class="text">חזרה{{dictionary.backCourseText}}</span>
+            </button>
         </div>
     </div>
+</div>
